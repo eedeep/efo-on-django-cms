@@ -1,0 +1,24 @@
+
+.opacity(@coeficient) {
+    /* Need to add filter for IE */
+ 	-moz-opacity: @coeficient;
+	opacity: @coeficient;
+	-khtml-opacity: @coeficient;
+}
+
+.caps_button(
+	@background-color: #333,
+	@color: #fff,
+	@radius: 3px,
+	@font-weight: 600,
+) {
+	background-color: @background-color;
+	color: @color;
+	padding:0px 5px 0px 0px;
+	margin-right:3px;
+	margin-left:0px;
+	.rounded(@radius);
+	font-weight: @font-weight;
+	text-transform: uppercase;
+	font-family: Arial, "MS Trebuchet", sans-serif;
+}

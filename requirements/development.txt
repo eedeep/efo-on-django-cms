@@ -1,0 +1,7 @@
+# development.txt is a pip requirements file which describes the distributions
+# required by your development process
+
+--requirement=project.txt
+
+# pygraphviz
+Fabric
