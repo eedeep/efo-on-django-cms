@@ -3,6 +3,8 @@ import posixpath
 import pinax
 import sys
 
+#a local change
+
 gettext = lambda s: s
 
 PINAX_ROOT = os.path.abspath(os.path.dirname(pinax.__file__))
