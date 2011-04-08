@@ -2,7 +2,6 @@ import os
 import posixpath
 import pinax
 import sys
-#a change in the upstream master
 
 gettext = lambda s: s
 
