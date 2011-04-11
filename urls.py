@@ -4,7 +4,7 @@ from django.conf import settings
 
 admin.autodiscover()
 
-#an inconsequential change
+#Removed an inconsequential change
 urlpatterns = patterns('',
 #    url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
