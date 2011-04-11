@@ -63,14 +63,10 @@ SITE_NAME = "Empty Django Cms Project"
 # to load the internationalization machinery.
 USE_I18N = False
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-#MEDIA_ROOT = os.path.join(PROJECT_ROOT, "site_media", "media")
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-#MEDIA_URL = "/site_media/media/"
+# Absolute path to the directory that holds user generated media.
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, "site_media", "media")
+# Relative to user generated media
+MEDIA_URL = "/site_media/media/"
 
 # Absolute path to the directory that holds static files like app media.
 # Example: "/home/media/media.lawrence.com/apps/"
@@ -94,8 +90,6 @@ STATICFILES_DIRS = [
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
 ADMIN_MEDIA_ROOT = os.path.join(STATIC_ROOT, 'admin')
-MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
-MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/media/admin/'
 MODEL_IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images', 'models')
 
@@ -262,8 +256,7 @@ FILEBROWSER_MEDIA_URL = MEDIA_URL
 FILEBROWSER_URL_FILEBROWSER_MEDIA = STATIC_URL + 'filebrowser/'
 FILEBROWSER_PATH_FILEBROWSER_MEDIA = STATIC_ROOT + 'filebrowser/'
 FILEBROWSER_DIRECTORY = 'files/'
-
-FILEBROWSER_SAVE_FULL_URL = False
+FILEBROWSER_SAVE_FULL_URL = True
 FILEBROWSER_VERSIONS_BASEDIR = "cache"
 
 # Google Analytics
