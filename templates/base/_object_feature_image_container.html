@@ -1,0 +1,48 @@
+{% load thumbnail %}
+
+<div class="object-feature-image-container">
+    
+    {% if not object.has_slideshow %}
+    
+        {% if object.content_type == 'organisation' %}
+            {% thumbnail object.logo_image "150" as object_image %}
+                {% include "base/_object_thumbnail_image.html" %}
+            {% endthumbnail %}
+        {% else %}{% if object.content_type == 'profile' %}
+            {% if object.avatar %}
+                {% thumbnail object.avatar "150" as object_image %}
+                    {% include "base/_object_thumbnail_image.html" %}
+                {% endthumbnail %}
+            {% else %}
+                <img 
+                    alt="{{ object.user.display_name }}"
+                    src="{{ STATIC_URL }}img/avatar-default.png"
+                    width="150" />
+            {% endif %}
+        {% else %}
+            {% if object.feature_image %}
+                {% thumbnail object.feature_image "638x427" crop="center" as object_image %}
+                    {% include "base/_object_thumbnail_image.html" %}
+                {% endthumbnail %}
+            {% else %}
+                {% thumbnail object.images|first "638x360" crop="center" as object_image %}
+                    {% include "base/_object_thumbnail_image.html" %}
+                {% endthumbnail %}
+            {% endif %}{% endif %}
+        {% endif %}
+        
+    {% else %}
+    
+        {% if forloop.first %}
+            {% thumbnail image "638x427" crop="center" as object_image %}
+                {% include "base/_object_thumbnail_image.html" %}
+            {% endthumbnail %}
+        {% else %}
+            {% thumbnail image "638x427" as object_image %}
+                {% include "base/_object_thumbnail_image.html" %}
+            {% endthumbnail %}
+        {% endif %}
+        
+    {% endif %}
+    
+</div>

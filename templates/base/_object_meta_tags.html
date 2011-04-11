@@ -1,0 +1,28 @@
+{% if objects %}
+    
+    {# Description #}
+    {% with objects|first as object %}
+        {% if object.content_type == 'article' %}
+            <meta name="description" content="{{ object.article_type|capfirst }}s">
+        {% else %}
+            <meta name="description" content="{{ object.content_type|capfirst }}s">
+        {% endif %}
+    {% endwith %}
+    
+{% else %}{% if object %}
+    
+    {% if object.content_type == 'article' %}
+        <meta name="description" content="{{ object.title }}">
+        <meta name="keywords" content="{{ object.article_type|capfirst }}, {% for tag in object.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+    {% else %}
+        <meta name="description" content="{{ object.title }}">
+        <meta name="keywords" content="{{ object.content_type|capfirst }}, {% if object.content_type == 'event' %}{{ object.event_type }}, {% endif %}{% for tag in object.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+    {% endif %}
+    
+{% else %}
+
+    <meta name="description" content="Architecture now is the premier destination for architecture, interior, landscape and design projects, insights and news.">
+    <meta name="keywords" content="Architecture Now, ANow, projects, architecture, interior design, landscape architecture, buildings, construction">
+
+{% endif %}{% endif %}
+

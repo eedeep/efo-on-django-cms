@@ -1,0 +1,14 @@
+{% load comments %}
+
+    {% if object.users or object.published %}
+
+    <section id="object-credits" class="object-related-meta">
+                  
+            {# Authors #}
+            {% include "base/_object_authors.html" %}
+            
+            {# Photography #}
+            {% include "base/_object_credits_photographers.html" %}
+            
+    </section>
+    {% endif %}

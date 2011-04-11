@@ -1,0 +1,61 @@
+{% extends "projects/base.html" %}
+{% load i18n ifsetting_tag account_tags openid_tags %}
+{% load uni_form_tags %}
+{% load thumbnail %}
+{% load comments %}
+{% load projects_tags %}
+{% load humanize %}
+
+{% block head_title %}
+    {% with project as object %}
+        {% include "base/_object_title_tag.html" %}
+    {% endwith %}
+{% endblock %}
+
+{% block extra_head %}
+    {% with project as object %}
+        {% include "base/_object_meta_tags.html" %}
+    {% endwith %}
+    {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{{ block.super }} {% with project as object %}{{ object.content_type }}{% endwith %}{% endblock %}
+
+{% block body %}
+    
+    {% with project as object %}
+    
+    {% include "base/_object_details.html" %}
+    
+    {% endwith %}
+    
+    {% if project.article_set.all %}
+    <section class="related-object-list">
+	    <header>
+            <h3>Articles</h3>
+        </header>
+        {% for object in project.article_set.all %}
+            {% include "base/_object_list_item.html" %}
+        {% endfor %}
+    </section>
+    {% endif %}
+    
+    {% if project.tags.all %}
+    {% with project as object %}
+        {% include "base/_object_topics_tags_list.html" %}
+    {% endwith %}
+    {% endif %}
+    
+    {% with project as object %}
+    {% include "base/_object_comments.html" %}
+    {% endwith %}
+    
+{% endblock%}
+
+{% block aside %}
+    
+    {% include "ads/brandindia_300_225.html" %}
+    
+    {% include "projects/_project_asides.html" %}
+    
+{% endblock %}

@@ -1,0 +1,12 @@
+{% if object.tags.all %}
+<section id="object-tags" class="object-related-meta">
+    <{% if context = 'meta' %}span {% else %}p{% endif %} class="object-tags">
+        <span class="object-tag-label">Tags: </span>
+        {# <span class="object-tag"> #}
+        {% for tag in object.tags.all %}
+            <a href="{% url tag_view tag.slug %}">{{ tag }}</a>
+        {% endfor %}
+        {# </span> #}
+    </{% if context = 'meta' %}span {% else %}p{% endif %}>
+</section>
+{% endif %}

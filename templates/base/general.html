@@ -1,0 +1,9 @@
+{% extends "home.html" %}
+{% load menu_tags %}
+
+{% block menu %}
+{{ block.super }}
+<div id="submenu">
+	{% show_menu 2 2 0 100 %}
+</div>
+{% endblock menu %}

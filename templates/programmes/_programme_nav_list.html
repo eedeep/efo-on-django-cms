@@ -1,0 +1,5 @@
+{% spaceless %}
+{% for programme in programmes %}
+    <li><a href="{% url programme programme.slug %}">{{ programme.name|title }}</a></li>
+{% endfor %}
+{% endspaceless %}

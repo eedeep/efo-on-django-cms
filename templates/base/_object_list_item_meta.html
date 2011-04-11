@@ -1,0 +1,52 @@
+
+    <span class="meta">
+        
+        {% if not object.comment %}
+    
+            {% if object.article_type %}
+                <span class="article-type">{{ object.article_type }}</span>
+                {% else %}{% if object.event_type %}
+                <span class="object-type">{{ object.event_type }}</span>
+            {% else %}
+                {% if object.content_type != "organisation" or object.content_type != 'person' %}
+                <span class="object-type">{{ object.content_type }}</span>
+                {% endif %}
+            {% endif %}{% endif %}
+            
+            {# Person #}
+            {% if object.content_type == 'person' %}
+                
+            {% endif %}
+        
+            {# Project #}
+            {% if object.content_type == 'project' %}
+                <span>by
+                {% for company in object.projectcompany_set.iterator %}
+                    {% ifchanged company.organisation %}
+                    <a href="{{ company.organisation.get_absolute_url }}">{{ company.organisation }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endifchanged %}
+                {% empty %}
+                {% endfor %}
+                </span>
+            {% endif %}
+            
+            {# Event #}
+            {% if object.content_type == 'event' %}
+                <span class="object-dates">{{ object.start_date|date }}{% if object.end_date %} -- {{ object.end_date|date }}{% endif %}</span>
+            {% endif %}
+            
+            
+            {# {% if object.users.all %} #}
+            {# <span class="object-contributors">by {% spaceless %} #}
+            {#     {% for contributor in object.users.all %} #}
+            {#         <a href="{{ contributor.get_absolute_url }}">{{ contributor }}</a>{% if not forloop.last %}, {% endif %} #}
+            {#     {% endfor %} #}
+            {# {% endspaceless %}</span> #}
+            {# {% endif %} #}
+        
+        {% else %}
+            <span class="object-type">comment</span> on {{ object.content_type }}: <a href="{{ object.content_object.get_absolute_url }}">{{ object.content_object.title }}</a>
+        {% endif %}
+        
+    </span>
+    

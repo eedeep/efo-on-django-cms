@@ -1,0 +1,31 @@
+
+
+{# Where object might be article, project, event or organisation #}
+
+{% for tagged_item in tagged_items %}
+
+    {% with tagged_item.content_object as object %}
+        {% include "base/_object_list_item.html" %}
+    {% endwith %}
+    
+{% empty %}
+
+        {% for object in objects %}
+        
+            {# <!-- {% cycle 'col1' 'col2' 'col3' as column %} //--> #}
+            {# {% if column == 'col1' %} #}
+            {# <div class="object-list-row"> #}
+            {# {% endif %} #}
+            
+            {% include "base/_object_list_item.html" %}
+        
+            {# {% if column == 'col3' %} #}
+            {# </div> #}
+            {# {% endif %} #}
+            
+        {% empty %}
+        	<p>Nothing found here.</p>
+        {% endfor %}
+ 
+{% endfor %}
+

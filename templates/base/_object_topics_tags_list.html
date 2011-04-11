@@ -1,0 +1,10 @@
+<section id="object-tags">
+    <header>
+        <h3>Tags</h3>
+    </header>
+    <p>
+    {% for tag in object.tags.all %}
+        <a href="{% url tag_view tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    </p>
+</section>

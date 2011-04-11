@@ -1,0 +1,67 @@
+{% load i18n ifsetting_tag account_tags openid_tags %}
+{% load uni_form_tags %}
+{% load jquery_validation %}
+
+{% block extra_head %}
+
+    {# <script type="text/javascript" src="{{ STATIC_URL }}uni_form/uni-form.jquery.js"></script> #}
+    {# {% include_validation %} #}
+    {# <script type="text/javascript"> #}
+    {#     $(function()    { #}
+    {#         $('#object-meta-login-form').validate( #}
+    {#             '{% url acct_login_validate %}',  #}
+    {#             { #}
+    {#                 type: 'ul',  #}
+    {#                 fields: ['email'],  #}
+    {#                 dom: $('#id_email'),  #}
+    {#                 event: 'blur' #}
+    {#             }); #}
+    {#         // $('#object-meta-login-form').validate('{% url acct_login_validate %}', {type: 'ul'}); #}
+    {#     }); #}
+    {# </script> #}
+    
+{% endblock %}
+
+    <p>To leave a comment<a href="{% url acct_signup %}"> join </a> Architecture Now or login below.   </p>
+    
+    <form id="object-meta-login-form" class="login uniForm" method="POST" action="{% url base_comment_acct_login %}">
+        {% csrf_token %}
+        <fieldset>
+            
+            {{ form|as_uni_form }}
+            
+            <div id="div_id_email" class="ctrlHolder ">
+                <label for="id_email"> 
+                    Email address <span>*</span> 
+                </label> 
+                <input id="id_email" type="text" class="textinput" name="email" maxlength="30" />
+            </div> 
+        
+            <div id="div_id_password" class="ctrlHolder ">
+                <label for="id_password">
+                    Password <span>*</span> 
+                </label> 
+                <input id="id_password" type="password" class="passwordinput" name="password" /> 
+            </div> 
+        
+            <div id="div_id_remember" class="ctrlHolder checkbox ">
+                <input id="id_remember" type="checkbox" class="checkboxinput" name="remember" />
+                <label for="id_remember">
+                    Remember Me
+                </label>
+                {# <p id="hint_id_remember" class="formHint">If checked you will stay logged in for 3 weeks</p>  #}
+            </div>
+            
+            <input type="hidden" name="success_url" value="{{ object.get_absolute_url }}#write-comment" />
+            <input type="hidden" name="next" value="{{ object.get_absolute_url }}#write-comment" />
+            
+            <div id="div_log_in" class="form_block">
+                <input type="submit" value="{% trans "Login" %}" />
+                 <span>
+                        <a href="{% url acct_passwd_reset %}"><em>{% trans "Forgot password?" %}</em></a>
+                </span>
+            </div>
+
+        </fieldset>
+
+    </form>

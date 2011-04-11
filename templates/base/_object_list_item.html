@@ -1,0 +1,68 @@
+{% load thumbnail %}
+{% load comments %}
+{% load antony_time_filters %}
+
+<article class="object-list-item{% if object.feature_image %} has-feature-image{% endif %}">
+    
+    {% if object.feature_image or object.comment %}
+    
+        <figure class="object-list-item-figure{% if object.comment %} comment{% endif %}"> 
+        
+            {% if not object.comment %}
+                {% if object.content_type == 'organisation' %}
+                    {% thumbnail object.logo_image "308x173" as object_image %}
+                        {% include "base/_object_thumbnail_anchor_image.html" %}
+                    {% endthumbnail %}
+                {% else %}{% if object.content_type == 'person' %}
+                    {% thumbnail object.avatar "308x173" as object_image %}
+                        {% include "base/_object_thumbnail_anchor_image.html" %}
+                    {% endthumbnail %}
+                {% else %}
+                    {% if object.feature_image %}
+                        {% thumbnail object.feature_image "308x173" crop="center" as object_image %}
+                            {% include "base/_object_thumbnail_anchor_image.html" %}
+                        {% endthumbnail %}
+                    {% else %}
+                        {% thumbnail object.images|first "308x173" crop="center" as object_image %}
+                            {% include "base/_object_thumbnail_anchor_image.html" %}
+                        {% endthumbnail %}
+                    {% endif %}
+                {% endif %}{% endif %}
+            {% else %}
+                <img 
+                    src="{{ STATIC_URL }}images/comment-icon-32.png"
+                    width="32" 
+                    height="32" />
+            {% endif %}
+    
+        </figure>
+        
+    {% endif %}
+
+    <header class="object-list-item-header">
+        <h2><a href="{{ object.get_absolute_url }}">
+            {% if object.short_title %}
+                {{ object.short_title }}
+            {% else %}
+                {{ object.title }}
+            {% endif %}</a></h2>
+    </header>
+    
+    <div class="object-list-item-content">
+        {% include "base/_object_intro.html" %}
+    </div>
+    
+    {% if not object.content_type == 'event' %}
+        <footer class="object-list-item-footer">
+            <p><em>{{ object.published|date:"d M Y" }} &nbsp;
+                {% if object.authors %}Words
+                    {% for author in object.authors %}
+                       <span class="object-credits-author"><a href="{{ author.get_absolute_url }}">{{ author.display_name }}</a></span>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {{ comment_count }}
+            </em></p>
+        </footer>
+    {% endif %}
+    
+</article>

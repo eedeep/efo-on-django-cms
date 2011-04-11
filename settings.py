@@ -61,16 +61,16 @@ SITE_NAME = "Empty Django Cms Project"
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, "site_media", "media")
+#MEDIA_ROOT = os.path.join(PROJECT_ROOT, "site_media", "media")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = "/site_media/media/"
+#MEDIA_URL = "/site_media/media/"
 
 # Absolute path to the directory that holds static files like app media.
 # Example: "/home/media/media.lawrence.com/apps/"
@@ -113,7 +113,6 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
     "django_openid.consumer.SessionConsumer",
     "django.contrib.messages.middleware.MessageMiddleware",
     "pinax.apps.account.middleware.LocaleMiddleware",
@@ -186,12 +185,13 @@ INSTALLED_APPS = [
     "pagination",
     "idios",
     "endless_pagination",
-    'filebrowser',
     'mailchimp',
     'sorl.thumbnail',
     'popularity',
     'south',
     'taggit',
+    'filebrowser',
+    'tinymce',
     
     # Pinax
     "pinax.templatetags",
@@ -211,6 +211,8 @@ INSTALLED_APPS = [
     #project apps
     "pinax_local.apps.account",
     "profiles",
+    "efocms",
+    "images",
 ]
 
 # Database
@@ -282,12 +284,10 @@ try:
 except ImportError:
     pass
 
-# @@@ To be moved to entropy
-
 CMS_TEMPLATES = (
-        ('general.html', gettext('general')),        
-        ('base.html', gettext('base')),
-        ('home.html', gettext('home')),
+        (' base/general.html', gettext('general')),        
+        ('base/base.html', gettext('base')),
+        ('base/home.html', gettext('home')),
 )
 
 LANGUAGES = (
@@ -316,3 +316,4 @@ TINYMCE_DEFAULT_CONFIG = {
                          }
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = False
+TINYMCE_FILEBROWSER = True

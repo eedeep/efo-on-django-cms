@@ -1,0 +1,47 @@
+{% load thumbnail %}
+
+{% if comment_list %}
+    <dl id="comments">
+        {% for comment in comment_list %}
+        <article class="comment">
+            <a name="c{{ comment.id }"></a>
+            <dt id="c{{ comment.id }}">
+                {% if not profile %}
+                    <figure>
+                    {% thumbnail comment.user.get_profile.avatar "100x100" crop=",0" as object_image %}
+                        <a href="{{ object.get_absolute_url }}">
+                        <img 
+                            alt="{{ object.title }}"
+                            src="{{ object_image.url }}"
+                            width="{{ object_image.width }}" 
+                            height="{{ object_image.height }}" /></a>
+                    {% empty %}
+                        <img 
+                            src="{{ STATIC_URL }}img/avatar-default.png"
+                            width="100"
+                            height="100" />
+                    {% endthumbnail %}
+                    </figure>
+                {% endif %}
+                
+                {% if context == 'profile' %}
+                    On article:
+                    <a href="{{ comment.content_object.get_absolute_url }}">
+                        {% if comment.content_object.short_title %}
+                            {{ comment.content_object.short_title }}
+                            {% else %}
+                            {{ comment.content_object.title }}
+                            {% endif %}</a>
+                {% endif %}
+                
+                
+ <a class="comment-owner" href="{{ comment.user.profile_set.get.get_absolute_url }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+                {{ comment.submit_date|timesince }} ago
+            </dt>
+            <dd>
+                <p>{{ comment.comment }}</p>
+            </dd>
+        </article>
+        {% endfor %}
+    </dl>
+{% endif %}

@@ -1,0 +1,7 @@
+{# Where object might be article, project, event or organisation #}
+
+    {% for object in objects %}
+        {% include "base/_asides_object_list_item.html" %}
+    {% empty %}
+        {# Something should go here? #}
+    {% endfor %}

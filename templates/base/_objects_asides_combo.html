@@ -1,0 +1,8 @@
+{# should have 'objects' passed through this context via 'with/endwith' #}
+
+{% with objects|first as object %}
+
+{# Nothing doing with objects at the moment.  So pass in an agnostic. #}
+{% include "base/_asides_combo.html" %}
+
+{% endwith %}

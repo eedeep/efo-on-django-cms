@@ -1,0 +1,14 @@
+{% load meta_comments_tags %}
+
+{% most_discussed_objects_last_month as discussed_objects %}
+
+    <h4>Most Commented</h4>
+    <ul>
+    {% for object in discussed_objects %}
+        {% if forloop.counter < 6 %}
+        <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
+        {% endif %}
+    {% empty %}
+        <p>Nothing interesting...</p>
+    {% endfor %}
+    </ul>

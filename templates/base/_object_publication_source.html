@@ -1,0 +1,14 @@
+{% if object.issues.all %}
+    <section id="object-publication-source" class="object-related-meta">
+        <{% if context = 'meta' %}span {% else %}p{% endif %}>
+            <span id="object-source-label">
+                Source:{{ object.issues|length|pluralize }}
+            </span>
+            <span id="object-source-magazines">
+            {% for issue in object.issues.all %}
+                <a href="{{ issue.magazine.get_absolute_url }}">{{ issue.magazine.title }}</a>, <a href="{{ issue.get_absolute_url }}">{{ issue.issue_display_name }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            </span>
+        </{% if context = 'meta' %}span {% else %}p{% endif %}>
+    </section>
+{% endif %}

@@ -1,0 +1,34 @@
+{% load thumbnail %}
+
+{# Removed by MR #}
+{# {% include "base/_object_breadcrumbs.html" %} #}
+
+<section id="object" class="{{ object.content_type }}">
+    <article>
+        <header>
+            <h1>{{ object.title }}</h1>
+        </header>
+        
+        {% if not object.content_type == 'magazine' %}
+            {% include "base/_object_detail_combo.html" %}
+        {% else %}
+            {% include "base/_object_feature_image.html" %}
+        {% endif %}
+        
+        
+        {% if object.content_type == 'event' %}
+            <p><strong>{{ object.event_type }}</strong> {{ object.start_date|date }} {% if object.end %}{{ object.end_date|date }}{% endif %}</p>
+        {% endif %}
+
+        <div class="object-content">{{ object.content|safe }}</div>
+        
+        {% if object.content_type == 'project' %}
+            <p>{{ object.city }} {{ object.country }}</p>
+        {% endif %}
+        
+        
+        {% if object.content_type == 'magazine' and object.url %}
+        <p><a href="{{ object.magazine.url }}">Subscribe</a></p>
+        {% endif %}
+    </article>
+</section>

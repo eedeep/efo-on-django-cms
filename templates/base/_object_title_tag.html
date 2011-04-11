@@ -1,0 +1,37 @@
+{% load meta_site_tags %}
+
+{% spaceless %}
+    {% if objects %}
+    
+        {% with objects|first as object %}
+            {% if object.content_type == 'article' %}
+                {{ article_type_section|capfirst }}
+            {% else %}{% if object.content_type == 'event' %}
+                {{ object.event.type|capfirst }}s
+            {% else %}
+                {{ object.content_type|capfirst }}s
+            {% endif %}{% endif %}
+        
+        {% endwith %}
+    
+    {% else %}{% if object %}
+
+        {% if object.content_type == 'article' %}
+            {{ object.article_type|capfirst }}:
+        {% else %}{% if object.content_type == 'event' %}
+            {{ object.event_type|capfirst }}:
+        {% else %}{% if object.content_type == 'archivearticle' %}
+            Article
+        {% else %}
+           {{ object.content_type|capfirst }}:
+        {% endif %}{% endif %}
+        {% if object.content_type != 'magazine issue' %}
+           {{ object.title|capfirst }}{% if filter_by_year %} - {{ filter_by_year }} {% endif %}
+        {% else %}
+           {{ object.magazine.title}} - {{ object.issue_name }} 
+        {% endif %}
+    {% endif %}{% endif %}{% endif %}
+    
+    {% if not context == 'home' %}| {% endif %}{% current_site_name %} {% current_site_country %}{% if context == 'home' %} - Home{% endif %}
+    
+{% endspaceless %}

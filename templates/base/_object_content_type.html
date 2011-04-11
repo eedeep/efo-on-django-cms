@@ -1,0 +1,22 @@
+{% if object.article_type %}
+    <a href="{% url articles_article_type object.article_type.slug %}" class="object-type">{{ object.article_type }}</a>
+{% else %}{% if object.content_type = 'event' %}
+    <p class="object-excerpt">{% spaceless %}
+    {% if object.event_type %}
+        <a href="{{ object.get_list_url }}" class="object-type">{{ object.event_type }}</a>
+    {% endif %}
+    {# {% if object.event_type %} #}
+    {#     <strong>{{ object.event_type }}</strong> #}
+    {# {% endif %} #}
+
+    {% if object.city %}
+        {{ object.city }}
+    {% endif %}
+
+    {% endspaceless %}</p>
+    <p class="object-excerpt">, {{ object.start_date|date:"d M Y" }}{% if object.end_date != object.start_date %} to {{ object.end_date|date:"d M Y" }}{% endif %}</p>
+{% else %}
+    {% if object.content_type != "organisation" and object.content_type != 'person' and object.content_type != 'event' %}
+        <a href="{{ object.get_list_url }}" class="object-type">{{ object.content_type }}</a>here
+    {% endif %}
+{% endif %}{% endif %}

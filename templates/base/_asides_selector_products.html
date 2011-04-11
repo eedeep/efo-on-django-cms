@@ -1,0 +1,44 @@
+{% load meta_site_tags %}
+  
+    {% block extra_body %}
+    
+        
+        {{ block.super }}
+    
+        <!-- !begin [products_widget] -->
+        <!-- !load [assets] -->
+        <script type="text/javascript" charset="utf-8">
+        var protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+        var base = protocol + 'assets.architecturemedia.com';
+
+        if (typeof jQuery != 'function') {
+               document.write(unescape("%3Cscript src='" + base + "/api/js/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+        }
+        document.write(unescape("%3Cscript src='" + base + "/api/js/api.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <!-- !call API -->
+
+        <!-- !end [products_widget] -->
+    
+    {% endblock %}
+
+    <section id="asides-selector-products">
+        <header>
+            <h4>Latest products from Selector</h4>
+        </header>
+        <p>Visit <a href="www.selector.com">selector.com</a> to find more products.</p>
+        
+        {# http://uat.assets.selector.com/assets/images/4b/30159/98x498.jpg #}
+        
+        <!-- !call API -->
+        <script type="text/javascript" charset="utf-8">
+        Selector.API.setMode('production').writeRenderedProducts({
+           site: Selector.API.SITE_{% current_site_country_code %},
+           order: Selector.API.PRODUCTS_ORDER_RANDOM,
+           crop: 1,
+           limit: 5,
+           image_bounds: [100, 100]
+        });
+        </script>
+       
+    </section>

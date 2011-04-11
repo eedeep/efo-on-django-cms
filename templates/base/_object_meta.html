@@ -1,0 +1,65 @@
+{% load comments %}
+
+    <section id="object-meta" class="object-related-meta-header">
+            
+            {# Article type #}
+            {% if object.article_type %}
+                <span class="object-meta-article-type">
+                    <a href="{% url articles_article_type article.article_type.slug %}">{{ object.article_type }}</a>:
+                </span>
+            {% else %}{% if object.content_type == 'profile' %}
+                <span class="object-meta-article-type">MEMBER: </span>
+                <span class="object-meta-published">Member since {{ profile.user.date_joined|date:"d F Y" }}</span>
+            {% else %}{% if object.content_type == 'event' %}
+                <span class="object-meta-article-type">
+                    <a href="/events/?date=&type={{ object.event_type|lower }}&location=">{{ object.event_type }}</a> 
+                </span>
+               
+                <span class="object-meta-published">
+                    {% if object.city %}{{ object.city }}{% endif %}, {{ object.start_date|date:"d M Y" }}
+                    {% if object.end_date != object.start_date %} to {{ object.end_date|date:"d M Y" }}{% endif %}
+                </span>
+                
+            {% else %}{% if object.content_type == 'organisation' %}
+                <span class="object-meta-article-type">ORGANISATION</span> 
+            {% else %}{% if object.content_type == 'archivearticle' %}
+                <span class="object-meta-article-type">
+                    {% if object.magazine_section %}
+                        <a href="{{ object.issue.get_absolute_url }}#{{ object.magazine_section.section_name }}">{{ object.magazine_section.section_name }}</a>
+                    {% else %}
+                        <a href="{{ object.issue.get_absolute_url }}#MoreInThisIssue">More In This Issue</a>
+                    {% endif %}
+                </span>
+            {% else %}{% if object.content_type == 'magazine_issue' %}
+                <span class="object-meta-article-type">  
+                    {% url magazine_view issue.magazine.slug as magazine_url %}
+                    <a href="{{ magazine_url }}">{{ issue.magazine.title }}</a>
+                </span>            
+            {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+
+            
+            {# Published date #}
+            {% if object.published and not object.content_type == 'organisation' and not object.content_type == 'event' %}
+                <span class="object-meta-published">{{ object.published|date:"d F Y" }}</span>
+            {% endif %}
+            
+            {# Object Authors #}
+            {% with article as object %}
+                {% with 'meta' as context %}
+                {% include "base/_object_authors.html" %}
+                {% endwith %}
+            {% endwith %}
+            
+            {# Object comments #}
+            {% get_comment_count for object as comment_count %}
+            {% if comment_count > 0 %}
+                <span class="object-meta-comment-count">
+                    <a href="{{ object.get_absolute_url }}#comments">{{ comment_count }}</a>
+				</span>
+            {% endif %}
+            
+            {% if not object.content_type == 'magazine_issue' %}
+                {# Object social share shor MR #}
+                {% include "base/_object_social_share-short.html" %}
+            {% endif %}
+    </section>

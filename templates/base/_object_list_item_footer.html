@@ -1,0 +1,30 @@
+    
+    <footer>    
+        {% if object.content_type != "organisation" %}
+    
+            {% if object.comment %}
+                <span class="object-published-ago">
+                    {% if object.submit_date|olderthan:604800 %}
+                        {{ object.submit_date|date }}
+                    {% else %}
+                        {{ object.submit_date|timesince }}
+                    {% endif %}            
+                </span>
+            {% else %}
+                <span class="object-published-ago">
+                    {% if object.published|olderthan:604800 %}
+                        {{ object.published|date }}
+                    {% else %}
+                        {{ object.published|timesince }}
+                    {% endif %}            
+                </span>
+                {% get_comment_count for object as comment_count %}
+                {% if comment_count > 0 %}
+                    <span class="object-comment-count">
+                        <a href="{{ object.get_absolute_url }}#comments">{# {{ object.comments_count }}/ #}{{ comment_count }} response{{ comment_count|pluralize }}</a></span>
+                {% endif %}
+            {% endif %}
+                    <span class="object-view-count">popularity {{ object.popularity }}</span>
+                    <span class="object-view-count">viewed {{ object.view_count }} time{{ object.view_count|pluralize }}</span>
+        {% endif %}
+    </footer>

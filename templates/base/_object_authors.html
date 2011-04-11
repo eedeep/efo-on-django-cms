@@ -1,0 +1,9 @@
+{# Authors #}
+{% if object.authors %}
+    <{% if context = 'meta' %}span{% else %}span{% endif %} class="object-credits-authors">{% if context = 'meta' %}by {% else %}Words:{% endif %} 
+    {% for author in object.authors %}
+        <span class="object-credits-author">
+            <a href="{{ author.get_absolute_url }}">{{ author.display_name }}</a></span>{% if not forloop.last %}, {% else %}{% if object.photographers %} {% endif %}{% endif %}
+    {% endfor %}
+    </{% if context = 'meta' %}span{% else %}span{% endif %}>
+{% endif %}

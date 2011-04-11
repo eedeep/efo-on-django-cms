@@ -1,0 +1,13 @@
+{% if object.photographers %}
+    <{% if context = 'meta' %}span {% else %}span{% endif %} class="object-credits-photographers">{% if object.content_type == 'article' %}       &nbsp;Images:{% else %}&nbsp;Image: {% endif %}
+    {% for photographer in object.photographers %}
+        <span class="object-credits-photographer">{% spaceless %}
+            {% if photographer.get_absolute_url %}
+                <a href="{{ photographer.get_absolute_url }}">{{ photographer.display_name }}</a>
+            {% else %}
+                {{ photographer }}
+            {% endif %}
+            {% endspaceless %}</span>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    </{% if context = 'meta' %}span {% else %}span{% endif %}>
+{% endif %}

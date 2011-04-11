@@ -1,0 +1,22 @@
+{% load articles_tags events_tags features_tags %}
+
+<section class="asides-tabs">
+    
+    <div id="asides-tab-features" class="tab">
+        <h4>Features</h4>
+        {% site_features %}
+    </div>
+    
+    <div id="asides-tab-news" class="tab">
+        <h4>News</h4>
+        {% latest_news %}
+        <a class="section-more-link" href="{# {% url articles_section 'news' %} #}">More news</a>
+    </div>
+
+    <div id="asides-tab-events" class="tab">
+        <h4>Calendar</h4>
+        {% latest_events %}
+        <a class="section-more-link" href="{% url events_events %}">More events</a>
+    </div>
+    
+</section>

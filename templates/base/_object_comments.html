@@ -1,0 +1,84 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load comments %}
+{% load uni_form_tags %}
+
+{% block extra_body %}
+
+    <script type="text/javascript"> 
+        
+        $(document).ready(function() {
+            console.log('Disabling the comment button');
+            $('#object-comment-form-submit').attr("disabled", "disabled");
+            
+            $('#object-comment-form #id_comment').keyup(function() {
+               console.log('Typing');
+               if ($(this).val().length > 0) {
+                   $('#object-comment-form-submit').removeAttr("disabled", "disabled");
+               } else {
+                   $('#object-comment-form-submit').attr("disabled", "disabled");
+               }
+            });
+        });
+        
+    </script>
+    
+{% endblock %}
+
+    <section id="comments" class="object-related-functions">
+        <header>
+            <h3>Comments</h3><a name="comments"></a>
+        </header>
+        <p><a id="write-comment" href="#write-comment">Write a comment &darr;</a></p>
+        
+        {% get_comment_list for object as comment_list %}
+        {% include "base/_object_comment_list.html" %}
+     
+        {% if user.is_authenticated and user.get_profile.can_comment %}
+    
+        <section id="comment-form">
+            <label class="required">Your Comment:</label>
+            <a name="write-comment"></a>
+            {# {% render_comment_form for object %} #}
+            {% get_comment_form for object as form %}
+            {% with object.get_absolute_url as next %}
+                <form id="object-comment-form" action="{% comment_form_target %}" method="post">
+                    {% csrf_token %}
+                    <fieldset class="inlineLabels">
+                        {{ form|as_uni_form }}
+                        {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        <div class="form_block">
+                            <input id="object-comment-form-submit" type="submit" value="{% trans "Submit Comment" %}" />
+                        </div>
+                        <input type="hidden" name="next" value="{{ object.get_absolute_url }}" />
+                    </fieldset>
+                </form>
+            {% endwith %}
+        </section>
+    
+        {% else %}
+    
+            {% if user.is_authenticated and not user.get_profile.can_comment %}
+            <section id="comment-form">
+                <p>Hey we'd love you to make a comment, and are looking forward to your thoughts, but first you need to <a href="{% url acct_email %}">verify</a> an email address.</p>
+            </section>
+            {% endif %}
+        
+            {% if not user.is_authenticated %}  
+            <section id="comment-login">
+                <h4>Write a Comment</h4>
+                <a name="write-comment"></a>
+                {% with object as object %}
+                {% include "base/_object_meta_login.html" %}
+                {% endwith %}
+            </section>
+            {% endif %}
+        
+    {% endif %}
+    
+    </section>
+    
+    
+   

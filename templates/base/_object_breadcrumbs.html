@@ -1,0 +1,14 @@
+<section id="object-breadcrumbs">
+    <nav id="object-breadcrumb-nav">
+        <ul>{% spaceless %}
+            {% if not object.article_type %}
+            <li><a href="#">{{ object.content_type }}
+                </a></li>
+            {% else %}
+            <li><a href="{% url articles_article_type article.article_type.slug %}">
+                    {{ article.article_type }}s</a></li>
+            {% endif %}
+            {% endspaceless %}
+        </ul>
+    </nav>
+</section>

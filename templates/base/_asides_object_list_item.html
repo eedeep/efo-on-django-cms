@@ -1,0 +1,37 @@
+{% load thumbnail %}
+{% load comments %}
+{% load antony_time_filters %}
+
+<article>
+    <header>
+        <h5><a href="{{ object.get_absolute_url }}">
+            {% if object.short_title %}
+                {{ object.short_title }}
+            {% else %}
+                {{ object.title }}
+            {% endif %}</a></h5>
+    </header>
+    <div class="object-excerpt">
+    {# Date #}
+    {% if object.content_type == 'event' %}  
+                
+                <p class="object-excerpt"><strong>{{ object.event_type }}</strong>{% if object.city %} in {{ object.city }}{% endif %}</p>
+                <p class="object-excerpt">
+                    {{ object.start_date|date:"d M Y" }}
+                    {% if object.end_date != object.start_date %} to {{ object.end_date|date:"d M Y" }}{% endif %}
+                </p>
+                
+        {# <p class="event-byline">{{ object.event_type }}{% if object.city %} in {{ object.city }}{% endif %}</p> #}
+        {#         <p class="event-dates">{{ object.start_date|date }}{% if object.end_date %} to {{ object.end_date|date }}{% endif %}</p> #}
+    {% else %}
+        {# {% if forloop.first %} #}
+        {# <span class="object-dates">{{ object.published|date }}</span> #}
+        {# {% endif %} #}
+        {% if object.summary %}
+            {{ object.summary }}
+        {% else %}
+            {{ object.content|striptags|truncatewords:24|safe }}
+        {% endif %}
+    {% endif %}
+    </div>
+</article>

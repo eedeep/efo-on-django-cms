@@ -1,0 +1,6 @@
+<div class="object-feature-image-caption">
+    <p>{{ image.caption }}
+    {% with image as object %}
+        {% if object.photographers %}{% include "base/_object_credits_photographers.html" %}{% endif %}
+    {% endwith %}</p>
+</div>

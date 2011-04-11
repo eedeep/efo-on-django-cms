@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<section id="site-select-widget">
+    <form action="" method="post">
+    {% csrf_token %}
+    <select onchange="window.location='http://' + this.value;" name="site">
+        {% for site in sites %}
+            {% if forloop.first and not current_site %}
+            <option>{% trans "select a site" %}</option>    
+            {% endif %}
+            <option value="{{ site.domain }}" {% if site == current_site %}selected=selected{% endif %}>
+                {{ site.name }}
+            </option>
+        {% endfor %}
+    </select>
+    </form>
+</section>

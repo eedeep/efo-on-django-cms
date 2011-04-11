@@ -1,0 +1,28 @@
+{# With a given article object, resolve an introduction to show     #}
+{#      trying: `introduction`, `summary` or truncated `content`    #}
+
+<span class="object-excerpt">
+    {% if object.content_type == 'person' %}
+        {{ object.biography|striptags|truncatewords:30|safe }}
+    {% else %}
+        {% include "base/_object_content_type.html" %}{% if object.content_type == 'event' %}<div class="object-excerpt-event">{% endif %}
+        {% if context == 'home_features' %}
+            {% if object.summary %}
+            {{ object.summary|safe }}
+            {% else %}{% if object.introduction %}
+                {{ object.introduction|safe }}
+            {% else %}
+                {{ object.content|striptags|truncatewords:25|safe }}
+            {% endif %}{% endif %}
+        {% else %}
+            {% if object.summary %}
+            {{ object.summary|safe }}
+            {% else %}{% if object.introduction %}
+                {{ object.introduction|safe }}
+            {% else %}
+                {{ object.content|striptags|truncatewords:25|safe }}
+            {% endif %}{% endif %}
+        {% endif %}
+        {% if object.content_type == 'event' %}</div>{% endif %}        
+    {% endif %}
+</span>

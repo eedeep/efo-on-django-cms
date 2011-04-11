@@ -1,0 +1,127 @@
+<nav id="objects-filter-nav">
+    
+    <form method="get">
+        
+    {% if not object.person_type %}
+        
+        {% if not event_types %}
+            
+            <div class="radio">
+                <label 
+                {% if request.GET.order == 'recent' or not request.GET.order %}
+                    class="active"
+                {% endif %}
+                for="recent">Most recent</label>
+                <input
+                {% if request.GET.order == 'recent' %} 
+                    checked=checked
+                {% endif %}
+                    onchange="this.form.submit();" 
+                    type="radio" 
+                    name="order" 
+                    id="recent" 
+                    value="recent">
+            </div>
+            <div class="radio">
+                <label 
+                {% if request.GET.order == 'popular' %}
+                    class="active"
+                {% endif %}
+                    for="popular">Most popular</label>
+                <input 
+                {% if request.GET.order == 'popular' %} 
+                    checked=checked
+                {% endif %}
+                    onchange="this.form.submit();" 
+                    type="radio" 
+                    name="order" 
+                    id="popular" 
+                    value="popular">
+            </div>
+            
+            {% if object.content_type != 'organisation' %}
+            <div class="radio">
+                <label 
+                {% if request.GET.order == 'discussed' %}
+                    class="active"
+                {% endif %}
+                    for="discussed">Most discussed</label>
+                    
+                <input
+                {% if request.GET.order == 'discussed' %}
+                    checked=checked
+                {% endif %}
+                    onchange="this.form.submit();" 
+                    type="radio" 
+                    name="order" 
+                    id="discussed" 
+                    value="discussed">
+            </div>
+            {% endif %}
+            
+    	    <select onchange="this.form.submit();" name="range" id="objects-time-filter" size="1">
+        	 <option value="all"{% if request.GET.range == 'all' %}selected=selected{% endif %}>All time</option>
+        	 <option value="week" {% if request.GET.range == 'week' %}selected=selected{% endif %}>Last week</option>
+        	 <option value="month"{% if request.GET.range == 'month' %}selected=selected{% endif %}>Last month</option>
+        	 <option value="year"{% if request.GET.range == 'year' %}selected=selected{% endif %}>Last year</option>
+        	</select>
+        
+    	{% endif %}
+    	
+	{% else %}
+	
+	<ul id="objects-meta-filter">
+        <li><a href="?content=all" id="stream-objects-nav-all">All</a></li>
+        <li><a href="?content=articles" id="stream-objects-nav-articles">Articles</a></li>
+        <li><a href="?content=comments" id="stream-objects-nav-comments">Comments</a></li>
+    </ul>
+    
+	{% endif %}
+	
+	{% if event_types  %}
+            <label class="object-date-filter" for="object-date-filter"></label>
+	        <input 
+	            type="text" 
+	            onchange="this.form.submit();" 
+                {# placeholder="click to choose a date"  #}
+	            name="date" id="object-date-filter"
+	            value="From: {{ current_date }}"
+	        {% if request.GET.date %}
+	            value="{{ request.GET.date }}"
+	        {% endif %}>
+    	
+        	{% if event_types|length > 1 %}
+    	    
+        	        <select onchange="this.form.submit();" name="type" id="object-type-filter" size="1">
+            	        <option value="">All types</option>
+            	    {% for event_type in event_types  %}
+            	        <option {% spaceless %} 
+        	            {% if request.GET.type == event_type.slug %}
+            	            selected=selected
+            	        {% endif %} 
+            	        {% endspaceless %}value="{{ event_type.slug }}">{{ event_type.name }}</option>
+            	    {% endfor %}
+            	    </select> 
+        	
+        	{% endif %}
+            {% if locations|length > 1 %}
+            
+        	<select onchange="this.form.submit();" name="location" id="object-location-filter" size="1">
+        	    <option value="">All locations</option>
+        	    {% for location in locations  %}
+        	        {% if location.city != '' %}
+        	        <option {% spaceless %} 
+        	        {% if request.GET.location == location.city %}
+        	            selected=selected
+        	        {% endif %}
+        	        {% endspaceless %}value="{{ location.city }}">{{ location.city }}</option>
+        	        {% endif %}
+        	    {% endfor %}
+        	</select> 
+        	
+            {% endif %}
+        
+	{% endif %}
+	
+	</form>
+</nav>

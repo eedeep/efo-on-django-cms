@@ -1,0 +1,27 @@
+{% load thumbnail %}
+
+<article>
+    <figure> 
+        {% thumbnail object.content_object.feature_image "130x70" crop=",0" as object_image %}
+        <img 
+            alt="{{ object.content_object.title }}"
+            src="{{ object_image.url }}"
+            width="{{ object_image.width }}" 
+            height="{{ object_image.height }}" />
+        {% endthumbnail %}
+    </figure>
+    <header>
+        <h3><a href="{{ object.content_object.get_absolute_url }}">{{ object.content_object.title }}</a></h3>
+        <div class="meta">
+            <span class="article-type">{{ object.content_object.article_type }}</span>
+            <span class="article-contributors">{% spaceless %}
+                {% for contributor in object.content_object.contributors.iterator %}
+                    {{ contributor }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% endspaceless %}</span>
+        </div>
+    </header>
+    {#  as paragraphs|mark_safe #}
+    <p class="article-excerpt">{{ object.content_object.content|striptags|truncatewords:25 }}<p>
+    <hr>
+</article>

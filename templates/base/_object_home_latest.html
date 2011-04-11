@@ -1,0 +1,44 @@
+{% load thumbnail %}
+{% load endless %}
+
+{% paginate objects %}
+
+{% for object in objects %}
+
+    {% if object.has_feature_image %}
+    
+        <article class="object-list-item">
+            <figure>
+       
+                {% thumbnail object.feature_image "308x164" crop="center" as object_image %}
+                    {% include "base/_object_thumbnail_anchor_image.html" %}
+                {% endthumbnail %}
+
+            </figure>
+            <header>
+                <h3><a href="{{ object.get_absolute_url }}">
+                    {% if object.short_title %}
+                        {{ object.short_title }}
+                    {% else %}
+                        {{ object.title }}
+                    {% endif %}</a></h3>
+            </header>
+            {% with 'home_latest' as context %}
+                {% include "base/_object_intro.html" %}
+            {% endwith %}
+        
+            <p><em>{{ object.published|date:"d M Y" }} by 
+                {% if object.authors %}
+                    {% for author in object.authors %}
+                        <span class="object-credits-author"><a href="{{ author.get_absolute_url }}">{{ author.display_name }}</a></span>
+                    {% endfor %}
+                {% endif %}
+                {{ comment_count }}
+            </em><p>
+                
+        </article>
+    
+    {% endif %}
+    
+{% endfor %}
+{% show_pages %}

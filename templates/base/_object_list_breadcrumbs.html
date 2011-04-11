@@ -1,0 +1,14 @@
+{% if article_type %}
+<section id="object-breadcrumbs">
+    <nav id="object-breadcrumb-nav">
+        <ul>{% spaceless %}
+            <li><a href="{# {% url articles_section article_type_section %} #}">
+                {{ article_type_section }}</a></li>
+                {# {% with objects|first as object %} #}
+                {# <li><a href="{{ object.get_list_url }}">{{ object.content_type|capfirst }}s</a></li> #}
+                {# {% endwith %} #}
+            {% endspaceless %}
+        </ul>
+    </nav>
+</section>
+{% endif %}

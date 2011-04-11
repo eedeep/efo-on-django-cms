@@ -1,0 +1,58 @@
+{% load thumbnail %}
+
+{% if object.has_feature_image %}
+
+    <section id="object-feature-image" {% if object.has_slideshow %}class="slideshow"{% endif %}>
+    
+        {% if not object.has_slideshow %}
+            <figure>
+        
+                {% include "base/_object_feature_image_container.html" %}
+        
+                {% if not object.content_type = 'profile' and not object.content_type = 'organisation' %}
+                    {% if object.feature_image.caption or object.photographers %}
+                        <figcaption>
+                            {% with object.feature_image as image %}
+                                {% include "base/_object_feature_image_caption.html" %}
+                            {% endwith %}
+                        </figcaption>
+                    {% endif %}
+                {% endif %}
+            
+            </figure>
+    
+        {% else %}{# has_slideshow #}
+        
+            <div id="slideshow-images">
+            
+            {% for image in object.slideshow_images %}
+        
+                <figure {% if forloop.first %}class="first"{% else %}class="sibling"{% endif %}>
+                
+                    {% include "base/_object_feature_image_container.html" %}
+                
+                    <figcaption>
+                    
+                        {% include "base/_object_feature_image_caption.html" %}
+                    
+                        <div class="object-slideshow-controls">
+                            <span class="object-slideshow-controls-links">
+                                <a class="object-slideshow-previous"></a>
+                                <span class="image_counter">Image {{ forloop.counter }} of {{ object.slideshow_images|length }}</span>
+                                <a class="object-slideshow-next"></a>
+                            </span>
+                        </div>
+                    
+                    </figcaption>
+                
+                </figure>
+            
+            {% endfor %}  
+
+            </div>
+        
+        {% endif %}
+    
+    </section>
+
+{% endif %}

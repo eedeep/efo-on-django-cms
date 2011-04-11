@@ -1,0 +1,177 @@
+{% load humanize %}
+{% load projects_tags %}
+
+    <section id="project-details">
+        
+        
+        <h2>{{ project.title }}</h2>
+       
+        
+        {# Project Leaders #}
+        {% if project.projectcompany_set.all|length > 0 %}
+            <section id="project-details-project-leaders" class="project-detail-section">
+            {% for projectcompany in project.projectcompany_set.all %}
+                {% if projectcompany.credit == 'project leader' %}
+                    <dl>
+                        <header>
+                            <h3>{{ projectcompany.role|capfirst}}</h3>
+                        </header>
+                        
+                        <dd>{% spaceless %}
+                            <a href="{{ projectcompany.organisation.get_absolute_url }}">
+                                {{ projectcompany.organisation }}</a>{% with projectcompany.organisation as object %}
+                                    {% include "base/_object_location.html" %}
+                                {% endwith %}
+                        {% endspaceless %}</dd>
+                    </dl>
+                {% endif %}
+            {% endfor %}
+            </section>
+        {% endif %}
+        
+        {# Project Team #}
+        {% if project.projectindividual_set.all %}
+            <section id="project-team">
+                <header>
+                    <h3>Project Team</h3>
+                </header>
+                {# <dl> #}
+                {#     {% for project_individual in project.projectindividual_set.all %} #}
+                {#     <dt>{{ project_individual.role|title }} / {{ project_individual.credit|title }}</dt> #}
+                {#         <dd>{{ project_individual }}, </dd> #}
+                {#     {% endfor %} #}
+                {# </dl> #}
+                <dl>
+                    {% for project_individual in project.projectindividual_set.all %}
+                        <dd>{{ project_individual }}{% if not forloop.last %}, {% endif %}</dd>
+                    {% endfor %}
+                </dl>
+            </section>
+        {% endif %}
+        
+        {# Consultants #}
+        {% if project.consultants|length > 0 %}
+            <section id="project-details-project-consultants" class="project-detail-section">
+                <header>
+                    <h3>Consultants</h3>
+                </header>
+                
+                {% regroup project.consultants by role as consultant_roles %}
+                <ul>
+                     
+                {% for consultant_role in consultant_roles %}
+                
+                    <li><strong>{{ consultant_role.grouper|capfirst }}{{ consultant_role.list|length|pluralize }}</strong>:
+                        <span>{% for consultant in consultant_role.list %}{% spaceless %}
+                            {# {{ consultant|pprint }} #}
+                            {% if consultant.content_type == 'projectindividual' %}
+                            {{ consultant }}
+                            {% else %}
+                            <a href="{{ consultant.organisation.get_absolute_url }}">{{ consultant }}</a>
+                            {% endif %}{% endspaceless %}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}</span>
+                    </li>
+                    
+                {% endfor %}
+                 
+                </ul>
+            </section>
+        {% endif %}
+        
+        {# Project Products #}
+        {% if project.projectproduct_set.all %}
+
+        <section id="project-products">
+            <header>
+                <h3>Products</h3>
+            </header>
+            <ul>
+            <span>{% for products in project.projectproduct_set.all %}
+                <li><strong>{{ products.label }}</strong>: {{ products.products|selector_search_links }}</li>
+            {% endfor %}</span>
+            </ul>
+        </section>
+    
+        {% endif %}
+        
+        {# Project Details #}
+        <section id="project-details-list">
+            <header>
+                <h3>Project Details</h3>
+            </header>
+
+            <ul>
+                {% with project.project_categories.all as categories %}
+                {% if categories %}
+                <li><strong>Categor{{ project.categories|length|pluralize:"y,ies" }}</strong>:
+                    <span>{% for category in categories %}
+                    {{ category }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}</span>
+                    </li>
+                {% endif %}
+                {% endwith %}
+                
+                {% with project.project_types.all as types %}
+                {% if types %}
+                <li><strong>Type{{ project.categories|length|pluralize }}</strong>:
+                    <span>{% for type in types %}
+                    {{ type }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}</span>
+                    </li>
+                {% endif %}
+                {% endwith %}
+                
+                {% if project.street or project.suburb or project.city %}
+                <li><strong>Location</strong>: 
+                    <span>{% with project as object %}
+                    {% include "base/_object_location_address.html" %}</li>
+                    {% endwith %}</span>
+                {% endif %}
+                
+                {% if project.client %}
+                <li><strong>Client</strong>: 
+                    <span>{{ project.client }}</span></li>
+                {% endif %}
+                
+                {% if project.building_status %}
+                <li><strong>Building Status</strong>:
+                    <span>{{ project.building_status }}</span></li>
+                {% endif %}
+                
+                {% if project.number_of_stories %}
+                <li><strong>Number of stories</strong>:
+                    <span>{{ project.number_of_stories }}</span></li>
+                {% endif %}
+                
+                {% if project.site_type %}                                    
+                <li><strong>Site type:</strong>
+                    <span>{{ project.site_type }}</span></li>
+                {% endif %}
+                
+                {% if project.site_size %}
+                <li><strong>Site size:</strong>
+                    <span>{{ project.site_size }}m<sub>2</sub></span></li>
+                {% endif %}
+                
+                {% if project.building_area %}
+                <li><strong>Building area:</strong>
+                    <span>{{ project.building_area }}m<sub>2</sub></span></li>
+                {% endif %}
+                
+                {% if project.budget %}
+                <li><strong>Budget</strong>: 
+                    <span>{{ project.budget|intcomma }}</span></li>
+                {% endif %}
+                
+                {% if project.documentation %}
+                <li><strong>Design, documentation</strong>: 
+                    <span>{{ project.documentation }} months</span></li>
+                {% endif %}
+                
+                {% if project.construction %}
+                <li><strong>Construction</strong>: 
+                    <span>{{ project.construction }} months</span></li>
+                {% endif %}                                                 
+            </ul>
+        </section>
+    </section>

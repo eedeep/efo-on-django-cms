@@ -1,0 +1,106 @@
+{% load organisations_tags %}
+  
+    {% if object.street or object.suburb or object.city or object.phone or object.fax or object.website or object.email %}
+    <section id="object-details" class="object-related-functions">
+        <header>
+            <h3>{% if object.content_type == 'organisation' %}Organisation Details{% else %}Contact Details{% endif %}</h3>
+        </header>
+        
+        {% if object.content_type == 'organisation' %}
+            
+            
+        
+            {% if location %}
+            <div class="object-location-map">
+                {# {% easy_map location 312 208 %} #}
+                <img src="http://maps.google.com/maps/api/staticmap?center={{ location|join:"+" }}&zoom=16&size=312x208&maptype=roadmap
+&markers=color:blue|label:S|40.702147,-74.015794&markers=color:green|label:G|40.711614,-74.012318
+&markers=color:red|color:red|label:C|40.718217,-73.998284&sensor=false">
+            </div>
+            {% endif %}
+            <div class="object-location-details">
+                <h4>{{ object.title }}</h4>
+                
+                {% if object.street or object.suburb or object.city %}                
+                    {% include "base/_object_location_address.html" %}
+                {% endif %}
+                
+                {% if object.phone %}
+                <br><strong>P:</strong><span>{{ object.phone }}</span>
+                {% endif %}
+                
+                {% if object.email %}
+                <br><span>{{ object.email|obfuscate }}</span>
+                {% endif %}
+                
+                {% if object.website %}
+                    <br><a href="{{ object.website }}">
+                        {% if object.website_name %}
+                            {{ object.website_name }}
+                        {% else %}
+                            {{ object.website }}
+                        {% endif %}
+                        </a>
+                {% endif %}
+
+                <dl>
+                    <dt>Organisation Type:</dt>
+                        <dd>
+                        {% for type in object.organisation_type.all %}
+                            {# <a href="#"> #}{{ type }}{# </a> #}{% if not forloop.last %}, {% endif %} 
+                            {# {% if forloop.last and object.city %}  #}
+                            {#      in {{ object.city }}, {{ object.country }} #}
+                            {# {% endif %} #}
+                        {% endfor %}</dd>
+                {% if object.organisation_expertise.all %}
+                    <dt>Expertise:</dt>
+                    {% for expertise in object.organisation_expertise.all %}
+                        <dd>{{ expertise }}{% if not forloop.last %}, {% endif %}</dd>
+                    {% endfor %}
+                {% endif %}
+                </dl>
+                     
+            </div>
+        {% else %}
+            <dl>
+                {% if object.street or object.suburb or object.city %}
+                <dt>Address:</dt>
+                    <dd>
+                        {% if object.street %}{{ object.street }},{% endif %}
+                        {% if object.suburb %}{{ object.suburb }},{% endif %}
+                        {% if object.city %}{{ object.city }},{% endif %}
+                        {% if object.country %}{{ object.country }}{% endif %}
+                    </dd>
+                {% endif %}
+            
+                {% if object.phone %}
+                <dt>Phone:</dt>
+                    <dd>{{ object.phone }}</dd>
+                {% endif %}
+            
+                {% if object.fax %}
+                <dt>Fax:</dt>
+                    <dd>{{ object.fax }}</dd>
+                {% endif %}
+                  
+                {% if object.email %}
+                <dt>Email:</dt>
+                    <dd>{{ object.email|obfuscate }}</dd>
+                {% endif %}
+            
+                {% if object.website %}   
+                <dt>Website:</dt>
+                    <dd>
+                        <a href="{{ object.website }}">
+                        {% if object.website_name %}
+                            {{ object.website_name }}
+                        {% else %}
+                            {{ object.website }}
+                        {% endif %}
+                        </a>
+                    </dd>
+                {% endif %}
+            </dl>
+        {% endif %}
+    </section>
+    {% endif %}

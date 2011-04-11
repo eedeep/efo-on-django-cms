@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% if sites|length > 1 %}
+    
+    <ul>Country:
+    {% for site in sites %}
+        <li><strong>
+            {% if site == current_site %}
+                {{ site.display_name }}
+            {% else %}
+                <a href="http://{{ site.domain }}">{{ site.display_name }}</a>
+            {% endif %}
+        </strong></li>
+    {% endfor %}
+    </ul>
+{% endif %}

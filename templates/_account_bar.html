@@ -1,0 +1,19 @@
+{% load i18n ifsetting_tag account_tags openid_tags %}
+{% if user.is_authenticated %}
+    {% ifopenid %}<img src="{{ STATIC_URL }}images/openid-icon.png" alt="Logged in with OpenID" />{% endifopenid %} <b>Hi {# {% user_display user %} #} {{ user.first_name }},</b>
+   
+   <a href="{% url profile_account %}">{% trans "Profile" %}</a>
+    /
+    <a href="{% if request.openid %}/openid/logout/?next={% url acct_logout %}{% else %}{% url logout %}{% endif %}">{% trans "Logout" %}</a>
+{% else %}
+    {% url acct_login as acct_login_url %}
+    {% url acct_signup as acct_signup_url %}
+    {% ifsetting ACCOUNT_OPEN_SIGNUP %}
+        {% blocktrans %}<a id="register-link" href="{{ acct_signup_url }}">Join</a> /	<a href="{{ acct_login_url }}">Login</a>{% endblocktrans %}
+    {% else %}
+        {% blocktrans %}<a href="{{ acct_login_url }}">Login</a>{% endblocktrans %}
+    {% endifsetting %}
+{% endif %}
+
+<!--img src="/site_media/static/img/twitter.png" alt="twitter icon" />
+<img src="/site_media/static/img/rss.png" alt="twitter icon" /-->

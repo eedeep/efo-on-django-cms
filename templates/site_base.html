@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load analytics %}
+{#{% load flatpages %}#}
+{#{% load topics_tags %}#}
+{% load meta_site_tags %}
+{#{% load colophon_tags %}#}
+{#{% load articles_tags %}#}
+
+{% block head_title %}{% endblock %}
+
+{% block extra_head_base %}
+    
+    {#{% include "ads/_google_ads.html" %}#}
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/anow/anow-features.js"></script>
+    {% block extra_head %}
+    {% endblock %}
+{% endblock %}
+
+{% block header_before %}
+    {#{% internal_site_switch %}#}
+    {#{% include "ads/isis_728_90.html" %}#}
+    {#{% include "ads/promo_225_90.html" %}#}
+{% endblock %}
+
+{% block body_class %}{% current_site_slug %}{{ block.super }}{% endblock %}
+
+{% block logo_link_image %}<a href="/" title="Go to {% current_site_name %} home">{% current_site_name %}</a>{% endblock %}
+
+{% block locale_switcher %}
+    {# <nav id="sites"> #}
+    {#         {% site_nav_list %} #}
+    {#     </nav> #}
+{% endblock %}
+            
+
+{% block login %}
+    {% include "_account_bar.html" %}
+{% endblock %}
+
+{% block user %}
+
+    {# {% if user.is_authenticated %} #}
+    {#         <ul> #}
+    {#                 {# <li><a href="{% url profile_detail user.username %}">{% trans "Account" %}</a></li> #}
+    {#                 {# <li><a href="{% url notification_notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></li> #}
+    {#         </ul> #}
+    {#     {% endif %} #}
+{% endblock %}
+
+{% block search %}
+    <div id="search">
+        <form id="search-form" action="{% url search_query %}" method="get">
+            <input type="text" placeholder="Search" name="q" value="" id="q">
+            <!-- input type="submit" value="search" id="search_submit" -->
+            <input id="find_submit" class="button" type="submit" value="" >
+                <div class="loading"><img src="/site_media/static/img/ajax-loader.gif" alt="Loading..." width="16" height="16">
+                </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block left_tabs %}    
+    <ul>{% spaceless %}
+{#            {% get_flatpages as flatpages %}#}
+            {#{% primary_navigation_list_items %}#}
+{#            {% for page in flatpages %}#}
+{#                <li><a href="{{ page.url }}">{{ page.title }}</a></li>#}
+{#            {% empty %}#}
+{#            {% endfor %}#}
+            {# <li><a href="{% url articles_section "features" %}">Features</a></li> #}
+            {# <li><a href="{% url articles_section "news" %}">News</a></li> #}
+            {# <li><a href="{% url articles_section "blog" %}">Blog</a></li> #}
+            {#<li><a href="{% url events_events %}">Events</a></li>#}
+    {% endspaceless %}</ul>
+{% endblock %}
+
+{% block right_tabs %}{% endblock %}
+
+
+
+{% block footer_before %}
+    {#{% include "ads/leader_board_728_90.html" %}#}
+    {#{% include "ads/promo_225_90.html" %}#}
+{% endblock %}
+
+{% block footer %}
+    <div>
+        &copy; 2011 {% current_site_name %}
+    </div>
+
+    <nav id="sites">
+        {#{% site_group_nav_list %}#}
+    </nav>
+    <nav class="legal">
+        {% get_flatpages as flatpages %}
+        <ul>
+            {% for page in flatpages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+            {% empty %}
+            {% endfor %}
+        </ul>
+    </nav>
+
+{% endblock %}
+
+{% block extra_body_base %}
+    {% ga %}
+    {% include "ads/_google_ads.html" %}
+    {% block extra_body %}{% endblock %}
+{% endblock %}

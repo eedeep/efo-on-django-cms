@@ -1,0 +1,104 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+{% load thumbnail %}
+{% load meta_site_tags %}
+{#{% load articles_tags %}#}
+
+{% block head_title %}{% with 'home' as context %}{% include "base/_object_title_tag.html" %}{% endwith %}{% endblock %}
+
+{% block extra_head %}
+    {% include "base/_object_meta_tags.html" %}
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jquery/plugins/min/jquery.cycle.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/anow/anow-homefeatures.js"></script>
+{% endblock %}
+
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block body %}
+    
+    <h1>{% current_site_name %}</h1>{# hide this #}
+    
+    {# Show the main feature #}
+    {% if home_features %}
+    
+        {% with home_features|first as feature %}
+    
+            <section id="home-features">
+        
+                <div class="home-features">
+        
+                    {% for feature in home_features %}
+        
+                    <div class="home-feature{% if forloop.first %} first{% else %} sibling{% endif %}" feature_number="{{ forloop.counter0 }}">
+            
+                        <figure class="home-feature-figure">
+                
+                            <div class="home-feature-figure-image">
+                            {% thumbnail feature.content_object.feature_image "638x425" crop="center" as object_image %}
+                                {% with feature.content_object as object %}
+                                    {% include "base/_object_thumbnail_anchor_image.html" %}
+                                {% endwith %}
+                            {% endthumbnail %}
+                            </div>
+                    
+                            <figcaption class="home-feature-figcaption">
+                                    <h2><a href="{{ feature.content_object.get_absolute_url }}">{{ feature.content_object.title }}</a></h2>
+                                    <span class="object-excerpt">
+                                        {{ feature.feature_summary }}
+                                    </span>
+                            </figcaption>
+            
+                        </figure>
+            
+                    </div>
+            
+                    {% endfor %}
+        
+                </div>
+        
+                <div class="home-feature-buttons">
+                    <span class="home-feature-button-links">
+                        {% for feature in home_features %}
+                        <a href="#" class="home-feature-button {% if forloop.first %} active{% endif %}" feature_number="{{ forloop.counter0 }}">{{ forloop.counter }}</a>
+                        {% endfor %}
+                        <a href="#" id="home-feature-cycle-toggle" class="home-feature-button-pause"></a>
+                    </span>
+                </div>
+        
+            </section>
+    
+        {% endwith %}
+    
+    {% endif %}
+        
+    {% if latest_articles %}
+
+        <section id="latest-stories" class="objects-list">
+            <header>
+                <h3>{% trans "Latest stories" %}</h3>
+                <nav id="latest-stories-filters">
+                    <ul>
+                        <li>All</li>
+                        {#{% article_type_nav_list %}#}
+                    </ul>
+                </nav>
+            </header>
+            {% with latest_articles as objects %}
+                {% include "base/_object_list.html" %}
+            {% endwith %}
+
+            <p><a class="section-more-link" href="{% url articles_articles %}">More stories</a></p>
+
+        </section>
+    
+    {% endif %}
+    
+{% endblock %}
+
+{% block aside %}
+
+    {#{% include "base/_asides_combo.html" %}#}
+    
+{% endblock %}

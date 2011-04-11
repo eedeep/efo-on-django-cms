@@ -1,0 +1,21 @@
+{% load popularity_tags %}
+{% most_popular_for_model articles.Article as popular_models %}
+
+{% if popular_models|length > 0 %}
+    {# Do most popular #}
+    <h4>Most popular</h4>
+    <ul>
+    {% for popular in popular_models  %}
+        <li><a href="{{ popular.content_object.get_absolute_url }}">{{ popular.content_object }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    {# or, if not, most viewed #}
+    {% most_viewed_for_model articles.Article as viewed_models %}
+    <h4>Most viewed</h4>
+    <ul>
+    {% for viewed in viewed_models  %}
+        <li><a href="{{ viewed.content_object.get_absolute_url }}">{{ viewed.content_object.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
