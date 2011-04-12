@@ -10,6 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 from filebrowser.fields import FileBrowseField
 from emailconfirmation.models import EmailAddress
 
+from settings import FEATURED_COUNTRIES
+
 from idios.models import ProfileBase
 from idios.utils import get_profile_model
 

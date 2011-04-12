@@ -1,0 +1,76 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+
+{% block extra_head %}
+    {% with profile as object %}
+        {% include "base/_object_meta_tags.html" %}
+    {% endwith %}
+    {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{{ block.super }} profile{% endblock %}
+
+{% block body %}
+
+    <section id="profile-details">
+        {% include "profiles/_profile_details.html" %}
+    </section>    
+    
+    {% if articles %}
+    <section id="object-list" class="articles object-related-functions">
+
+        <header>
+            <h3>{{ profile.display_name }}'s latest articles</h3>
+        </header>
+        {% with articles as objects %}
+            {% include "base/_object_list.html" %}
+        {% endwith %}
+        
+    </section>
+    {% endif %}
+
+    {% if comments %}
+    <section id="comments" class="object-related-functions">
+
+        <header>
+            <h3>{{ profile.display_name }}'s latest comments</h3>
+        </header>
+        {% with comments as comment_list %}
+            {% with 'profile' as context %}
+            {% include "base/_object_comment_list.html" %}
+            {% endwith %}
+        {% endwith %}
+        
+    </section>
+    {% endif %}
+        
+        {# {% for object in stream_objects %} #}
+        {#     {% if object.individual %} #}
+        {#         {#  project individual #}
+        {#         {# {% include "base/_object_list.html" %} #}
+        {#      #}
+        {#     {% else %}{% if object.comment %} #}
+        {#         {% include "base/_object_list_item.html" %} #}
+        {#      #}
+        {#     {% else %}{% if object.content_object %} #}
+        {#         {% with object.content_object as object %} #}
+        {#             {% include "base/_object_list_item.html" %} #}
+        {#         {% endwith %} #}
+        {#      #}
+        {#     {% else %} #}
+        {#         {% include "base/_object_list_item.html" %} #}
+        {#     {% endif %}{% endif %}{% endif %} #}
+        {# {% endfor %} #}
+    
+    
+{% endblock%}
+
+        {# {% if user.is_authenticated and user.id == profile.user.id %} #}
+        {# <p><a href="{% url profile_account profile.user.username %}">Edit your account</a></p> #}
+        {# {% endif %} #}
+
+{% block aside %}
+    
+    {% include "base/_asides_combo.html" %}
+    
+{% endblock %}

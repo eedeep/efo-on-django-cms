@@ -1,0 +1,16 @@
+{% load uni_form_tags %}
+
+<section id="profile-account-change-form" class="{{ profile.profile_type|lower }}">
+    
+    <form class="uniForm" enctype="multipart/form-data" method="POST" action="{% url profile_account %}">
+        {% csrf_token %}
+        <fieldset>
+            {{ profile_account_form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" value="update" />
+                <input type="reset" value="Cancel" onClick="history.go(-1)">
+            </div>
+        </fieldset>
+    </form>
+    
+</section>

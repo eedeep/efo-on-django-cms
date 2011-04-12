@@ -1,0 +1,24 @@
+{% extends "events/base.html" %}
+{% load thumbnail %}
+
+{% block body_class %}{{ block.super }} profiles{% endblock %}
+
+{% block body %}
+    <section id="profiles" class="objects-list">
+	    <header id="profiles-header">
+    		<h1>Contributors</h1>
+    		{% include "base/_object_list_filter.html" %}
+    	</header>
+    	{% with profiles as objects %}
+            {% include "base/_object_list.html" %}
+        {% endwith %}
+    </section>
+{% endblock%}
+
+{% block aside %}
+
+    {% with articles as objects %}
+        {% include "base/_objects_asides_combo.html" %}
+    {% endwith %}
+    
+{% endblock %}

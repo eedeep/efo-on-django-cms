@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.http import base36_to_int
 from django.utils.translation import ugettext, ugettext_lazy as _
+from django.contrib.auth import REDIRECT_FIELD_NAME
 
 from django.contrib import messages
 from django.contrib.auth import authenticate
@@ -493,3 +494,21 @@ def other_services_remove(request):
     )
     
     return HttpResponseRedirect(reverse("acct_other_services"))
+
+def logout(request, next_page=None, template_name='registration/logged_out.html', redirect_field_name=REDIRECT_FIELD_NAME):
+    "Logs out the user and displays 'You are logged out' message."
+    from django.contrib.auth import logout
+    logout(request)
+    messages.add_message(request, messages.SUCCESS,
+        ugettext(u"Successfully logged out!"))
+    if next_page is None:
+        redirect_to = request.REQUEST.get(redirect_field_name, '')
+        if redirect_to:
+            return HttpResponseRedirect(redirect_to)
+        else:
+            return render_to_response(template_name, {
+                'title': _('Logged out')
+            }, context_instance=RequestContext(request))
+    else:
+        # Redirect to this page until the session has been cleared.
+        return HttpResponseRedirect(next_page or request.path)

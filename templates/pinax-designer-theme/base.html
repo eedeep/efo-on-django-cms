@@ -2,8 +2,6 @@
 {% load uni_form_tags %}
 {% load ifsetting_tag %}
 {% load account_tags %}
-{% load meta_site_tags %}{# loading app dependant tags -- which may not be super bonafide? #}
-
 
 <!DOCTYPE html>
 <html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" lang="{{ LANGUAGE_CODE }}">
@@ -46,7 +44,7 @@
         {% if not user.is_authenticated and not INTERNAL %}    
             
             <div id="cover-login">
-                <h2>{% current_site_name %}</h2>
+                <h2>My New Site</h2>
                 <form id="object-meta-login-form" class="login uniForm" method="POST" action="{% url base_comment_acct_login %}">
                     {% csrf_token %}
                     <fieldset>

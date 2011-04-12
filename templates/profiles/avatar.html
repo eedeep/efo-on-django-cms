@@ -1,0 +1,32 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+
+{% block body_class %}{{ block.super }} profile-photo{% endblock %}
+
+{% block body %}
+    
+    <section id="profile-photo" class="{{ profile.profile_type|lower }}">
+        <header>
+            <h1>Your Photo</h1>
+        </header>
+        
+        <hr>
+        
+        <div id="profile-account-photo">
+        {% with profile as object %}
+            {% include "base/_object_feature_image.html" %}
+        {% endwith %}
+        </div>
+        
+        <h2>Change your photo</h2>
+        {% include "profiles/_account_form.html" %}
+    
+    </section>
+    
+{% endblock%}
+
+{% block aside %}
+    
+
+    
+{% endblock %}

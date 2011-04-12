@@ -1,0 +1,21 @@
+{% extends "search/base.html" %}
+{% load thumbnail %}
+
+{% block body_class %}{{ block.super }} search{% endblock %}
+
+{% block body %}
+    <section id="search-results" class="objects-list">
+	    <header id="search-results-header">
+    		<h1>Search results for '{{ q }}'</h1>
+    	</header>
+    	{% with results as objects %}
+            {% include "base/_object_list.html" %}
+        {% endwith %}
+    </section>
+{% endblock%}
+
+{% block aside %}
+    
+    {% include "base/_object_asides_combo.html" %}
+    
+{% endblock %}

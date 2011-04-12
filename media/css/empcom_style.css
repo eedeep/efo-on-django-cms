@@ -1,0 +1,261 @@
+html,body 
+{
+  margin:5px;
+  padding:0;
+  font-size:1em;
+  font-family:Helvetica, Arial, sans-serif;
+}
+
+p {
+margin: 0px
+}
+
+div#site_container
+{
+	width: 60%;
+	margin: 0 auto;
+	height: 100%;
+}
+
+div#title_section
+{
+	height: 30px;
+	width: 100%;
+}
+
+div#content
+{
+	padding: 5px;
+	float: left;
+	width: 72%;
+	min-height: 90%;
+}
+
+div#right_column
+{
+	float: right;
+	width: 25%;
+	min-height: 400px;
+	background-color: #7CD3FF;
+}
+
+/*menu stuff*/
+div#menu
+{
+  height: 30px;
+  width: 100%;
+  border-top: solid #000 0px;
+  border-bottom: solid #000 0px;
+  background-color: #5CB3FF;
+}
+
+div#menu ul 
+{
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  color: #FFF;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+div#menu li 
+{
+  list-style-type: none;
+  display: inline;
+}
+
+div#menu li a 
+{
+  text-decoration: none;
+  padding: 0px 10px;
+  color: #FFF;
+}
+
+div#menu li a:link 
+{
+  color: #FFF:
+}
+
+div#menu li a:hover 
+{
+  color: #FFF;
+  background-color: #3366FF;
+}
+
+/* submenu */
+div#submenu
+{
+  background-color: #3C93DF;
+}
+
+div#submenu ul 
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: smaller;
+  color: #FFF;
+  white-space: nowrap;
+}
+
+div#submenu li 
+{
+  list-style-type: none;
+  display: inline;
+}
+
+div#submenu li a 
+{
+  text-decoration: none;
+  padding: 0px 10px;
+  color: #FFF;
+}
+
+div#submenu li a:link 
+{
+  color: #FFF:
+}
+
+div#submenu li a:hover 
+{
+  color: #FFF;
+  background-color: #3366FF;
+}
+
+/*breadcrumb stuff*/
+div#breadcrumb
+{
+	font-size:0.9em;
+  width: 75%;
+  border-top: solid #000 0px;
+  border-bottom: solid #000 0px;
+  background-color: #CFDCEC;
+	float: left;
+	margin-top: 10px;
+}
+
+div#breadcrumb ul 
+{
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  color: #FFF;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+div#breadcrumb li 
+{
+  list-style-type: none;
+  display: inline;
+}
+
+div#breadcrumb li a 
+{
+  text-decoration: none;
+  padding: 7px 10px;
+  color: #FFF;
+}
+
+div#breadcrumb lia:link 
+{
+  color: #FFF:
+}
+
+div#breadcrumb lia:visited 
+{
+  color: #CCC;
+}
+
+div#breadcrumb lia:hover 
+{
+  font-weight: bold;
+  color: #FFF;
+  background-color: #3366FF;
+}
+
+/*footer stuff*/
+#footer 
+{
+  background-color: #5CB3FF;
+  color: #C35817;
+	clear: both;
+}
+
+
+/*** Generic Module styling ***/
+.module_header
+{
+	text-align: center;
+	text-decoration: underline;
+	margin-bottom: 5px;
+}
+.module_text
+{
+	font-size: 0.8em;
+	padding-bottom: 5px;
+}
+
+/*** Rewards summary box ***/
+#rewards_summary_box
+{
+	margin: 5px;
+	padding: 5px;
+	background-color: #AAAADD;
+}
+#rewards_summary_box .links
+{
+	text-align: center;
+}
+#rewards_summary_box .incentive
+{
+	font-size: 0.7em;
+	text-align: center;
+	border: dashed 1px;
+	background-color: #CCCCDD;
+}
+
+/*** Event Log ***/
+#eventLog
+{
+	width: 100%;
+	float: left;
+
+	background-color: #FFFFFF;
+}
+
+#eventLog_heading,
+#eventLog .pagination
+{
+	font-weight: bold;
+	background-color: #AAAADD;
+}
+#eventLog_heading,
+.eventLog_entry,
+#eventLog .pagination
+{
+	float: left;
+	width: 100%;
+	padding: 2px;
+	font-size: 0.8em;
+}
+#eventLog .pagination a
+{
+	color: #FFFFFF;
+}
+.eventLog_entry
+{
+	background-color: #CFDCEC;
+}
+
+.eventLog_text,
+.eventLog_date
+{
+	float: left;
+	margin: 2px;
+}
+.eventLog_text
+{
+	width: 80%;
+}

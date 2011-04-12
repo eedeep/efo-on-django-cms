@@ -1,0 +1,36 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+
+{% block body_class %}{{ block.super }} profile-account{% endblock %}
+
+{% block body %}
+
+    {% if profile %}
+        <section id="profile-account">
+            <header>
+                <h1>Update your profile</h1>
+            </header>
+        
+            <div id="profile-account-photo">
+            
+            {% with profile as object %}
+                {% include "base/_object_feature_image.html" %}
+            {% endwith %}
+            </div>
+        
+            {% if profile.profile_type == 'Contributor' %}
+            <section id="profile-account-details">
+                {% include "profiles/_profile_details.html" %}
+            </section>  
+            {% endif %}
+        
+            {% include "profiles/_profile_form.html" %}
+    
+        </section>
+    {% else %}
+        <section id="profile-account">
+            <p>Strangely, your account profile can't be found. You should tell someone.</p>
+        </section>
+    {% endif %}
+    
+{% endblock%}

@@ -4,9 +4,12 @@
 {% load analytics %}
 {#{% load flatpages %}#}
 {#{% load topics_tags %}#}
-{% load meta_site_tags %}
+{#{% load meta_site_tags %}#}
 {#{% load colophon_tags %}#}
 {#{% load articles_tags %}#}
+{% load cms_tags %}
+{% load empcom_cms_tags %}
+{% load menu_tags %}
 
 {% block head_title %}{% endblock %}
 
@@ -14,6 +17,8 @@
     
     {#{% include "ads/_google_ads.html" %}#}
     <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/anow/anow-features.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery/jquery-1.4.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/site_media/static/css/dropline.css">
     {% block extra_head %}
     {% endblock %}
 {% endblock %}
@@ -24,9 +29,9 @@
     {#{% include "ads/promo_225_90.html" %}#}
 {% endblock %}
 
-{% block body_class %}{% current_site_slug %}{{ block.super }}{% endblock %}
+{% block body_class %}{{ block.super }}{% endblock %}
 
-{% block logo_link_image %}<a href="/" title="Go to {% current_site_name %} home">{% current_site_name %}</a>{% endblock %}
+{% block logo_link_image %}<a href="/" title="Go to My New Site">My New Site</a>{% endblock %}
 
 {% block locale_switcher %}
     {# <nav id="sites"> #}
@@ -62,23 +67,37 @@
 {% endblock %}
 
 {% block left_tabs %}    
-    <ul>{% spaceless %}
-{#            {% get_flatpages as flatpages %}#}
-            {#{% primary_navigation_list_items %}#}
-{#            {% for page in flatpages %}#}
-{#                <li><a href="{{ page.url }}">{{ page.title }}</a></li>#}
-{#            {% empty %}#}
-{#            {% endfor %}#}
-            {# <li><a href="{% url articles_section "features" %}">Features</a></li> #}
-            {# <li><a href="{% url articles_section "news" %}">News</a></li> #}
-            {# <li><a href="{% url articles_section "blog" %}">Blog</a></li> #}
-            {#<li><a href="{% url events_events %}">Events</a></li>#}
-    {% endspaceless %}</ul>
+    <ul id="dropline">
+        {% spaceless %}
+{#                {% get_flatpages as flatpages %}#}
+                {#{% primary_navigation_list_items %}#}
+{#                {% for page in flatpages %}#}
+{#                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>#}
+{#                {% empty %}#}
+{#                {% endfor %}#}
+                {# <li><a href="{% url articles_section "features" %}">Features</a></li> #}
+                {# <li><a href="{% url articles_section "news" %}">News</a></li> #}
+                {# <li><a href="{% url articles_section "blog" %}">Blog</a></li> #}
+                {#<li><a href="{% url events_events %}">Events</a></li>#}
+                {% block menu %}
+                    {% show_menu 0 100 100 100%}
+                {% endblock menu %}
+{#            <div id="breadcrumb">#}
+{#                {% show_breadcrumb 1 %}#}
+{#            </div>#}
+        {% endspaceless %}
+    </ul>
 {% endblock %}
 
 {% block right_tabs %}{% endblock %}
-
-
+{% block right_column %}{% endblock %}
+{% block body %}
+    <div id="content">
+        {% block guts %}
+            {% placeholder "content" %}
+        {% endblock %}
+    </div>
+{% endblock %}
 
 {% block footer_before %}
     {#{% include "ads/leader_board_728_90.html" %}#}
@@ -87,19 +106,14 @@
 
 {% block footer %}
     <div>
-        &copy; 2011 {% current_site_name %}
+        &copy; 2011 My New Site
     </div>
 
     <nav id="sites">
         {#{% site_group_nav_list %}#}
     </nav>
     <nav class="legal">
-        {% get_flatpages as flatpages %}
         <ul>
-            {% for page in flatpages %}
-                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-            {% empty %}
-            {% endfor %}
         </ul>
     </nav>
 
@@ -107,6 +121,6 @@
 
 {% block extra_body_base %}
     {% ga %}
-    {% include "ads/_google_ads.html" %}
+{#    {% include "ads/_google_ads.html" %}#}
     {% block extra_body %}{% endblock %}
 {% endblock %}

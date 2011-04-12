@@ -1,0 +1,43 @@
+<header>
+    <h1>{{ profile.display_name }}</h1>
+</header>
+    {% with profile as object %}
+    
+    {% include "base/_object_meta.html" %}
+    
+    {% include "base/_object_feature_image.html" %}
+    
+    {% endwith %}
+    
+
+    
+    {# <p>{{ profile.display_name }} Member since {{ profile.user.date_joined|date:"d F Y" }}</p> #}
+    
+    <section id="profile-object-details">
+            {% if profile.biography %}
+                {{ profile.biography|linebreaks }}
+            {% endif %}
+        <dl>
+            {% if profile.occupation %}
+            <dt>Occupation</dt>
+                <dd>{{ profile.occupation }}</dd>
+            {% endif %}
+            {% if profile.city or profile.suburb %}
+            <dt>Location</dt>
+                <dd>{% with profile as object %}{% include "base/_object_location.html" %}{% endwith %}</dd>
+            {% endif %}
+            
+            {% if profile.website %}
+            <dt>Website:</dt>
+                <dd>
+                    <a href="{{ profile.website }}">
+                    {% if profile.website_name %}
+                        {{ profile.website_name }}
+                    {% else %}
+                        {{ profile.website }}
+                    {% endif %}
+                    </a>
+                </dd>
+            {% endif %}
+        </dl>
+    </section>
