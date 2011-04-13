@@ -104,16 +104,16 @@
 
 {% block footer %}
     <div>
-        &copy; 2011 My New Site
+        {% show_placeholder "content" "footer-container" %}
     </div>
 
-    <nav id="sites">
-        {#{% site_group_nav_list %}#}
-    </nav>
-    <nav class="legal">
-        <ul>
-        </ul>
-    </nav>
+{#    <nav id="sites">#}
+{#        {% site_group_nav_list %}#}
+{#    </nav>#}
+{#    <nav class="legal">#}
+{#        <ul>#}
+{#        </ul>#}
+{#    </nav>#}
 
 {% endblock %}
 

@@ -4,11 +4,16 @@ from django.conf import settings
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^admin/filebrowser/', include('filebrowser.urls')),
+if settings.SERVE_MEDIA:
+    urlpatterns = patterns("",
+       url(r"", include("staticfiles.urls")),
+       )
+
+urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/filebrowser/', include('filebrowser.urls')),
     url(r'^', include('cms.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
     url(r"^programmes/", include("programmes.urls")),
     url(r"^members/", include("profiles.urls")),
     url(r"^account/logout/$", 
@@ -25,7 +30,3 @@ if settings.DEBUG:
         (r'^' + settings.MEDIA_URL.lstrip('/'), include('appmedia.urls')),
     ) + urlpatterns
 
-if settings.SERVE_MEDIA:
-    urlpatterns += patterns("",
-       url(r"", include("staticfiles.urls")),
-       )
