@@ -93,6 +93,11 @@ ADMIN_MEDIA_ROOT = os.path.join(STATIC_ROOT, 'admin')
 ADMIN_MEDIA_PREFIX = '/media/admin/'
 MODEL_IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images', 'models')
 
+# Have to set this to false for some reason otherwise *all* urls come through with
+# an appended slash for some reason, even if they do have a url match. Something
+# to do with django-cms and the way it is handling url matching/routing
+APPEND_SLASH = False
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = "unzj&n1$^ox6%-xh490357i=l@wmq!lu&toe=*sj8s2qv73mhr"
 
@@ -285,6 +290,7 @@ CMS_TEMPLATES = (
         (' base/general.html', gettext('general')),        
         ('base/base.html', gettext('base')),
         ('site_base.html', gettext('main base')),
+        ('programmes/programmes_container.html', gettext('programmes container')),
         ('base/home.html', gettext('home')),
 )
 

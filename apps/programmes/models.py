@@ -58,7 +58,7 @@ class Programme(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTracked
         """
         To help in templates.
         """
-        return self._meta.module_name
+        return self.__class__.__name__.lower()
 
 
 class ProgrammeImage(Image):

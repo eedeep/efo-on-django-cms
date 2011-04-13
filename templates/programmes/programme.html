@@ -1,0 +1,14 @@
+{% extends "programmes/programmes_container.html" %}
+{% load cms_tags %}
+
+{% block body %}
+    {% placeholder "detail_content" %}
+    <div id="content">
+        <h1>
+            {{ programme.name }}
+        </h1>
+        <p>
+            {{ programme.spiele }}
+        </p>
+    </div>
+{% endblock body %}
