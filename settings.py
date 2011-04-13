@@ -153,6 +153,9 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'popularity.context_processors.recently_viewed',
     'popularity.context_processors.recently_added',
     'cms.context_processors.media',
+
+    'zinnia.context_processors.version', # Optional
+    'zinnia.context_processors.media',
 ]
 
 INSTALLED_APPS = [
@@ -191,6 +194,9 @@ INSTALLED_APPS = [
     'taggit',
     'filebrowser',
     'tinymce',
+    'tagging',
+    'zinnia', 
+    'zinnia.plugins',
     
     # Pinax
     "pinax.templatetags",
@@ -204,7 +210,7 @@ INSTALLED_APPS = [
     'cms.plugins.text',
     'cms.plugins.snippet',
     'cms.plugins.googlemap',
-    'mptt',
+    'mptt', 
     'menus', #2.1 beta 3 only
     
     #project apps

@@ -1,0 +1,13 @@
+*** toolbar.py	2011-04-11 16:27:46.048103104 +1000
+--- original_toolbar.py	2011-04-11 16:26:09.464100391 +1000
+***************
+*** 62,67 ****
+--- 62,69 ----
+              return False
+          if not request.user.is_authenticated() or not request.user.is_staff:
+              return False
++         if 'tiny_mce' in request.path:
++             return False
+          return True
+  
+      def process_request(self, request):

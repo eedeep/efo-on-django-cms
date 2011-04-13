@@ -1,0 +1,5 @@
+12c12,13
+< 	spellchecker_rpc_url : "{{ spellchecker_rpc_url }}"
+---
+> 	spellchecker_rpc_url : "{{ spellchecker_rpc_url }}",
+>     file_browser_callback : "djangoFileBrowser"
