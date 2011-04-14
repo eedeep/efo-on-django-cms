@@ -222,6 +222,7 @@ INSTALLED_APPS = [
     "features",
     "projects",
     "programmes",
+    "efozinnia",
 ]
 
 # Database
@@ -281,6 +282,9 @@ FILEBROWSER_VERSIONS_BASEDIR = "cache"
 MAILCHIMP_API_KEY = '1' # dummy
 MAILCHIMP_WEBHOOK_KEY = '1'
 MAILCHIMP_LIST_ID = '1' # dummy 
+
+# Zinnia blog engine
+ZINNIA_HIDE_ENTRY_MENU = False
 
 # Sorl Thumbnail
 THUMBNAIL_BASEDIR = "cache"
