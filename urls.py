@@ -10,6 +10,7 @@ if settings.SERVE_MEDIA:
        )
 
 urlpatterns += patterns('',
+    url(r'^blog/comments/', include('django.contrib.comments.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^admin/filebrowser/', include('filebrowser.urls')),
@@ -24,7 +25,6 @@ urlpatterns += patterns('',
         }, name="logout"),
     url(r"^search/", include("search.urls")),
     url(r'^blog/', include('zinnia.urls')),
-    url(r'^comments/', include('django.contrib.comments.urls')),
 )
 
 if settings.DEBUG:
