@@ -68,8 +68,7 @@ USE_I18N = False
 # Absolute path to the directory that holds user generated media.
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, "site_media", "media")
 # Relative to user generated media
-MEDIA_URL = "/site_media/media/"
-
+MEDIA_URL = "/site_media/media/" 
 # Absolute path to the directory that holds static files like app media.
 # Example: "/home/media/media.lawrence.com/apps/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "site_media", "static")
@@ -199,6 +198,7 @@ INSTALLED_APPS = [
     'tagging',
     'zinnia', 
     'zinnia.plugins',
+#    'genericforeignkey',
     
     # Pinax
     "pinax.templatetags",
@@ -225,6 +225,7 @@ INSTALLED_APPS = [
     "projects",
     "programmes",
     "efozinnia",
+    "home",
 ]
 
 # Database
@@ -274,7 +275,7 @@ FILEBROWSER_MEDIA_URL = MEDIA_URL
 FILEBROWSER_URL_FILEBROWSER_MEDIA = STATIC_URL + 'filebrowser/'
 FILEBROWSER_PATH_FILEBROWSER_MEDIA = STATIC_ROOT + 'filebrowser/'
 FILEBROWSER_DIRECTORY = 'files/'
-FILEBROWSER_SAVE_FULL_URL = True
+FILEBROWSER_SAVE_FULL_URL = False
 FILEBROWSER_VERSIONS_BASEDIR = "cache"
 
 # Google Analytics
@@ -290,7 +291,7 @@ ZINNIA_HIDE_ENTRY_MENU = False
 
 # Sorl Thumbnail
 THUMBNAIL_BASEDIR = "cache"
-THUMBNAIL_DEBUG = False
+THUMBNAIL_DEBUG = True
 
 # Local Settings
 try:

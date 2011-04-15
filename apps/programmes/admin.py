@@ -11,6 +11,7 @@ from images.models import *
 
 class ProgrammeImageInline(ImageInline):
     model = get_model('programmes', 'programmeimage')
+    template = 'patches/tabular.html'
     
 #databrowse.site.register(ProgrammeImage)
     

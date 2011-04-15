@@ -47,4 +47,4 @@ django-tinymce==1.5.1a1
 django-mptt==0.3
 #django-filebrowser==3.1
 django-blog-zinnia
-#cmsplugin-blog
+django-genericforeignkey

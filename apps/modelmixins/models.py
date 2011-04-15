@@ -1,3 +1,4 @@
+import ipdb
 from django.db import models, IntegrityError, transaction
 from django.template.defaultfilters import slugify
 from exceptions import NotImplementedError 

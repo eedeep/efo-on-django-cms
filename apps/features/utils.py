@@ -1,7 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from features.models import Feature, FeatureSet, SiteFeatureArea
-from articles.models import Article
 
 def get_features(area):
     # Get the right feature_set
