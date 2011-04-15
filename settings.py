@@ -324,8 +324,8 @@ CMS_MENU_TITLE_OVERWRITE = True
 CMS_UNIQUE_SLUGS = True
 CMS_CONTENT_CACHE_DURATION = 10
 
-TINYMCE_JS_URL = MEDIA_URL + 'js/tiny_mce/tiny_mce.js'
-TINYMCE_JS_ROOT = MEDIA_ROOT + 'js/tiny_mce'
+TINYMCE_JS_URL = MEDIA_URL + 'admin/tiny_mce/tiny_mce.js'
+TINYMCE_JS_ROOT = MEDIA_ROOT + 'admin/tiny_mce'
 TINYMCE_DEFAULT_CONFIG = {
                             'plugins': "table,paste,searchreplace",
                             'theme': "advanced",
