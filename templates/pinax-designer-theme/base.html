@@ -41,11 +41,11 @@
         {% endif %}
                 
         
-        {% if not user.is_authenticated and not INTERNAL %}    
+        {% if True %}    
             
             <div id="cover-login">
                 <h2>My New Site</h2>
-                <form id="object-meta-login-form" class="login uniForm" method="POST" action="{% url base_comment_acct_login %}">
+                <form id="object-meta-login-form" class="login uniForm" method="POST" action="">
                     {% csrf_token %}
                     <fieldset>
             

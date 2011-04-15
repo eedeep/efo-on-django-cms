@@ -17,13 +17,12 @@
 {% block title %}{% trans "Latest entries" %} {% if category %}| {% trans "Category" %} {{ category }}{% endif %}{% if tag %}| {% trans "Tag" %} {{ tag }}{% endif %}{% if author %}| {% trans "Author" %} {{ author }}{% endif %}{% if page_obj %}{% ifnotequal page_obj.number 1 %}| {% trans "Page" %} {{ page_obj.number }}{% endifnotequal %}{% endif %}{% endblock %}
 
 {% block body %}
-<p>ohai</p>
-{% if category %}
-<h1>{{ category.title }}</h1>
-{% if category.description %}
-<p>{{ category.description|striptags|safe }}</p>
-{% endif %}
-{% endif %}
+{#{% if category %}#}
+{#<h1>{{ category.title }}</h1>#}
+{#{% if category.description %}#}
+{#<p>{{ category.description|striptags|safe }}</p>#}
+{#{% endif %}#}
+{#{% endif %}#}
 
 {% if tag %}
 <h1>{% trans "Tag" %} : {{ tag }}</h1>

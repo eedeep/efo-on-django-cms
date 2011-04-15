@@ -2,11 +2,6 @@
 
 {% load i18n %}
 {% load analytics %}
-{#{% load flatpages %}#}
-{#{% load topics_tags %}#}
-{#{% load meta_site_tags %}#}
-{#{% load colophon_tags %}#}
-{#{% load articles_tags %}#}
 {% load cms_tags %}
 {% load empcom_cms_tags %}
 {% load menu_tags %}
@@ -14,9 +9,7 @@
 {% block head_title %}{% endblock %}
 
 {% block extra_head_base %}
-    
-    {#{% include "ads/_google_ads.html" %}#}
-    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/anow/anow-features.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/efo/efo-features.js"></script>
     <script src="{{ STATIC_URL }}js/jquery/jquery-1.4.2.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/site_media/static/css/dropline.css">
     {% block extra_head %}
@@ -24,34 +17,17 @@
 {% endblock %}
 
 {% block header_before %}
-    {#{% internal_site_switch %}#}
-    {#{% include "ads/isis_728_90.html" %}#}
-    {#{% include "ads/promo_225_90.html" %}#}
 {% endblock %}
 
-{% block body_class %}{{ block.super }}{% endblock %}
-
-{% block logo_link_image %}<a href="/" title="Go to My New Site">My New Site</a>{% endblock %}
-
-{% block locale_switcher %}
-    {# <nav id="sites"> #}
-    {#         {% site_nav_list %} #}
-    {#     </nav> #}
+{% block body_class %}
+    {{ block.super }}
 {% endblock %}
-            
 
-{% block login %}
-    {% include "_account_bar.html" %}
+{% block logo_link_image %}
+    <a href="/" title="Energy For Opportunity">Energy For Opportunity</a>
 {% endblock %}
 
 {% block user %}
-
-    {# {% if user.is_authenticated %} #}
-    {#         <ul> #}
-    {#                 {# <li><a href="{% url profile_detail user.username %}">{% trans "Account" %}</a></li> #}
-    {#                 {# <li><a href="{% url notification_notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></li> #}
-    {#         </ul> #}
-    {#     {% endif %} #}
 {% endblock %}
 
 {% block search %}
@@ -59,9 +35,9 @@
         <form id="search-form" action="{% url search_query %}" method="get">
             <input type="text" placeholder="Search" name="q" value="" id="q">
             <!-- input type="submit" value="search" id="search_submit" -->
-            <input id="find_submit" class="button" type="submit" value="" >
-                <div class="loading"><img src="/site_media/static/img/ajax-loader.gif" alt="Loading..." width="16" height="16">
-                </div>
+{#            <input id="find_submit" class="button" type="submit" value="" >#}
+            <div class="loading"><img src="/site_media/static/img/ajax-loader.gif" alt="Loading..." width="16" height="16">
+            </div>
         </form>
     </div>
 {% endblock %}
@@ -69,22 +45,9 @@
 {% block left_tabs %}    
     <ul id="dropline">
         {% spaceless %}
-{#                {% get_flatpages as flatpages %}#}
-                {#{% primary_navigation_list_items %}#}
-{#                {% for page in flatpages %}#}
-{#                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>#}
-{#                {% empty %}#}
-{#                {% endfor %}#}
-                {# <li><a href="{% url articles_section "features" %}">Features</a></li> #}
-                {# <li><a href="{% url articles_section "news" %}">News</a></li> #}
-                {# <li><a href="{% url articles_section "blog" %}">Blog</a></li> #}
-                {#<li><a href="{% url events_events %}">Events</a></li>#}
-                {% block menu %}
-                    {% show_menu 0 100 100 100%}
-                {% endblock menu %}
-{#            <div id="breadcrumb">#}
-{#                {% show_breadcrumb 1 %}#}
-{#            </div>#}
+            {% block menu %}
+                {% show_menu 0 100 100 100%}
+            {% endblock menu %}
         {% endspaceless %}
     </ul>
 {% endblock %}
@@ -93,32 +56,25 @@
 {% block right_column %}{% endblock %}
 {% block body %}
     <div id="content">
-        {% placeholder "content" %}
+        {% placeholder "mycontent" %}
     </div>
 {% endblock %}
 
+
+{% block aside_outer %}
+{% endblock %}
+
 {% block footer_before %}
-    {#{% include "ads/leader_board_728_90.html" %}#}
-    {#{% include "ads/promo_225_90.html" %}#}
 {% endblock %}
 
 {% block footer %}
     <div>
         {% show_placeholder "content" "footer-container" %}
     </div>
-
-{#    <nav id="sites">#}
-{#        {% site_group_nav_list %}#}
-{#    </nav>#}
-{#    <nav class="legal">#}
-{#        <ul>#}
-{#        </ul>#}
-{#    </nav>#}
-
 {% endblock %}
 
 {% block extra_body_base %}
     {% ga %}
-{#    {% include "ads/_google_ads.html" %}#}
-    {% block extra_body %}{% endblock %}
+    {% block extra_body %}
+    {% endblock %}
 {% endblock %}

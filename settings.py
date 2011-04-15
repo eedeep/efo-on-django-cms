@@ -17,6 +17,8 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 # tells Pinax to use the default theme
 PINAX_THEME = "pinax-designer-theme"
 
+PASSWORD_PROTECT_SITE = False
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
