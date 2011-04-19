@@ -20,6 +20,7 @@ databrowse.site.register(ProjectLocation)
 class ProjectImageInline(ImageInline):
     #exclude = ('feature', 'slide_show')
     model = get_model('projects', 'projectimage')
+    template = 'patches/tabular.html'
     
 databrowse.site.register(ProjectImage)
     

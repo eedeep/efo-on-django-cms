@@ -5,6 +5,10 @@ class ProjectAdminModelForm(forms.ModelForm):
     
     class Meta:
         model = get_model('projects', 'project')
+        widgets = {
+            'spiele': forms.Textarea(
+                attrs={ 'class': 'mceEditor', }),
+        }
 
 class ProjectLocationAdminModelForm(forms.ModelForm):
     class Meta:

@@ -25,7 +25,7 @@ class FlatBlogCategoryMenu(CMSAttachMenu):
 
 class FlatBlogCategoryModifier(Modifier):
     """Menu Modifier for flat blog category menu. 
-    The purpose of this modified is to make sure the category leaf
+    The purpose of this modifier is to make sure the category leaf
     node in the menu still gets highlighted when a blog entry is 
     displayed. """
 

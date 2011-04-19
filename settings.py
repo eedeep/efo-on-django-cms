@@ -304,6 +304,7 @@ CMS_TEMPLATES = (
         ('base/base.html', gettext('base')),
         ('site_base.html', gettext('main base')),
         ('programmes/programmes_container.html', gettext('programmes container')),
+        ('projects/projects_container.html', gettext('projects container')),
         ('base/home.html', gettext('home')),
 )
 
