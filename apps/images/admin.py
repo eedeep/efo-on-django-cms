@@ -15,6 +15,7 @@ class ImageInline(admin.StackedInline):
                 'photographer',
                 'slide_show',
                 'feature',
+                'summary',
             )
         }),
     )

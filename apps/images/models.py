@@ -33,6 +33,8 @@ class Image(AuditedModel, SluggedModel, models.Model):
         null=True)
     feature = models.BooleanField(
         help_text="Make this image the 'feature' image")
+    summary = models.BooleanField(
+        help_text="Make this image the 'summary' image")
 
     class Meta:
         ordering = ['order']

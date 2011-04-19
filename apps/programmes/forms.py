@@ -5,3 +5,7 @@ class ProgrammeAdminModelForm(forms.ModelForm):
     
     class Meta:
         model = get_model('programmes', 'programme')
+        widgets = {
+            'spiele': forms.Textarea(
+                attrs={ 'class': 'mceEditor', }),
+        }

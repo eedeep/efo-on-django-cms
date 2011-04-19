@@ -8,7 +8,7 @@
             {{ programme.name }}
         </h1>
         <p>
-            {{ programme.spiele }}
+            {{ programme.spiele|safe }}
         </p>
     </div>
 {% endblock body %}

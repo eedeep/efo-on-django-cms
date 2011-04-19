@@ -55,6 +55,5 @@ class AuditedModelAdmin(admin.ModelAdmin):
             'all': ['/site_media/static/admin_overrides/css/admin.css', ]
         }
         js = [
-            '/site_media/static/admin/tinymce/jscripts/tiny_mce/tiny_mce.js', 
-            '/site_media/static/admin/tinymce_setup/tinymce_setup.js',
+            '/site_media/static/admin/tiny_mce/tiny_mce.js', 
             '/site_media/static/admin/filebrowser/js/TinyMCEAdmin.js',]

@@ -14,4 +14,6 @@ class ImageAdminModelForm(forms.ModelForm):
             if field == "caption":
                 self.fields[field].widget.attrs["class"] = "mceNoEditor text-counter"
                 self.fields[field].widget.attrs["maxlength"] = "115"
+                self.fields[field].widget.attrs["cols"] = "50"
+                self.fields[field].widget.attrs["rows"] = "1"
 

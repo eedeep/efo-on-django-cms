@@ -1,16 +1,26 @@
 {% extends "programmes/programmes_container.html" %}
 {% load cms_tags %}
+{% load thumbnail %}
 
 {% block body %}
     <div id="content">
         {% placeholder "listing_content" %}
         {% for programme in programmes %}
-        <h1>
-            {{ programme.name }}
-        </h1>
-        <p>
-            {{ programme.spiele }}
-        </p>
+            <h1>
+                {{ programme.name }}
+                {% thumbnail programme.summary_image "100x100" crop="center" as object_image %}
+                    {% with programme as object %}
+                        {% include "base/_object_thumbnail_anchor_image.html" %}
+                    {% endwith %}
+                {% endthumbnail %}
+            </h1>
+            <p>
+                {{ programme.summary }}
+
+
+                {% url programme_view programme.slug as programme_detail_url %}
+                <a href="{{ programme_detail_url }}">Read more...</a>
+            </p>
         {% endfor %}
     </div>
 {% endblock body %}
