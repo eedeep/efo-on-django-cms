@@ -1,0 +1,22 @@
+{% load thumbnail %}
+
+<div id="{{ group_name }}">
+    <h1>
+        {{ group_name }}
+    </h1>
+    {% for person in people %}
+        <h2>
+            {{ person.first_name }} {{ person.last_name }}
+        </h2>
+        {% with person.get_profile as profile %}
+            <p>
+                {{ profile.biography }}
+                {% thumbnail profile.avatar "100x100" crop="center" as object_image %}
+                    {% with programme as object %}
+                        {% include "base/_object_thumbnail_anchor_image.html" %}
+                    {% endwith %}
+                {% endthumbnail %}
+            </p>
+        {% endwith %}
+    {% endfor %}
+</div>

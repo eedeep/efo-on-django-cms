@@ -218,6 +218,7 @@ INSTALLED_APPS = [
     #project apps
     "pinax_local.apps.account",
     "profiles",
+    "people",
     "efocms",
     "images",
     "search",
