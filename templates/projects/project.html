@@ -1,5 +1,20 @@
 {% extends "projects/projects_container.html" %}
 {% load cms_tags %}
+{% load thumbnail %}
+
+{% block extra_head %}
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/mootools/mootools.v1.11.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jdgallery/jd.gallery.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jd.gallery.css">
+    <script type="text/javascript">
+        function startGallery() {
+            var myGallery = new gallery($('myGallery'), {
+            timed: false
+            });
+        }
+        window.addEvent('domready', startGallery);
+    </script> 
+{% endblock %}
 
 {% block body %}
     {% placeholder "detail_content" %}
@@ -7,6 +22,24 @@
         <h1>
             {{ project.name }}
         </h1>
+        <div id="myGallery">
+            {% for image in project.slideshow_images %}
+                <div class="imageElement">
+                    <h3>{{ image.caption }}</h3>
+                    <p>{{ image.caption }}</p>
+                    <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open"></a>
+                    <img src="{{ MEDIA_URL }}{{ image.image }}" class="full" />
+                    {% thumbnail image.image "100x100" crop="center" as object_image %}
+                        <img 
+                            alt="{{ object_image.title }}"
+                            src="{{ object_image.url }}"
+                            width="{{ object_image.width }}" 
+                            height="{{ object_image.height }}" 
+                            class="thumbnail" />
+                    {% endthumbnail %}
+                </div>
+            {% endfor %}
+        </div>
         <p>
             {{ project.spiele|safe }}
         </p>
