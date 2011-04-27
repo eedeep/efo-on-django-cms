@@ -23,10 +23,10 @@ class Project(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedMo
     """
     name = models.CharField(
         max_length=250)
-    programme = models.ManyToManyField(
+    programme = models.ForeignKey(
         Programme,
         null=False,
-        help_text="The programme areas that this project is most relevant to.")
+        help_text="The programme area that this project is most relevant to.")
     summary = models.TextField(
         "Summary",
         null=False,
