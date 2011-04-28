@@ -329,10 +329,10 @@ CMS_CONTENT_CACHE_DURATION = 10
 
 TINYMCE_JS_URL = MEDIA_URL + 'admin/tiny_mce/tiny_mce.js'
 TINYMCE_JS_ROOT = MEDIA_ROOT + 'admin/tiny_mce'
-TINYMCE_DEFAULT_CONFIG = {
-                            'plugins': "table,paste,searchreplace",
-                            'theme': "advanced",
-                         }
+#TINYMCE_DEFAULT_CONFIG = {
+#                            'plugins': "table,paste,searchreplace",
+#                            'theme': "advanced",
+#                         }
 
 TINYMCE_DEFAULT_CONFIG = {
   
@@ -379,7 +379,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'forced_root_block': 'p',
     
 #    // URL
-    'relative_urls': True,
+    'relative_urls': False,
     'document_base_url': 'http://127.0.0.1:8000/site_media/media/',
     'remove_script_host': True,
     
