@@ -17,6 +17,9 @@ class ProjectLocation(models.Model):
         max_length=250,
         null=False)
 
+    def __unicode__(self):
+        return "%s" % (self.name)
+
 class Project(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedModel, TaggedModel, CommentedModel, models.Model):
     """
     Project model. An example of a project would be "kamakwie secondary school" or "Kailahun hospital".

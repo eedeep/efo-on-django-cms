@@ -111,6 +111,15 @@ class ModelWithImageSet(models.Model):
     def imageset(self):
         raise NotImplementedException
 
+    def summary_image(self):
+        summary_images = self.imageset().filter(summary=True)
+        if len(summary_images) >= 1:
+            return summary_images[0]
+        elif self.has_feature_image():
+            return self.feature_image()
+        else:
+            return None
+
 
 class CommentedModel(models.Model):
 

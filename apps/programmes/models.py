@@ -41,15 +41,6 @@ class Programme(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTracked
         """
         return self.programmeimage_set.all()
 
-    def summary_image(self):
-        summary_images = self.programmeimage_set.filter(summary=True)
-        if len(summary_images) >= 1:
-            return summary_images[0]
-        elif self.has_feature_image():
-            return self.feature_image()
-        else:
-            return None
-
     def __unicode__(self):
         return "%s" % (self.name)
 

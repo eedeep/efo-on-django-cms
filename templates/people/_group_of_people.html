@@ -1,13 +1,13 @@
 {% load thumbnail %}
 
 <div id="{{ group_name }}">
-    <h1>
+    <h2>
         {{ group_name }}
-    </h1>
+    </h2>
     {% for person in people %}
-        <h2>
+        <h3>
             {{ person.first_name }} {{ person.last_name }}
-        </h2>
+        </h3>
         {% with person.get_profile as profile %}
             <p>
                 {{ profile.biography }}
