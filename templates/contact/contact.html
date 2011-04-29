@@ -1,0 +1,21 @@
+{% extends "site_base.html" %}
+{% load cms_tags %}
+
+{% block body %}
+    <h1>
+        Contact Us
+    </h1>
+    {% placeholder "intro" %}
+    <div id="contact-us-email" style="display:block;float:left; clear:left; padding-top:20px;">
+        {% placeholder "email" %}
+    </div>
+    <div id="contact-us-post-and-phone" style="display:block;float:left; clear:left; padding-top:20px;">
+        {% placeholder "post_and_phone" %}
+    </div>
+    <div id="contact-us-visit" style="display:block;float:left; clear:left; padding-top:20px;">
+        {% placeholder "visit" %}
+    </div>
+    <div id="contact-us-social-media" style="display:block;float:left; clear:left; padding-top:20px;">
+        {% placeholder "social_media" %}
+    </div>
+{% endblock body %}

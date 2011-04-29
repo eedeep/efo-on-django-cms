@@ -1,0 +1,54 @@
+{% extends "site_base.html" %}
+{% load cms_tags %}
+{% load i18n %}
+
+{% block body %}
+    <h1>
+        Contact Us
+    </h1>
+    {% block contactform %}
+        {% placeholder "intro" %}
+        <div id="contact-us-email" style="display:block;float:left; clear:left; padding-top:20px;">
+            {% placeholder "email" %}
+        </div>
+        <div id="contact-us-form" style="display:block;float:left; clear:left; padding-top:20px;">
+                <form id="contact" action="" method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <li class="fieldWrapper">
+                        {{ form.name.errors }}
+                        <label for="id_name">Name:</label>
+                        {{ form.name}}
+                    </li>
+                    <li class="fieldWrapper">
+                        {{ form.mail.errors }}
+                        <label for="id_mail">Your Email:</label>
+                        {{ form.mail}}
+                    </li>
+                    <li class="fieldWrapper">
+                        {{ form.subject.errors }}
+                        <label for="id_subject">Subject:</label>
+                        {{ form.subject}}
+                    </li>
+                    <li class="fieldWrapper">
+                        {{ form.message.errors }}
+                        <label for="id_message">Message:</label>
+                        {{ form.message}}
+                    </li>
+                    <li>
+                        <button type="submit" class="submit">{% trans "send" %}</button>
+                    </li>
+                </form>
+        </div>
+    {% endblock %}
+    <div id="contact-us-post-and-phone" style="display:block;float:left; clear:left; padding-top:20px;">
+        {% placeholder "post_and_phone" %}
+    </div>
+    <div id="contact-us-visit" style="display:block;float:left; clear:left; padding-top:20px;">
+        {% placeholder "visit" %}
+    </div>
+    <div id="contact-us-social-media" style="display:block;float:left; clear:left; padding-top:20px;">
+        {% placeholder "social_media" %}
+        {% include "membrete/_social_media_bar.html" %}
+    </div>
+{% endblock body %}

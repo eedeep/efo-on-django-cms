@@ -198,6 +198,8 @@ INSTALLED_APPS = [
     'tagging',
     'zinnia', 
     'zinnia.plugins',
+    'membrete',
+    'contact',
 #    'genericforeignkey',
     
     # Pinax
@@ -307,6 +309,7 @@ CMS_TEMPLATES = (
         ('programmes/programmes_container.html', gettext('programmes container')),
         ('projects/projects_container.html', gettext('projects container')),
         ('contribute/contribute.html', gettext('contribute template')),
+        ('contact/contact.html', gettext('contact template')),
         ('base/home.html', gettext('home')),
 )
 
@@ -467,6 +470,7 @@ TINYMCE_DEFAULT_CONFIG = {
 #    // + 'textarea[cols|rows|disabled|name|readonly],tt,var,big',
 #    // extended_valid_elements : 'embed[width|height|name|flashvars|src|bgcolor|align|play|'
 #    // + 'loop|quality|allowscriptaccess|type|pluginspage]'
+    'extended_valid_elements': "iframe[src|width|height|name|align]",
     
 }
 
