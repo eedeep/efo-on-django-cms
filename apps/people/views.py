@@ -11,7 +11,9 @@ from django.db.models import Q
 from popularity.signals import view
 
 def people(request):
-    programme_staff = User.objects.filter(groups__name__contains='Programme Staff')
+    programme_staff = \
+        User.objects.filter(groups__name__contains='Programme Staff') \
+            .order_by('date_joined')
     canadian_directors = User.objects.filter(groups__name__contains='Canadian Directors')
     australian_directors = User.objects.filter(groups__name__contains='Australian Directors')
     return render_to_response(

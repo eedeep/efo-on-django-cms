@@ -5,10 +5,10 @@
         {{ group_name }}
     </h2>
     {% for person in people %}
-        <h3>
-            {{ person.first_name }} {{ person.last_name }}
-        </h3>
         {% with person.get_profile as profile %}
+        <h3>
+            {{ person.first_name }} {{ person.last_name }} - {{ profile.profession }}
+        </h3>
             <p>
                 {{ profile.biography }}
                 {% thumbnail profile.avatar "100x100" crop="center" as object_image %}

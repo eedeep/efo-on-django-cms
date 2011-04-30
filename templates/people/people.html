@@ -1,6 +1,10 @@
 {% extends "site_base.html" %}
 {% load cms_tags %}
+{% load menu_tags %}
 
+{% block head_title %}
+EFO - {% show_breadcrumb 1 "efocms/title_breadcrumb.html" %}
+{% endblock %}
 {% block body %}
     {% placeholder "people_generic_content" %}
     <div id="content">
