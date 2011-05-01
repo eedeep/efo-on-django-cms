@@ -403,7 +403,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_buttons2': 'search,|,pasteword,template,media,charmap,|,code,|,table,cleanup',
     'theme_advanced_buttons3': '',
     'theme_advanced_path': False,
-    'theme_advanced_blockformats': 'p,h2,h3,h4,pre',
+    'theme_advanced_blockformats': 'p,h1,h2,h3,h4,pre',
     'theme_advanced_resizing': True,
     'theme_advanced_resize_horizontal': False,
     'theme_advanced_resizing_use_cookie': True,

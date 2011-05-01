@@ -2,6 +2,10 @@
 {% load cms_tags %}
 {% load thumbnail %}
 
+{% block head_title %}
+    EFO - Projects - {{ project.name }}
+{% endblock %}
+
 {% block extra_head %}
     <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/mootools/mootools.v1.11.js"></script>
     <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jdgallery/jd.gallery.js"></script>

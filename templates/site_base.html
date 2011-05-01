@@ -6,7 +6,9 @@
 {% load empcom_cms_tags %}
 {% load menu_tags %}
 
-{% block head_title %}{% endblock %}
+{% block head_title %}
+    EFO - {% show_breadcrumb 1 "efocms/title_breadcrumb.html" %}
+{% endblock %}
 
 {% block extra_head_base %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/dropline.css">

@@ -39,7 +39,12 @@ class ProgrammeAdmin(AuditedModelAdmin):
             'fields': (
                 'name',
                 'summary',
-                'spiele',
+                'needs',
+                'objectives',
+                'activities',
+                'long_term_impact',
+                'funding_info',
+                'how_to_help',
             )
         }),
     )

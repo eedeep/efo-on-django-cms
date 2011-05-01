@@ -22,9 +22,30 @@ class Programme(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTracked
         "Summary",
         null=False,
         help_text="Short summary of the programme.")
-    spiele = models.TextField(
-        "Spiele",
-        null=False)
+    needs = models.TextField(
+        "Needs",
+        null=False,
+        help_text="Programme needs and beneficiaries.")
+    objectives = models.TextField(
+        "Objectives",
+        null=False,
+        help_text="Programme objectives.")
+    activities = models.TextField(
+        "Activities",
+        null=False,
+        help_text="What type of activities does the programme involve?")
+    long_term_impact = models.TextField(
+        "Long Term Impact",
+        null=False,
+        help_text="What is the potential long term impact?")
+    funding_info = models.TextField(
+        "Funding Information",
+        null=False,
+        help_text="What is the total funding goal for this programme?")
+    how_to_help = models.TextField(
+        "How You Can Help",
+        null=False,
+        help_text="What amount of contribution can buy what?")
     feature_sets = models.ManyToManyField(
         FeatureSet,
         blank=True,

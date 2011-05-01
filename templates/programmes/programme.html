@@ -7,8 +7,41 @@
         <h1>
             {{ programme.name }}
         </h1>
+        <h2>
+            Project Needs and Beneficiaries
+        </h2>
         <p>
-            {{ programme.spiele|safe }}
+            {{ programme.needs|safe }}
+        </p>
+        <h2>
+            Objectives
+        </h2>
+        <p>
+            {{ programme.objectives|safe }}
+        </p>
+        <h2>
+            Activities
+        </h2>
+        <p>
+            {{ programme.activities|safe }}
+        </p>
+        <h2>
+            Potential Long Term Impact
+        </h2>
+        <p>
+            {{ programme.long_term_impact|safe }}
+        </p>
+        <h2>
+            Funding Information
+        </h2>
+        <p>
+            {{ programme.funding_info|safe }}
+        </p>
+        <h2>
+            How To Help
+        </h2>
+        <p>
+            {{ programme.how_to_help|safe }}
         </p>
     </div>
 {% endblock body %}
