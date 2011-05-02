@@ -1,7 +1,9 @@
 {% extends "site_base.html" %}
 {% load i18n tagging_tags comments zinnia_tags %}
 
-{% block title %}{{ object.title }}{% endblock %}
+{% block head_title %}
+    EFO - Blog - {{ object.title }}
+{% endblock %}
 
 {% block meta-description %}{% if object.excerpt %}{{ object.excerpt|striptags }}{% else %}{{ object.content|striptags|truncatewords:100 }}{% endif %}{% endblock %}
 
