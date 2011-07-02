@@ -8,7 +8,7 @@ from popularity.models import ViewTracker
 from features.models import Feature, FeatureSet
 from modelmixins.models import AuditedModel, SluggedModel, \
     ModelWithImageSet, PopularityTrackedModel, TaggedModel, \
-    CommentedModel
+    CommentedModel, SearchableModel
 from images.models import Image
 from programmes.models import Programme
 
@@ -20,7 +20,7 @@ class ProjectLocation(models.Model):
     def __unicode__(self):
         return "%s" % (self.name)
 
-class Project(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedModel, TaggedModel, CommentedModel, models.Model):
+class Project(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedModel, TaggedModel, CommentedModel, SearchableModel,models.Model):
     """
     Project model. An example of a project would be "kamakwie secondary school" or "Kailahun hospital".
     """
@@ -42,12 +42,33 @@ class Project(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedMo
         blank=True,
         help_text="Feature this content on the selected sites and feature areas.  Note, the content must be published on the corresponding site to take effect.",
         null=True)
-    beneficiaries = models.PositiveIntegerField(
-            help_text="How many people benefited from the project?",
-            null=False)
+    donors = models.CharField(
+        help_text="The donor or donors that contributed to the project ",
+        max_length=250,
+        blank=True,
+        null=True)
     location = models.ForeignKey(ProjectLocation)
+    system_size= models.CharField(
+        help_text="The system size in watts",
+        max_length=250,
+        blank=True,
+        null=True)
+    direct_beneficiaries = models.PositiveIntegerField(
+        help_text="How many people directly benefited from the project?",
+        blank=True,
+        null=True)
+    indirect_beneficiaries = models.PositiveIntegerField(
+        help_text="How many people indirectly benefited from the project?",
+        blank=True,
+        null=True)
     date_started = models.DateField(
-        null=False)
+        help_text="When did the project start?",
+        blank=True,
+        null=True)
+    date_finished = models.DateField(
+        help_text="When was the project completed?",
+        blank=True,
+        null=True)
 
     def slug_from_field(self):
         return self.name
@@ -77,6 +98,12 @@ class Project(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedMo
         To help in templates.
         """
         return self._meta.module_name
+
+    def search_result_title(self):
+        return self.name
+
+    def search_result_summary(self):
+        return self.spiele
         
             
 class ProjectImage(Image):

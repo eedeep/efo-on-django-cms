@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.contrib.contenttypes import generic
 from django.db.models import get_model
+from forms import FeatureAdminModelForm
+from programmes.models import Programme
+from features.models import Feature
 
 class FeatureScheduleInline(admin.TabularInline):
     model = get_model('features', 'featureschedule')
@@ -12,49 +15,49 @@ class FeatureScheduleInline(admin.TabularInline):
 
 class SiteFeatureAreaAdmin(admin.ModelAdmin):
     pass
+
 admin.site.register(get_model('features', 'sitefeaturearea'), SiteFeatureAreaAdmin)
 
 class FeatureAdmin(admin.ModelAdmin):
     list_display = (
         'content_object',
-        'content_object_change_url',
         'content_type',
         'active',
-        'ordering',
         'is_published',)
-    
+
     list_filter = ()
-    
+
     list_editable = (
        'active',
-       'ordering',)
-    
+       )
+
     def content_object_change_url(self, obj):
-        
+
         return '<a href="%s">%s</a> &rarr;'  % (
             obj.content_object_change_url(),
             obj.content_object)
     content_object_change_url.allow_tags=True
     content_object_change_url.short_description= 'Content title'
-    
+
     list_display_links = (
-        # 'content_object_change_url',
+        'content_object_change_url',
     )
-    
+
 class FeatureInline(admin.StackedInline):
     model = get_model('features', 'feature')
     extra = 0
     sortable_field_name = "order"
-    
+    form = FeatureAdminModelForm
+
 class FeatureSetAdmin(admin.ModelAdmin):
     list_display = (
         'site_feature_area',)
-    
+
     list_filter = ()
-    
+
     inlines = [
         FeatureInline,]
-    
+
 admin.site.register(get_model('features', 'featureset'), FeatureSetAdmin)
 
 class ObjectFeatureInline(generic.GenericStackedInline):

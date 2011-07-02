@@ -38,13 +38,13 @@ class Image(AuditedModel, SluggedModel, models.Model):
 
     class Meta:
         ordering = ['order']
-    
+
     def slug_from_field(self):
         return self.caption
 
     def __unicode__(self):
         return u'%s' % (self.image)
-        
+
 
 # South requires custom fields to be given "rules".
 # See http://south.aeracode.org/docs/customfields.html

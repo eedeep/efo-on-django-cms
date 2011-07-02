@@ -1,0 +1,8 @@
+{{ object.name }}
+{{ object.summary }}
+{{ object.needs }}
+{{ object.objectives }}
+{{ object.activities }}
+{{ object.long_term_impact }}
+{{ object.funding_info }}
+{{ object.how_to_help }}

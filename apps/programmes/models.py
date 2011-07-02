@@ -9,10 +9,10 @@ from popularity.models import ViewTracker
 from features.models import Feature, FeatureSet
 from modelmixins.models import AuditedModel, SluggedModel, \
     ModelWithImageSet, PopularityTrackedModel, TaggedModel, \
-    CommentedModel
+    CommentedModel, SearchableModel
 from images.models import Image
 
-class Programme(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedModel, TaggedModel, CommentedModel, models.Model):
+class Programme(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedModel, TaggedModel, CommentedModel, SearchableModel, models.Model):
     """
     Programme model. An example of a programme would be "health" or "education".
     """
@@ -80,6 +80,12 @@ class Programme(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTracked
         To help in templates.
         """
         return self.__class__.__name__.lower()
+
+    def search_result_title(self):
+        return self.name
+
+    def search_result_summary(self):
+        return self.summary
 
 
 class ProgrammeImage(Image):

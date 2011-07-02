@@ -32,11 +32,11 @@
 
 {% block search %}
     <div id="search">
-        <form id="search-form" action="{% url search_query %}" method="get">
+        <form id="search-form" action="{% url haystack_search %}" method="get">
             <input type="text" placeholder="Search" name="q" value="" id="q">
             <!-- input type="submit" value="search" id="search_submit" -->
 {#            <input id="find_submit" class="button" type="submit" value="" >#}
-            <div class="loading"><img src="/site_media/static/img/ajax-loader.gif" alt="Loading..." width="16" height="16">
+{#            <div class="loading"><img src="/site_media/static/img/ajax-loader.gif" alt="Loading..." width="16" height="16">#}
             </div>
         </form>
     </div>

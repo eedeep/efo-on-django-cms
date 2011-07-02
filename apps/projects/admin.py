@@ -15,14 +15,14 @@ class ProjectLocationAdmin(admin.ModelAdmin):
     )
     
 admin.site.register(get_model('projects', 'projectlocation'), ProjectLocationAdmin)
-databrowse.site.register(ProjectLocation)
+#databrowse.site.register(ProjectLocation)
 
 class ProjectImageInline(ImageInline):
     #exclude = ('feature', 'slide_show')
     model = get_model('projects', 'projectimage')
     template = 'patches/tabular.html'
     
-databrowse.site.register(ProjectImage)
+#databrowse.site.register(ProjectImage)
     
 class ProjectAdmin(AuditedModelAdmin):
     list_display = (
@@ -48,9 +48,13 @@ class ProjectAdmin(AuditedModelAdmin):
         }),
         ('Project Information', {
             'fields': (
-                'beneficiaries',
+                'donors',
                 'location',
                 'date_started',
+                'date_finished',
+                'system_size',
+                'direct_beneficiaries',
+                'indirect_beneficiaries',
                 )
         }),
     )
@@ -64,4 +68,4 @@ class ProjectAdmin(AuditedModelAdmin):
     form = ProjectAdminModelForm
 
 admin.site.register(get_model('projects', 'project'), ProjectAdmin)
-databrowse.site.register(Project)
+#databrowse.site.register(Project)

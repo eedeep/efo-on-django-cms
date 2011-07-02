@@ -8,12 +8,11 @@ from django.db.models import get_model
 from django.core import urlresolvers
 
 import datetime
-        
+
 FEATURE_AREA_CHOICES = (
     ('home', 'Home'),
-    ('editors_choice', 'Editors Choice'),
-)        
-        
+)
+
 class SiteFeatureArea(models.Model):
     """
     A Site's Feature Area
@@ -24,19 +23,19 @@ class SiteFeatureArea(models.Model):
         null=True)
     objects = models.Manager()
     site_objects = CurrentSiteManager('site')
-        
+
     area = models.CharField(
         choices=FEATURE_AREA_CHOICES,
         default='home',
         max_length=50,
         verbose_name="Feature area")
-        
+
     class Meta:
         unique_together = ('site', 'area')   
-    
+
     def __unicode__(self):
         return u'%s (%s)' % (self.site.name, self.area)
-        
+
 class FeatureSet(models.Model):
     """
     A set of features set to show on a site feature area
@@ -44,24 +43,24 @@ class FeatureSet(models.Model):
     site_feature_area = models.ForeignKey(
         SiteFeatureArea,
         null=True)
-        
+
     def __unicode__(self):
         return u'%s' % (self.site_feature_area)
 
 class Feature(models.Model):
     """
     A Feature
-    
+
     Features appear in 'Feature' places, like the Home page.
-    
+
     Features reference another object, such as an article,
     or an event, to feature on the given area.
     """
-    
+
     feature_set = models.ForeignKey(
         FeatureSet,
         null=True)
-        
+
     content_type = models.ForeignKey(
         ContentType,
         default='programme',
@@ -71,7 +70,7 @@ class Feature(models.Model):
     content_object = generic.GenericForeignKey(
         'content_type',
         'object_id')
-    
+
     active = models.BooleanField()
     feature_summary = models.CharField(
         max_length=200,
@@ -81,13 +80,13 @@ class Feature(models.Model):
     order = models.PositiveIntegerField(
         blank=True, 
         null=True)
-    
+
     class Meta:
         ordering = ['order']
-        
+
     def __unicode__(self):
         return u'%s' % self.content_object
-    
+
     def content_object_change_url(self):
         """
         Provide a convenience shortcut to the featured object
@@ -98,11 +97,11 @@ class Feature(models.Model):
         return urlresolvers.reverse(
             url_name, 
             args=(self.content_type.model_class().objects.get(pk=self.object_id).id,))
-        
+
     def is_published(self):
         return self.content_type.model_class().objects.get(
             pk=self.object_id).is_published
-        
+
     def feature_image(self):
         """
         Return the first image as the feature.
@@ -111,7 +110,7 @@ class Feature(models.Model):
             return self.feature_images()[0] 
         except IndexError:
             return None
-            
+
     def feature_images(self):
         """
         Resolve and return the appropriate feature images.
@@ -121,17 +120,17 @@ class Feature(models.Model):
 class FeatureSchedule(models.Model):
     """
     Feature or FeatureSet scheduling
-    
+
     * Not yet in use.
     """
-    
+
     # feature = models.ForeignKey(Feature)
     start_date_time = models.DateTimeField(default=datetime.datetime.now)
     end_date_time = models.DateTimeField(
         blank=True, 
         help_text="Continous if no end date/time is specified", 
         default=datetime.datetime.now)
-        
+
     """
     Times should not overlap?
     If a schedule is continuous, should no further schedules be allowed?

@@ -13,6 +13,7 @@ urlpatterns += patterns('',
     url(r'^blog/comments/', include('django.contrib.comments.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r"^search/", include("search.urls")),
     url(r'^admin/filebrowser/', include('filebrowser.urls')),
     url(r'^', include('cms.urls')),
     url(r"^programmes/", include("programmes.urls")),
@@ -25,7 +26,6 @@ urlpatterns += patterns('',
             "template_name": "account/logout.html",
             "next_page": "/"
         }, name="logout"),
-    url(r"^search/", include("search.urls")),
     url(r'^blog/', include('zinnia.urls')),
 )
 

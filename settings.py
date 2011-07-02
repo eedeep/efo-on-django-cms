@@ -166,7 +166,7 @@ INSTALLED_APPS = [
     # Django
     "django.contrib.admin",
     "django.contrib.auth",
-    "django.contrib.databrowse",
+#    "django.contrib.databrowse",
     "django.contrib.comments",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -200,6 +200,7 @@ INSTALLED_APPS = [
     'zinnia.plugins',
     'membrete',
     'contact',
+    'haystack',
 #    'genericforeignkey',
     
     # Pinax
@@ -330,6 +331,10 @@ CMS_SHOW_START_DATE = True
 CMS_MENU_TITLE_OVERWRITE = True
 CMS_UNIQUE_SLUGS = True
 CMS_CONTENT_CACHE_DURATION = 10
+
+HAYSTACK_SITECONF = 'efo.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_ROOT, "whoosh", "efo_index")
 
 TINYMCE_JS_URL = MEDIA_URL + 'admin/tiny_mce/tiny_mce.js'
 TINYMCE_JS_ROOT = MEDIA_ROOT + 'admin/tiny_mce'

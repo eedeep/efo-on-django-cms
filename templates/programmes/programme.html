@@ -28,7 +28,14 @@
                     <h3>{{ image.caption }}</h3>
                     <p>{{ image.caption }}</p>
                     <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open"></a>
-                    <img src="{{ MEDIA_URL }}{{ image.image }}" class="full" />
+                    {% thumbnail image.image "502x368" crop="center" as object_image %}
+                        <img 
+                            alt="{{ object_image.title }}"
+                            src="{{ object_image.url }}"
+                            width="{{ object_image.width }}" 
+                            height="{{ object_image.height }}" 
+                            class="full" />
+                    {% endthumbnail %}
                     {% thumbnail image.image "100x100" crop="center" as object_image %}
                         <img 
                             alt="{{ object_image.title }}"

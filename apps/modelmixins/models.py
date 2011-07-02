@@ -70,10 +70,10 @@ class AuditedModel(models.Model):
 
 
 class ModelWithImageSet(models.Model):
-    
+
     class Meta:
         abstract = True
-        
+
     def feature_image(self):
         try:
             # Return the first image as feature
@@ -83,13 +83,13 @@ class ModelWithImageSet(models.Model):
             IndexError or others.
             """
             return None
-            
+
     def has_feature_image(self):
         if len(self.feature_images())>0 and self.feature_images()[0].image:
             return True
         else:
             return False
-        
+
     def has_slideshow(self):
         """
         Return true if the article has at least 2 slideshow images
@@ -100,8 +100,8 @@ class ModelWithImageSet(models.Model):
         """
         Resolve and return the appropriate feature images
         """
-        return self.imageset().all() #feature=True)
-           
+        return self.imageset().filter(feature=True)
+
     def slideshow_images(self):
         """
         Return slideshow images.
@@ -135,9 +135,9 @@ class CommentedModel(models.Model):
         for comment in all_comments:
             if comment.is_removed == False and comment.content_object == self:
                 comments.append(comment)
-                
+
         return comments
-        
+
     def comments_count(self):
         try:
             return u'%s' % len(self.comments())
@@ -156,7 +156,7 @@ class PopularityTrackedModel(models.Model):
         This is used to sort objects in a list view.
         """
         return ViewTracker.get_views_for(self)
-        
+
     def popularity(self):
         """
         Relative popularity calculated as views/age. Depends on AuditedModel
@@ -169,7 +169,7 @@ class PopularityTrackedModel(models.Model):
 
 
 class TaggedModel(models.Model):
-    
+
     class Meta:
         abstract = True
 
@@ -178,3 +178,17 @@ class TaggedModel(models.Model):
         blank=True,
         null=True,
         related_name="%(app_label)s_%(class)s_tags")
+
+
+class SearchableModel(models.Model):
+
+    class Meta:
+        abstract = True
+
+    def search_result_title(self):
+       """Force the inheritor to implement. This is one way of defining an abstract method."""
+       raise NotImplementedError 
+
+    def search_result_summary(self, data):
+       """Force the inheritor to implement. This is one way of defining an abstract method."""
+       raise NotImplementedError 

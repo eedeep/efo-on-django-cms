@@ -1,0 +1,5 @@
+{{ object.name }}
+{{ object.summary }}
+{{ object.spiele }}
+{{ object.donors }}
+{{ object.location.name }}

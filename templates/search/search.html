@@ -1,0 +1,44 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}
+    {% if query %}
+        EFO - Search Results - {{ query }}
+    {% else %}
+        EFO - Search Results 
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+        {% if query %}
+            <div id="searchResults">
+                <h3>Results</h3>
+
+                <ul>
+                    {% for result in page.object_list %}
+                        <li>
+                            <p>
+                                <a href="{{ result.object.get_absolute_url }}">{{ result.object.search_result_title }}</a>
+                            </p>
+                            <p>
+                                {{ result.object.search_result_summary|striptags|truncatewords:50 }}
+                            </p>
+                        </li>
+                    {% empty %}
+                        <li>
+                            <p>No results found.</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                {% if page.has_previous or page.has_next %}
+                    <div>
+                        {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                        |
+                        {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+{% endblock body %}

@@ -49,3 +49,5 @@ django-mptt==0.3
 django-blog-zinnia
 django-genericforeignkey
 membrete
+django-haystack
+whoosh
