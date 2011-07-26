@@ -3,3 +3,5 @@
 *.swp
 site_media
 *.pyc
+
+/local_settings.py
