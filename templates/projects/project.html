@@ -22,76 +22,74 @@
 
 {% block body %}
     {% placeholder "detail_content" %}
-    <div id="content">
-        <h1>
-            {{ project.name }}
-        </h1>
-        <div id="myGallery">
-            {% for image in project.slideshow_images %}
-                <div class="imageElement">
-                    <h3>{{ image.caption }}</h3>
-                    <p>{{ image.caption }}</p>
-                    <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open"></a>
-                    {% thumbnail image.image "502x368" crop="center" as object_image %}
-                        <img 
-                            alt="{{ object_image.title }}"
-                            src="{{ object_image.url }}"
-                            width="{{ object_image.width }}" 
-                            height="{{ object_image.height }}" 
-                            class="full" />
-                    {% endthumbnail %}
-                    {% thumbnail image.image "100x100" crop="center" as object_image %}
-                        <img 
-                            alt="{{ object_image.title }}"
-                            src="{{ object_image.url }}"
-                            width="{{ object_image.width }}" 
-                            height="{{ object_image.height }}" 
-                            class="thumbnail" />
-                    {% endthumbnail %}
-                </div>
-            {% endfor %}
-        </div>
-        <div id="projectFactsBox">
-           <ul> 
-                {% if project.donors %}
-                    <li>
-                        <strong>Donors: </strong>{{project.donors}}
-                    </li>
-                {% endif %}
-                {% if project.location %}
-                    <li>
-                        <strong>Location: </strong>{{project.location}}
-                    </li>
-                {% endif %}
-                {% if project.date_started %}
-                    <li>
-                        <strong>Date Started: </strong>{{project.date_started|date:"F Y" }}
-                    </li>
-                {% endif %}
-                {% if project.date_finished %}
-                    <li>
-                        <strong>Date Completed: </strong>{{project.date_finished|date:"F Y" }}
-                    </li>
-                {% endif %}
-                {% if project.system_size %}
-                    <li>
-                        <strong>System Size: </strong>{{project.system_size}} Watts
-                    </li>
-                {% endif %}
-                {% if project.direct_beneficiaries%}
-                    <li>
-                        <strong>Direct Beneficiaries: </strong>{{project.direct_beneficiaries}}
-                    </li>
-                {% endif %}
-                {% if project.indirect_beneficiaries%}
-                    <li>
-                        <strong>Indirect Beneficiaries: </strong>{{project.indirect_beneficiaries}}
-                    </li>
-                {% endif %}
-           </ul> 
-        </div>
-        <p>
-            {{ project.spiele|safe }}
-        </p>
+    <h1>
+        {{ project.name }}
+    </h1>
+    <div id="myGallery">
+        {% for image in project.slideshow_images %}
+            <div class="imageElement">
+                <h3>{{ image.caption }}</h3>
+                <p>{{ image.caption }}</p>
+                <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open"></a>
+                {% thumbnail image.image "502x368" crop="center" as object_image %}
+                    <img 
+                        alt="{{ object_image.title }}"
+                        src="{{ object_image.url }}"
+                        width="{{ object_image.width }}" 
+                        height="{{ object_image.height }}" 
+                        class="full" />
+                {% endthumbnail %}
+                {% thumbnail image.image "100x100" crop="center" as object_image %}
+                    <img 
+                        alt="{{ object_image.title }}"
+                        src="{{ object_image.url }}"
+                        width="{{ object_image.width }}" 
+                        height="{{ object_image.height }}" 
+                        class="thumbnail" />
+                {% endthumbnail %}
+            </div>
+        {% endfor %}
     </div>
+    <div id="projectFactsBox">
+       <ul> 
+            {% if project.donors %}
+                <li>
+                    <strong>Donors: </strong>{{project.donors}}
+                </li>
+            {% endif %}
+            {% if project.location %}
+                <li>
+                    <strong>Location: </strong>{{project.location}}
+                </li>
+            {% endif %}
+            {% if project.date_started %}
+                <li>
+                    <strong>Date Started: </strong>{{project.date_started|date:"F Y" }}
+                </li>
+            {% endif %}
+            {% if project.date_finished %}
+                <li>
+                    <strong>Date Completed: </strong>{{project.date_finished|date:"F Y" }}
+                </li>
+            {% endif %}
+            {% if project.system_size %}
+                <li>
+                    <strong>System Size: </strong>{{project.system_size}} Watts
+                </li>
+            {% endif %}
+            {% if project.direct_beneficiaries%}
+                <li>
+                    <strong>Direct Beneficiaries: </strong>{{project.direct_beneficiaries}}
+                </li>
+            {% endif %}
+            {% if project.indirect_beneficiaries%}
+                <li>
+                    <strong>Indirect Beneficiaries: </strong>{{project.indirect_beneficiaries}}
+                </li>
+            {% endif %}
+       </ul> 
+    </div>
+    <p>
+        {{ project.spiele|safe }}
+    </p>
 {% endblock body %}

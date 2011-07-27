@@ -414,7 +414,7 @@ body{
 }
 
 #main-header{
-    padding: @layout-gutter;
+    padding: @layout-gutter @layout-gutter 0;
     overflow: hidden;    
     #logo{
         text-indent: -9999px;
@@ -452,6 +452,7 @@ body{
     nav#main{
         clear: both;
         height: 60px;
+        margin: 0 0 30px;
         ul#dropline{
             .box-shadow(0, 2px, 5px, #AAA);
             background: @red;
@@ -530,4 +531,47 @@ body{
             }
         }
     }
+}
+
+#content{
+    padding: 0 @layout-gutter;
+    width: auto;
+    overflow: hidden;
+    section#body{
+        border-top: 2px solid rgb(230, 230, 230);
+        border-bottom: 2px solid rgb(230, 230, 230);
+        padding: @layout-gutter 0;
+        font-family: @font-family;
+        font-size: 12px;
+        color: @black;
+        overflow: hidden;
+        line-height: 1.4em;
+        h1{
+            font-size:40px;
+            line-height: 1.2em;
+            color: @off-black;
+            text-transform: uppercase;
+            width: 490px;
+            display:inline;
+        }
+        img{
+            max-width: 340px;
+            height: auto;
+            float: right;
+            clear: right;
+            margin: 0 0 @layout-gutter @layout-gutter !important;
+        }
+        p{
+            margin-bottom: 1em;            
+        }
+        
+    }
+}
+
+footer#main-footer{
+    font-family: @font-family;
+    font-size: 12px;
+    color: rgb(128, 128, 128);
+    padding: @layout-gutter;
+    margin: 0 0 @layout-gutter*2;
 }
