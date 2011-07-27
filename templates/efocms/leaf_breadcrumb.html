@@ -1,0 +1,5 @@
+{% for ance in ancestors %}
+{% if forloop.last %}
+    {{ ance.get_menu_title }}
+{% endif %}
+{% endfor %}

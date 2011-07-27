@@ -1,10 +1,14 @@
 {% extends "projects/projects_container.html" %}
 {% load cms_tags %}
+{% load menu_tags %}
 {% load thumbnail %}
 {% load pagination_tags %}
 
 {% block body %}
     <div id="content">
+        <h1>
+            {% show_breadcrumb 1 "efocms/leaf_breadcrumb.html" %}
+        </h1>
         {% placeholder "listing_content" %}
         {% autopaginate projects 5 %}
         {% for project in projects %}
