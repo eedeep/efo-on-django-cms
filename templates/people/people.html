@@ -4,7 +4,6 @@
 
 {% block body %}
     {% placeholder "people_generic_content" %}
-    <div id="content">
         {% with programme_staff as people %}
             {% with 'Programme Staff' as group_name %}
                 {% include "people/_group_of_people.html" %}
@@ -20,5 +19,4 @@
                 {% include "people/_group_of_people.html" %}
             {% endwith %}
         {% endwith %}
-    </div>
 {% endblock body %}

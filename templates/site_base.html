@@ -12,6 +12,7 @@
 
 {% block extra_head_base %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/dropline.css">
+    <script type="text/javascript" src="{{ STATIC_URL }}js/efo/efo-nav-main.js"></script>
     {% block extra_head %}
     {% endblock %}
 {% endblock %}
@@ -54,10 +55,8 @@
 
 {% block right_tabs %}{% endblock %}
 {% block right_column %}{% endblock %}
-{% block body %}
-    <div id="content">
-        {% placeholder "content" %}
-    </div>
+{% block body %}    
+    {% placeholder "content" %}
 {% endblock %}
 
 
