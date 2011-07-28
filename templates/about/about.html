@@ -1,0 +1,20 @@
+{% extends "site_base.html" %}
+{% load cms_tags %}
+{% load menu_tags %}
+
+{% block body %}
+    <div id="content">
+        <h1>
+            {% show_breadcrumb 1 "efocms/leaf_breadcrumb.html" %}
+        </h1>
+
+        {% placeholder "content" %}
+
+        <div id="feature-image">
+            {% placeholder "feature_image" %}
+            <div id="feature-image-caption">
+                {% placeholder "feature_image_caption" %}
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -307,12 +307,24 @@ CMS_TEMPLATES = (
         (' base/general.html', gettext('general')),        
         ('base/base.html', gettext('base')),
         ('site_base.html', gettext('main base')),
+        ('about/about.html', gettext('about')),
         ('programmes/programmes_container.html', gettext('programmes container')),
         ('projects/projects_container.html', gettext('projects container')),
         ('contribute/contribute.html', gettext('contribute template')),
         ('contact/contact.html', gettext('contact template')),
         ('base/home.html', gettext('home')),
 )
+
+CMS_PLACEHOLDER_CONF = {
+    'feature_image': {
+            'plugins': ('PicturePlugin'),
+            'name': gettext("feature image")
+    },
+    'feature_image_caption': {
+            'plugins': ('TextPlugin'),
+            'name': gettext("feature image caption")
+    },
+}
 
 LANGUAGES = (
     ('en', gettext('English')),
