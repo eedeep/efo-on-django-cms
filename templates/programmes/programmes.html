@@ -3,22 +3,23 @@
 {% load thumbnail %}
 
 {% block body %}
+    <h1>Programmes</h1>
     {% placeholder "listing_content" %}
     {% for programme in programmes %}
-        <section class="programme-list-item">
-            <h2>
-                {{ programme.name }}
-                {% thumbnail programme.summary_image "100x100" crop="center" as object_image %}
-                    {% with programme as object %}
-                        {% include "base/_object_thumbnail_anchor_image.html" %}
-                    {% endwith %}
-                {% endthumbnail %}
-            </h2>
-            <p>
-                {{ programme.summary }}
-                {% url programme_view programme.slug as programme_detail_url %}
-                <a href="{{ programme_detail_url }}">Read more...</a>
-            </p>
-        </section>
+    <section class="programme-list-item{% if forloop.last %} last{% endif %}{% if forloop.first %} first{% endif %}">
+        <div class="programme-list-item-content">
+            <h2>{{ programme.name }}</h2>
+            <p>{{ programme.summary }}</p>
+            {% url programme_view programme.slug as programme_detail_url %}
+            <a href="{{ programme_detail_url }}">Read more</a>
+        </div>
+        <div class="programme-list-item-thumbnail">
+            {% thumbnail programme.summary_image "336x186" crop="center" as object_image %}
+                {% with programme as object %}
+                    {% include "base/_object_thumbnail_anchor_image.html" %}
+                {% endwith %}
+            {% endthumbnail %}
+        </div>
+    </section>
     {% endfor %}
 {% endblock body %}

@@ -18,16 +18,13 @@
 
 {% block body %}
     {% placeholder "detail_content" %}
-    <h1>
-        {{ programme.name }}
-    </h1>
     <div id="myGallery">
         {% for image in programme.slideshow_images %}
             <div class="imageElement">
                 <h3>{{ image.caption }}</h3>
                 <p>{{ image.caption }}</p>
                 <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open"></a>
-                {% thumbnail image.image "502x368" crop="center" as object_image %}
+                {% thumbnail image.image "456x316" crop="center" as object_image %}
                     <img 
                         alt="{{ object_image.title }}"
                         src="{{ object_image.url }}"
@@ -46,6 +43,10 @@
             </div>
         {% endfor %}
     </div>
+    <h1>
+        {{ programme.name }}
+    </h1>
+    
     <h2>
         Project Needs and Beneficiaries
     </h2>

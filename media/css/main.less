@@ -188,8 +188,8 @@
     /* Major Grid
     ---------------------------------- */
     
-        @layout-body-width: 960px; /* site body */
-        @layout-section-width: 920px; /* main content column */
+        @layout-body-width: 980px; /* site body */
+        @layout-section-width: 960px; /* main content column */
         @layout-aside-width: 300px; /* aside column */
         
         /* 
@@ -217,10 +217,10 @@
         
         /* Sections 
         -------------------------------------------------- */
-        @section-width: @layout-section-width; /* or 640px */
+        @section-width: @layout-section-width; 
         @section-gutter: 20px;
         
-        @section-columns: 16; /* 640px / 16 = 40px */
+        @section-columns: 8; 
         @section-column-width: @section-width / @section-columns;
         @section-column-gutter: @section-gutter;
         
@@ -284,7 +284,7 @@
         }
         .columns(@column-span: @section-columns) {
             .column();
-            width: (@column-span - 1) * @column-width + (@column-width - @column-gutter);
+            width: (@column-span * @section-column-width) - @section-column-gutter;
         }
         .column-shell() {
             .grid-element();
@@ -403,7 +403,7 @@ body{
     width: @layout-body-width;
     margin: 0 auto 20px;
     background: @base-body-color;
-    -webkit-box-shadow: 0px 0px 10px #AAA;
+    .box-shadow(0, 0, 10px, #AAA);
 }
 
 #main-header{
@@ -541,19 +541,56 @@ body{
         overflow: hidden;
         line-height: 1.4em;
         width: auto;
+        
+        /* This is basically the style guide that determines the styles and layouts of most content */
+
         p{
-            margin-bottom: 1em;
+            margin-bottom: 20px;
         }
-        .page-content{
-            h1{
-                font-size:40px;
-                line-height: 1.2em;
-                color: @off-black;
-                text-transform: uppercase;
-                width: 600px;
-                margin: 0 0 @layout-gutter-large;
-                margin-top: -8px;
-            }        
+        a{
+            color: @red;
+            text-decoration: none;
+            &:hover, &:focus{
+                text-decoration: underline;
+                color: @yellow;
+            }
+        }
+        ul, ol{
+            list-style-position: outside;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            li{
+                padding-left: 10px;
+                margin: 0 0 5px;
+            }            
+        }
+        ul{
+            list-style-type: disc;
+        }
+        ol{
+            list-style-type: decimal;
+        }
+        h1{
+            font-size:40px;
+            line-height: 1.2em;
+            color: @off-black;
+            text-transform: uppercase;
+            font-weight: bold;
+
+            // May need to move this 
+            width: 600px;
+            margin: 0 0 22px;
+            margin-top: -8px;
+        }
+        h2{
+            font-size: 20px;
+            line-height: 1.2em;
+            font-weight: bold;
+            margin: 0 0 16px;
+        }
+
+        /* Specific to CMS page */
+        .page-content{                    
             img{
                 max-width: 338px;
                 border: 1px solid gray;
@@ -566,12 +603,18 @@ body{
     }
 }
 
+#myGallery{
+    float: right;
+    margin: 0 0 @layout-gutter @layout-gutter;
+}
+
 #home-features{
     width: @layout-section-width;
     overflow: hidden;
     position: relative;
     .home-features{
         width: @layout-section-width;
+        margin: 0 -10px;
         overflow: hidden;
         .home-feature{
             clear:both;
@@ -580,19 +623,13 @@ body{
                 width: auto;
                 overflow: hidden;
                 .home-feature-figure-image{
-                    float: right;
-                    a{
-                        img{
-                            width: 576px;
-                            max-width: 576px;
-                            border: 2px solid @soft-grey;
-                        }
+                    .columns(5);
+                    a img{
+                        border: 2px solid @soft-grey;
                     }
                 }
                 figcaption.home-feature-figcaption{
-                    float:left;
-                    width: 320px;
-                    padding: 0 20px 0 0;
+                    .columns(3);
                     h2{
                         font-size:40px;
                         line-height: 1.2em;
@@ -620,9 +657,12 @@ body{
     }
     .home-feature-buttons{
         position: absolute;
-        right: 600px;
+        left: 0;
+        .columns(3);
         bottom: 0px;
         z-index: 40;
+        text-align: right;
+        margin-left: 0;
         a{
             display: inline-block;
             width: 20px;
@@ -639,6 +679,38 @@ body{
                 background: @yellow;
             }
             
+        }
+    }
+}
+
+.programme-list-item{
+    .row();
+    overflow: hidden;
+    border-bottom: 2px solid @soft-grey;
+    padding: 0 0 20px;
+    float: left; /* prevent 'margin fusion' */
+    clear: both;
+    &.last{
+        border-bottom: none;
+        padding: 0;
+        margin-bottom: 0;
+    }
+    &.first{
+        margin-top: 0;
+    }
+    .programme-list-item-content{
+        .columns(5);
+        margin-left: 0;
+    }
+    .programme-list-item-thumbnail{
+        .columns(3);
+        margin-right: 0;
+        line-height: 0;
+        img{
+            border: 2px solid @soft-grey;
+        }
+        a:hover img, a:focus img{
+            border: 2px solid darken(@soft-grey, 20%);
         }
     }
 }
