@@ -1,26 +1,32 @@
 {% extends "projects/projects_container.html" %}
 {% load cms_tags %}
+{% load menu_tags %}
 {% load thumbnail %}
 {% load pagination_tags %}
 
 {% block body %}
-    {% placeholder "listing_content" %}
-    {% autopaginate projects 5 %}
-    {% for project in projects %}
-        <h2>
-            {{ project.name }}
-            {% thumbnail project.summary_image "100x100" crop="center" as object_image %}
-                {% with project as object %}
-                    {% include "base/_object_thumbnail_anchor_image.html" %}
-                {% endwith %}
-            {% endthumbnail %}
-        </h2>
-        <p>
-            {{ project.summary }}
+    <div id="content">
+        <h1>
+            {% show_breadcrumb 1 "efocms/leaf_breadcrumb.html" %}
+        </h1>
+        {% placeholder "listing_content" %}
+        {% autopaginate projects 5 %}
+        {% for project in projects %}
+            <h2>
+                {{ project.name }}
+                {% thumbnail project.summary_image "100x100" crop="center" as object_image %}
+                    {% with project as object %}
+                        {% include "base/_object_thumbnail_anchor_image.html" %}
+                    {% endwith %}
+                {% endthumbnail %}
+            </h2>
+            <p>
+                {{ project.summary }}
 
-            {% url project_view project.slug as project_detail_url %}
-            <a href="{{ project_detail_url }}">Read more...</a>
-        </p>
-    {% endfor %}
-    {% paginate %}
+                {% url project_view project.slug as project_detail_url %}
+                <a href="{{ project_detail_url }}">Read more...</a>
+            </p>
+        {% endfor %}
+        {% paginate %}
+    </div>
 {% endblock body %}
