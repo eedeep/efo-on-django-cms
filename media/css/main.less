@@ -576,14 +576,12 @@ body{
             color: @off-black;
             text-transform: uppercase;
             font-weight: bold;
-
-            // May need to move this 
-            width: 600px;
-            margin: 0 0 22px;
-            margin-top: -8px;
+            /*margin: 0 0 22px;
+            margin-top: -8px;*/
         }
         h2{
             font-size: 20px;
+            color: @off-black;
             line-height: 1.2em;
             font-weight: bold;
             margin: 0 0 16px;
@@ -672,11 +670,12 @@ body{
             vertical-align: top;
             line-height: 20px;
             text-align: center;
-            color: white;
+            color: white !important;
             text-decoration: none;
             font-weight: bold;
             &.active, &:hover, &:focus{
                 background: @yellow;
+                text-decoration: none;
             }
             
         }
