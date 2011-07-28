@@ -59,8 +59,8 @@
     @off-black: rgb(77, 77, 77);
     @soft-grey: rgb(204, 204, 204);
     
-    @red: #DA1431;
-    @yellow: #FFB545;
+    @red: #D8172C;
+    @yellow: #FFB713;
     
 /* Styling Mixins
 ------------------------------------------------------------ */
@@ -430,16 +430,24 @@ body{
             right: 0px;
             input{
                 padding: 3px;
-                border: 2px solid #EC8B95;
+                border: 2px solid @yellow;
                 .rounded(5px);
                 font-family: @font-family;
                 font-size: 10px;
                 line-height: 1.5em;
                 width: 214px;
+                background: @yellow;
+                color: @red;
                 &:focus, &:active{
                     outline: none;
-                    border: 2px solid @black;
+                    border: 2px solid @red;
                 }
+            }
+            input::-webkit-input-placeholder{
+                color: @red;
+            }
+            input:-moz-placeholder{
+                color: @red;
             }
         }
     }
@@ -532,7 +540,7 @@ body{
     padding: 0 @layout-gutter;
     width: auto;
     overflow: hidden;
-    background: #F2F2F2;
+    background: #FAFAFA;
     section#body{
         padding: @layout-gutter 0 @layout-gutter;
         font-family: @font-family;
