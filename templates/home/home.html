@@ -13,19 +13,11 @@
     {% if home_features %}
     
         {% with home_features|first as feature %}
-    
             <section id="home-features">
                 <div class="home-features">
                     {% for feature in home_features %}
                     <div class="home-feature{% if forloop.first %} first{% else %} sibling{% endif %}" feature_number="{{ forloop.counter0 }}">
                         <figure class="home-feature-figure">
-                            <div class="home-feature-figure-image">
-                                {% thumbnail feature.content_object.feature_image "576x308" crop="center" as object_image %}
-                                    {% with feature.content_object as object %}
-                                        {% include "base/_object_thumbnail_anchor_image.html" %}
-                                    {% endwith %}
-                                {% endthumbnail %}
-                            </div>
                             <figcaption class="home-feature-figcaption">
                                     <h2>Object Title{{ feature.content_object.title }}</h2>
                                     <span class="object-excerpt">
@@ -33,6 +25,13 @@
                                     </span>
                                     <a href="{{ feature.content_object.get_absolute_url }}" class="object-read-more">Read more.</a>
                             </figcaption>
+                            <div class="home-feature-figure-image">
+                                {% thumbnail feature.content_object.feature_image "576x308" crop="center" as object_image %}
+                                    {% with feature.content_object as object %}
+                                        {% include "base/_object_thumbnail_anchor_image.html" %}
+                                    {% endwith %}
+                                {% endthumbnail %}
+                            </div>
                         </figure>
                     </div>
                     {% endfor %}
