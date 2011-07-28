@@ -57,6 +57,7 @@
     
     @black: rgb(51, 51, 51);
     @off-black: rgb(77, 77, 77);
+    @soft-grey: rgb(204, 204, 204);
     
     @red: #DA1431;
     @yellow: #FFB545;
@@ -184,20 +185,11 @@
 /* Grids & Layout
 ------------------------------------------------------------ */
 
-    /* Old settings - to be deprecated
-    ---------------------------------- */
-    
-        @columns: 24;
-        @column-width: 40px;
-        @column-gutter: 20px;
-        @row-height: 40px;
-        @row-gutter: 20px;
-
     /* Major Grid
     ---------------------------------- */
     
-        @layout-body-width: 970px; /* site body */
-        @layout-section-width: 970px; /* main content column */
+        @layout-body-width: 960px; /* site body */
+        @layout-section-width: 920px; /* main content column */
         @layout-aside-width: 300px; /* aside column */
         
         /* 
@@ -206,12 +198,13 @@
             aside gutter, at 10px.
         */
         
-        @layout-gutter: 20px; 
+        @layout-gutter: 20px;
+        @layout-gutter-large: 30px; 
         
-        /*
-            ANow does not utilize a site-wide grid, but two smaller grids
-            in the main 'section' column, and the aside, as defined below.
-        */
+        @layout-columns: 8;
+        @layout-column-width: @layout-section-width / @layout-columns;
+        @layout-column-gutter: @layout-gutter;
+        
     
     /* Minor Grids
     ---------------------------------- */
@@ -416,6 +409,7 @@ body{
 #main-header{
     padding: @layout-gutter @layout-gutter 0;
     overflow: hidden;    
+    z-index: 999;
     #logo{
         text-indent: -9999px;
         background: url('/site_media/static/images/efo-logo-header.jpg') no-repeat;
@@ -452,7 +446,7 @@ body{
     nav#main{
         clear: both;
         height: 60px;
-        margin: 0 0 30px;
+        margin: 0;
         ul#dropline{
             .box-shadow(0, 2px, 5px, #AAA);
             background: @red;
@@ -462,7 +456,7 @@ body{
             height: 30px;
             position: relative;
             table{
-                /* don't know why this is here */
+                /* don't know why this is here, there's no table in the markup */
                 border-collapse: collapse;
                 width: 0;
                 height: 0;
@@ -534,37 +528,118 @@ body{
 }
 
 #content{
+    z-index: -1;
     padding: 0 @layout-gutter;
     width: auto;
     overflow: hidden;
+    background: #F2F2F2;
     section#body{
-        border-top: 2px solid rgb(230, 230, 230);
-        border-bottom: 2px solid rgb(230, 230, 230);
-        padding: @layout-gutter 0;
+        padding: @layout-gutter 0 @layout-gutter;
         font-family: @font-family;
         font-size: 12px;
         color: @black;
         overflow: hidden;
         line-height: 1.4em;
-        h1{
-            font-size:40px;
-            line-height: 1.2em;
-            color: @off-black;
-            text-transform: uppercase;
-            width: 490px;
-            display:inline;
-        }
-        img{
-            max-width: 340px;
-            height: auto;
-            float: right;
-            clear: right;
-            margin: 0 0 @layout-gutter @layout-gutter !important;
-        }
+        width: auto;
         p{
-            margin-bottom: 1em;            
+            margin-bottom: 1em;
         }
-        
+        .page-content{
+            h1{
+                font-size:40px;
+                line-height: 1.2em;
+                color: @off-black;
+                text-transform: uppercase;
+                width: 600px;
+                margin: 0 0 @layout-gutter-large;
+                margin-top: -8px;
+            }        
+            img{
+                max-width: 338px;
+                border: 1px solid gray;
+                height: auto;
+                float: right;
+                clear: right;
+                margin: 0 0 @layout-gutter @layout-gutter !important;
+            }            
+        }
+    }
+}
+
+#home-features{
+    width: @layout-section-width;
+    overflow: hidden;
+    position: relative;
+    .home-features{
+        width: @layout-section-width;
+        overflow: hidden;
+        .home-feature{
+            clear:both;
+            figure.home-feature-figure{
+                line-height: 0;
+                width: auto;
+                overflow: hidden;
+                .home-feature-figure-image{
+                    float: right;
+                    a{
+                        img{
+                            width: 576px;
+                            max-width: 576px;
+                            border: 2px solid @soft-grey;
+                        }
+                    }
+                }
+                figcaption.home-feature-figcaption{
+                    float:left;
+                    width: 320px;
+                    padding: 0 20px 0 0;
+                    h2{
+                        font-size:40px;
+                        line-height: 1.2em;
+                        color: @off-black;
+                        text-transform: uppercase;
+                        margin-bottom: @layout-gutter*2;
+                    }
+                    span.object-excerpt{
+                        display: block;
+                        line-height: 1.4em;
+                        margin-bottom: 1em;
+                    }
+                    a.object-read-more{
+                        display: block;
+                        text-decoration: none;
+                        color: @red;
+                        &:hover, &:focus{
+                            text-decoration: underline;
+                            color: @yellow;
+                        }
+                    }
+                }                
+            }
+        }
+    }
+    .home-feature-buttons{
+        position: absolute;
+        right: 600px;
+        bottom: 0px;
+        z-index: 40;
+        a{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 0 0 0 10px;
+            background: @red;
+            vertical-align: top;
+            line-height: 20px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            &.active, &:hover, &:focus{
+                background: @yellow;
+            }
+            
+        }
     }
 }
 
@@ -574,4 +649,9 @@ footer#main-footer{
     color: rgb(128, 128, 128);
     padding: @layout-gutter;
     margin: 0 0 @layout-gutter*2;
+    div{
+        border-top: 2px solid #F2F2F2;
+        padding-top: @layout-gutter/2;
+        line-height: 1em;
+    }
 }

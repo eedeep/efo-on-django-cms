@@ -15,47 +15,33 @@
         {% with home_features|first as feature %}
     
             <section id="home-features">
-        
                 <div class="home-features">
-        
                     {% for feature in home_features %}
-        
                     <div class="home-feature{% if forloop.first %} first{% else %} sibling{% endif %}" feature_number="{{ forloop.counter0 }}">
-            
                         <figure class="home-feature-figure">
-                
                             <div class="home-feature-figure-image">
-                                {% thumbnail feature.content_object.feature_image "638x425" crop="center" as object_image %}
+                                {% thumbnail feature.content_object.feature_image "576x308" crop="center" as object_image %}
                                     {% with feature.content_object as object %}
                                         {% include "base/_object_thumbnail_anchor_image.html" %}
                                     {% endwith %}
                                 {% endthumbnail %}
                             </div>
-                    
                             <figcaption class="home-feature-figcaption">
-                                    <h2><a href="{{ feature.content_object.get_absolute_url }}">{{ feature.content_object.title }}</a></h2>
+                                    <h2>Object Title{{ feature.content_object.title }}</h2>
                                     <span class="object-excerpt">
                                         {{ feature.feature_summary }}
                                     </span>
+                                    <a href="{{ feature.content_object.get_absolute_url }}" class="object-read-more">Read more.</a>
                             </figcaption>
-            
                         </figure>
-            
                     </div>
-            
                     {% endfor %}
-        
                 </div>
-        
                 <div class="home-feature-buttons">
-                    <span class="home-feature-button-links">
-                        {% for feature in home_features %}
-                        <a href="#" class="home-feature-button {% if forloop.first %} active{% endif %}" feature_number="{{ forloop.counter0 }}">{{ forloop.counter }}</a>
-                        {% endfor %}
-                        <a href="#" id="home-feature-cycle-toggle" class="home-feature-button-pause"></a>
-                    </span>
+                    {% for feature in home_features %}
+                    <a href="#" class="home-feature-button {% if forloop.first %} active{% endif %}" feature_number="{{ forloop.counter0 }}">{{ forloop.counter }}</a>
+                    {% endfor %}
                 </div>
-        
             </section>
     
         {% endwith %}

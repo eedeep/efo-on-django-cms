@@ -55,8 +55,11 @@
 
 {% block right_tabs %}{% endblock %}
 {% block right_column %}{% endblock %}
-{% block body %}    
-    {% placeholder "content" %}
+{% block body %}
+    {% comment %}<h1>{% show_breadcrumb 1 "efocms/leaf_breadcrumb.html" %}</h1>{% endcomment %}
+    <div class="page-content">
+        {% placeholder "content" %}
+    </div>
 {% endblock %}
 
 
