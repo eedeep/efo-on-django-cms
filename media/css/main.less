@@ -551,7 +551,6 @@ body{
         width: auto;
         
         /* This is basically the style guide that determines the styles and layouts of most content */
-
         p{
             margin-bottom: 20px;
         }
@@ -598,18 +597,27 @@ body{
             font-size: 16px;
             color: @off-black;
             
-        }
-
-        /* Specific to CMS page */
-        .page-content{                    
+        }        
+        #feature-image{                    
+            max-width: 340px;
+            float: right;
+            clear: right;
+            margin: 0 0 @layout-gutter @layout-gutter !important;
+            line-height: 0;
             img{
-                max-width: 338px;
-                border: 1px solid gray;
+                max-width: 336px;
                 height: auto;
-                float: right;
-                clear: right;
-                margin: 0 0 @layout-gutter @layout-gutter !important;
-            }            
+                border: 2px solid @soft-grey;
+            }
+            #feature-image-caption{
+                padding: 3px 4px 0;
+                font-size: 11px;
+                line-height: 1.2em;
+                color: lighten(@off-black, 15%);
+                p{
+                    margin: 0;
+                }
+            }
         }
     }
 }
