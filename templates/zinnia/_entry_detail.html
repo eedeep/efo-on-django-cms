@@ -1,11 +1,13 @@
 {% load tagging_tags comments i18n %}
 
 <div class="entry-header">
-  <h2 class="entry-title">
-    <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
-      {{ object.title }}
-    </a>
-  </h2>
+    {% if single != true %}
+    <h1 class="entry-title">{{ object.title }}</h1>
+    {% else %}
+    <h2 class="entry-title"><a href="{{ object.get_absolute_url }}" title="{{ object.title }}">{{ object.title }}</a></h2>
+    {% endif %}
+
+
   <p class="entry-info">
     {% trans "Written by" %}
     {% for author in object.authors.all %}

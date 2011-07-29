@@ -761,57 +761,138 @@ section#body{
     }
 }
 
-/* Blog Index 
+/* Blogs 
 -------------*/
 
-#content section#body .blog-entry-list{
-    .hentry{
-        border-bottom: 2px solid @soft-grey;
-        margin: 20px 0 0;
-        &.first{
-            margin: 0;
-        }
-        &.last{
-            //border-bottom: none;
-            margin-bottom: 20px;
-        }
-        .entry-header{
-            margin-bottom: @layout-gutter;
-            h2.entry-title{
+#content section#body{
+    .blog-entry-list{
+        .hentry{
+            border-bottom: 2px solid @soft-grey;
+            margin: 20px 0 0;
+            &.first{
                 margin: 0;
-                font-size: 24px;
-                font-weight: bold;
-                text-transform: uppercase;
-                a{                    
-                    color: @off-black;
-                    &:hover{
-                        text-decoration: underline;
-                        color: @yellow;
-                    }
+            }
+            &.last{
+                //border-bottom: none;
+                margin-bottom: 20px;
+            }
+        }
+    }
+    .single-entry{
+        border-bottom: 2px solid @soft-grey;
+        margin: 0 0 @layout-gutter;
+    }
+    .entry-header{
+        margin-bottom: @layout-gutter;
+        h2{
+            font-size: 24px;
+        }
+        .entry-title{
+            margin: 0 0 @layout-gutter/2;
+            font-weight: bold;
+            text-transform: uppercase;
+            a{                    
+                color: @off-black;
+                &:hover{
+                    text-decoration: underline;
+                    color: @yellow;
                 }
             }
-            .entry-info{
-                color: @grey;
-            }           
         }
-        .entry-body{
-            width: auto;
-            overflow: hidden;
-            .entry-image, img{
-                float: right;
-                margin: 0 0 @layout-gutter @layout-gutter;
-                border: 2px solid @soft-grey;
-                max-width: 360px;
-                height: auto;
-            }                
+        .entry-info{
+            color: @grey;
+        }           
+    }
+    .entry-body{
+        width: auto;
+        overflow: hidden;
+        .entry-image, img{
+            float: right;
+            margin: 0 0 @layout-gutter @layout-gutter;
+            border: 2px solid @soft-grey;
+            max-width: 360px;
+            height: auto;
+        }                
+    }
+    .entry-footer{
+        margin-bottom: @layout-gutter;
+        > p{
+            margin: 0;
+            color: @grey;
         }
-        .entry-footer{
-            margin-bottom: @layout-gutter;
-            > p{
-                margin: 0;
-                color: @grey;
+    }
+    .entry-widgets{
+        border-bottom: 2px solid @soft-grey;
+        margin: 0 0 @layout-gutter;
+        ul{
+            list-style: none;
+            padding: 0;
+            li{
+                padding: 0;
             }
         }
+        h3{
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+    }
+    .comments-tracks-pings{
+        border-bottom: 2px solid @soft-grey;
+        margin: 0 0 @layout-gutter;
+        h3{
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        #trackbacks, #pingbacks{
+            border-bottom: 1px dashed lighten(@soft-grey, 5%);
+            margin: 10px 0;
+        }
+        #comments{
+            cite{
+                background: #F2F2F2;
+                border: 1px solid darken(#F2F2F2, 10%);
+                padding: 10px;
+                display: block;
+            }
+        }
+    }
+    .commentForm{
+        legend{
+            color: @off-black;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: block;
+            padding: 0 0 @layout-gutter;
+        }
+        label{
+            display: inline;
+        }
+    }
+}
+
+/* Forms 
+---------- */
+form{
+    label{
+        text-transform: uppercase;
+        color: @off-black;
+        display: block;
+    }
+    input[type=text], textarea{
+        border: 1px solid @soft-grey;
+        width: 340px;
+        font-size: 11px;
+        color: @off-black;
+        line-height: 1.3em;
+        padding: 5px;
+        margin: 0 0 @layout-gutter/2;
+    }
+    li{
+        list-style: none;
+        padding: 0;
     }
 }
 
@@ -821,6 +902,9 @@ section#body{
         margin-right: @layout-gutter;
     }
 }
+
+
+
 
 /* Footer
 ---------*/
