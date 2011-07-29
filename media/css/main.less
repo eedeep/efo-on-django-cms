@@ -873,6 +873,33 @@ section#body{
     }
 }
 
+/* Search Results 
+------------------*/
+#content section#body #searchResults{
+    ul, li{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    ul{
+        li{
+            margin: @layout-gutter 0;
+            border-bottom: 2px solid @soft-grey;
+            &.last{
+                border-bottom: none;
+            }
+            h3{
+                margin: 0 0 @layout-gutter/2;
+            }
+            p.result-excerpt{
+                margin: 0 0 @layout-gutter;
+            }
+        }
+    }
+}
+
+
+
 /* Forms 
 ---------- */
 form{
