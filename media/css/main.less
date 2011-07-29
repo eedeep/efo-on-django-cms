@@ -409,8 +409,8 @@ body{
 
 #main-header{
     padding: @layout-gutter @layout-gutter 0;
-    overflow: hidden;    
-    z-index: 999;
+    overflow: visible;
+
     #logo{
         text-indent: -9999px;
         background: url('/site_media/static/images/efo-logo-header.png') no-repeat;
@@ -535,7 +535,6 @@ body{
 }
 
 #content{
-    z-index: -1;
     padding: 0 @layout-gutter;
     width: auto;
     overflow: hidden;
