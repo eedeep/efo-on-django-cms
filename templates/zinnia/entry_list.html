@@ -34,19 +34,20 @@ EFO - Blog - {% trans "Latest entries" %} {% if category %}| {% trans "Category"
 <h1>{% blocktrans with author.username as author %}Entries by {{ author }}{% endblocktrans %}</h1>
 {% endif %}
 
-{% for object in object_list %}
-<div id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %} span-16 last">
-  {% with object.html_content|truncatewords_html:100|safe as object_content %}
-  {% include "zinnia/_entry_detail.html" %}
-  {% endwith %}
+<div class="blog-entry-list">
+    {% for object in object_list %}
+    <div id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %}{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+      {% with object.html_content|truncatewords_html:100|safe as object_content %}
+      {% include "zinnia/_entry_detail.html" %}
+      {% endwith %}
+    </div>
+    {% empty %}
+      {% trans "No entries yet." %}
+    {% endfor %}
 </div>
-<hr />
-{% empty %}
-  {% trans "No entries yet." %}
-{% endfor %}
 
 {% if is_paginated %}
-<div class="paginator span-16 last">
+<div class="paginator">
   <span class="index">
     {% blocktrans with page_obj.number as current_page and paginator.num_pages as total_page %}Page {{ current_page }} of {{ total_page }}{% endblocktrans %}
   </span>

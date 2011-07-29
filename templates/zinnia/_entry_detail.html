@@ -1,6 +1,6 @@
 {% load tagging_tags comments i18n %}
 
-<div class="entry-header span-16 last">
+<div class="entry-header">
   <h2 class="entry-title">
     <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
       {{ object.title }}
@@ -32,7 +32,7 @@
   </p>
 </div>
 
-<div class="entry-body span-16 last">
+<div class="entry-body">
   {% if object.image %}
   <div class="entry-image">
     <p>

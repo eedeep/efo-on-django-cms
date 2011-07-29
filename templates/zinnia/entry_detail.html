@@ -18,7 +18,9 @@
 {% block body %}
 <div id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %} span-16 last">
   {% with object.html_content|safe as object_content %}
+  {% with single as true %}
   {% include "zinnia/_entry_detail.html" %}
+  {% endwith %}
   {% endwith %}
 </div>
 
