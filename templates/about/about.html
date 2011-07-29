@@ -3,11 +3,13 @@
 {% load menu_tags %}
 
 {% block body %}
-    <div id="feature-image">
-        {% placeholder "feature_image" %}
-        <div id="feature-image-caption">
-            {% placeholder "feature_image_caption" %}
-        </div>
+    <div class="feature-image-container about">
+        <figure class="feature-image-figure">
+            {% placeholder "feature_image" %}
+            <figcaption class="feature-image-caption">
+                {% placeholder "feature_image_caption" %}
+            </figcaption>
+        </figure>
     </div>
     <h1>{% show_breadcrumb 1 "efocms/leaf_breadcrumb.html" %}</h1>
     {% placeholder "content" %}

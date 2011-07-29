@@ -30,7 +30,6 @@
     </head>
     
     <body class="{% block body_class %}{% endblock %}">
-        {% if messages %}
             <section id="messages">
                 <ul>
                     {% for message in messages %}
@@ -41,7 +40,6 @@
                     {% endfor %}
                 </ul>
             </section>
-        {% endif %}
                 
         
         {% if True %}    

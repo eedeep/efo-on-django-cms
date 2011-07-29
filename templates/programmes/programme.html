@@ -3,27 +3,20 @@
 {% load thumbnail %}
 
 {% block extra_head %}
-    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/mootools/mootools.v1.11.js"></script>
-    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jdgallery/jd.gallery.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jd.gallery.css">
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jquery/plugins/min/jquery.cycle.all.min.js"></script>
     <script type="text/javascript">
-        function startGallery() {
-            var myGallery = new gallery($('myGallery'), {
-            timed: false
-            });
-        }
-        window.addEvent('domready', startGallery);
-    </script> 
+        jQuery('document').ready(function(){
+           jQuery('#feature-images').cycle(); 
+        });
+    </script>
 {% endblock %}
 
 {% block body %}
     {% placeholder "detail_content" %}
-    <div id="myGallery">
+    <div id="feature-images" class="feature-image-container programme">
         {% for image in programme.slideshow_images %}
-            <div class="imageElement">
-                <h3>{{ image.caption }}</h3>
-                <p>{{ image.caption }}</p>
-                <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open"></a>
+            <figure class="feature-image-figure">
+                <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open">
                 {% thumbnail image.image "456x316" crop="center" as object_image %}
                     <img 
                         alt="{{ object_image.title }}"
@@ -32,15 +25,11 @@
                         height="{{ object_image.height }}" 
                         class="full" />
                 {% endthumbnail %}
-                {% thumbnail image.image "100x100" crop="center" as object_image %}
-                    <img 
-                        alt="{{ object_image.title }}"
-                        src="{{ object_image.url }}"
-                        width="{{ object_image.width }}" 
-                        height="{{ object_image.height }}" 
-                        class="thumbnail" />
-                {% endthumbnail %}
-            </div>
+                </a>
+                <figcaption class="feature-image-caption">
+                    <p>{{ image.caption }}</p>
+                </figcaption>
+            </figure>
         {% endfor %}
     </div>
     <h1>
@@ -50,37 +39,25 @@
     <h2>
         Project Needs and Beneficiaries
     </h2>
-    <p>
-        {{ programme.needs|safe }}
-    </p>
+    {{ programme.needs|safe }}
     <h2>
         Objectives
     </h2>
-    <p>
-        {{ programme.objectives|safe }}
-    </p>
+    {{ programme.objectives|safe }}
     <h2>
         Activities
     </h2>
-    <p>
-        {{ programme.activities|safe }}
-    </p>
+    {{ programme.activities|safe }}
     <h2>
         Potential Long Term Impact
     </h2>
-    <p>
-        {{ programme.long_term_impact|safe }}
-    </p>
+    {{ programme.long_term_impact|safe }}
     <h2>
         Funding Information
     </h2>
-    <p>
-        {{ programme.funding_info|safe }}
-    </p>
+    {{ programme.funding_info|safe }}
     <h2>
         How To Help
     </h2>
-    <p>
-        {{ programme.how_to_help|safe }}
-    </p>
+    {{ programme.how_to_help|safe }}
 {% endblock body %}

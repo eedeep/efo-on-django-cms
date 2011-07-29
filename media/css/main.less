@@ -596,18 +596,15 @@ body{
             color: @off-black;
             
         }        
-        #feature-image{                    
-            max-width: 340px;
+        .feature-image-container{
             float: right;
             clear: right;
-            margin: 0 0 @layout-gutter @layout-gutter !important;
+            margin: 0 0 @layout-gutter @layout-gutter;
             line-height: 0;
             img{
-                max-width: 336px;
-                height: auto;
                 border: 2px solid @soft-grey;
             }
-            #feature-image-caption{
+            .feature-image-caption{
                 padding: 3px 4px 0;
                 font-size: 11px;
                 line-height: 1.2em;
@@ -615,14 +612,20 @@ body{
                 p{
                     margin: 0;
                 }
+            }   
+        }
+        /* different sizes for different templates */
+        .feature-image-container.about{
+            max-width: 340px;
+            img{
+                max-width: 336px;
+                height: auto;                
             }
         }
+        .feature-image-container.programme, .feature-image-container.project{
+            width: 460px;
+        }
     }
-}
-
-#myGallery{
-    float: right;
-    margin: 0 0 @layout-gutter @layout-gutter;
 }
 
 #home-features{
