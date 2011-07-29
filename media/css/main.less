@@ -392,6 +392,9 @@
             display: inline-block;
         }
         
+
+/* General Stylesheet
+------------------------------------------------------------ */
         
 
 html{
@@ -407,6 +410,10 @@ body{
     .rounded-bottom(10px);
 }
 
+
+/* Header
+----------*/
+    
 #main-header{
     padding: @layout-gutter @layout-gutter 0;
     overflow: visible;
@@ -534,6 +541,10 @@ body{
     }
 }
 
+
+/* Content 
+----------*/
+
 #content{
     padding: 0 @layout-gutter;
     width: auto;
@@ -582,7 +593,6 @@ body{
             text-transform: uppercase;
             font-weight: bold;
             margin: 0 0 22px;
-            /*margin-top: -8px;*/
         }
         h2{
             font-size: 20px;
@@ -593,27 +603,33 @@ body{
         }
         h3{
             font-size: 16px;
-            color: @off-black;
-            
-        }        
-        .feature-image-container{
-            float: right;
-            clear: right;
-            margin: 0 0 @layout-gutter @layout-gutter;
-            line-height: 0;
-            img{
-                border: 2px solid @soft-grey;
-            }
-            .feature-image-caption{
-                padding: 3px 4px 0;
-                font-size: 11px;
-                line-height: 1.2em;
-                color: lighten(@off-black, 15%);
-                p{
-                    margin: 0;
-                }
-            }   
+            color: @off-black;            
+        }               
+    }
+}
+
+
+/* Feature Images & Slideshows
+-------------------------------*/
+
+section#body{ 
+    .feature-image-container{
+        float: right;
+        clear: right;
+        margin: 0 0 @layout-gutter @layout-gutter;
+        line-height: 0;
+        img{
+            border: 2px solid @soft-grey;
         }
+        .feature-image-caption{
+            padding: 3px 4px 0;
+            font-size: 11px;
+            line-height: 1.2em;
+            color: lighten(@off-black, 15%);
+            p{
+                margin: 0;
+            }
+        }   
         /* different sizes for different templates */
         .feature-image-container.about{
             max-width: 340px;
@@ -627,6 +643,10 @@ body{
         }
     }
 }
+
+
+/* Homepage feature slider 
+--------------------------*/
 
 #home-features{
     width: @layout-section-width;
@@ -704,6 +724,10 @@ body{
     }
 }
 
+
+/* Programme and Project lists 
+------------------------------*/
+
 .programme-list-item, .project-list-item{
     .row();
     overflow: hidden;
@@ -735,6 +759,9 @@ body{
         }
     }
 }
+
+/* Footer
+---------*/
 
 footer#main-footer{
     font-family: @font-family;
