@@ -5,6 +5,83 @@
 {% block body %}
     <h1>Programmes</h1>
     {% placeholder "listing_content" %}
+    
+    <div id="programmes-flowchart">
+        <div class="programmes-flowchart-box" id="programmes-flowchart-box-1">
+            {% with p_skillstraining as p %}
+            <h2>{{ p.name }}</h2>
+            <figure>
+                {% thumbnail p.summary_image "175x95" crop="center" as object_image %}
+                    {% with p as object %}
+                        {% include "base/_object_thumbnail_anchor_image.html" %}
+                    {% endwith %}
+                {% endthumbnail %}
+            </figure>
+            <p>
+               {{ p.summary }}
+               {% url programme_view p.slug as programme_detail_url %}
+                <a href="{{ programme_detail_url }}">Read&nbsp;more...</a>
+            </p>
+            {% endwith %}
+        </div>
+        <div class="programmes-flowchart-box" id="programmes-flowchart-box-2">
+            {% with p_livelihoods as p%}
+            <h2>{{ p.name }}</h2>
+            <figure>
+                {% thumbnail p.summary_image "175x95" crop="center" as object_image %}
+                    {% with p as object %}
+                        {% include "base/_object_thumbnail_anchor_image.html" %}
+                    {% endwith %}
+                {% endthumbnail %}
+            </figure>
+            <p>
+               {{ p.summary }}
+               {% url programme_view p.slug as programme_detail_url %}
+                <a href="{{ programme_detail_url }}">Read&nbsp;more...</a>
+            </p>
+            {% endwith %}
+        </div>
+        <div class="programmes-flowchart-box-bottom">
+            <div class="programmes-flowchart-box" id="programmes-flowchart-box-3">
+                {% with p_health as p %}
+                <h2>{{ p.name }}</h2>
+                <figure>
+                    {% thumbnail p.summary_image "175x95" crop="center" as object_image %}
+                        {% with p as object %}
+                            {% include "base/_object_thumbnail_anchor_image.html" %}
+                        {% endwith %}
+                    {% endthumbnail %}
+                </figure>
+                <p>
+                   {{ p.summary }}
+                   {% url programme_view p.slug as programme_detail_url %}
+                    <a href="{{ programme_detail_url }}">Read&nbsp;more...</a>
+                </p>
+                {% endwith %}
+                
+            </div>
+            <div class="programmes-flowchart-box" id="programmes-flowchart-box-4">
+                {% with p_education as p %}
+                <h2>{{ p.name }}</h2>
+                <figure>
+                    {% thumbnail p.summary_image "175x95" crop="center" as object_image %}
+                        {% with p as object %}
+                            {% include "base/_object_thumbnail_anchor_image.html" %}
+                        {% endwith %}
+                    {% endthumbnail %}
+                </figure>
+                <p>
+                   {{ p.summary }}
+                   {% url programme_view p.slug as programme_detail_url %}
+                    <a href="{{ programme_detail_url }}">Read&nbsp;more...</a>
+                </p>
+                {% endwith %}
+            </div>
+        </div>    
+    </div>
+    
+{% comment %}
+    {% placeholder "listing_content" %}
     {% for programme in programmes %}
     <section class="programme-list-item{% if forloop.last %} last{% endif %}{% if forloop.first %} first{% endif %}">
         <div class="programme-list-item-content">
@@ -22,4 +99,7 @@
         </div>
     </section>
     {% endfor %}
+{% endcomment %}
+
+
 {% endblock body %}

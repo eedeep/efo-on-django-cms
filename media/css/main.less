@@ -970,7 +970,74 @@ form{
     }
 }
 
-
+/* Programmes Flowchart 
+-----------------------*/
+#content section#body #programmes-flowchart{
+    .programmes-flowchart-box{
+        margin: 0 auto;
+        width: 270px;
+        text-align: center;
+        position: relative;
+        h2{
+            text-transform: uppercase;
+            text-align: center;
+            margin: 0;
+        }
+        img{
+            width: 260px;
+            height: 135px;
+            border: 3px solid @red;
+            -webkit-border-radius: 5px;
+        }
+        p{
+            text-align: left;
+            font-size: 10px;
+            color: @grey;
+            a{
+                font-weight: bold;
+            }
+        }
+        &#programmes-flowchart-box-1{
+            background: url('/site_media/static/images/flowchart-down.gif') center bottom no-repeat;
+            padding-bottom: 60px;
+            margin-bottom: 20px;
+            p{
+                position: absolute;
+                top: 25px;
+                left: 290px;
+                width: 200px;
+            }            
+        }
+        &#programmes-flowchart-box-2{
+            z-index: 999;
+        }
+        &#programmes-flowchart-box-3{
+            background: url('/site_media/static/images/flowchart-downleft.gif') top right no-repeat;
+            padding-top: 10px;
+            padding-right: 40px;
+        }
+        &#programmes-flowchart-box-4{
+            background: url('/site_media/static/images/flowchart-downright.gif') top left no-repeat;
+            padding-top: 10px;
+            padding-left: 40px;
+        }
+    }
+    .programmes-flowchart-box-bottom{
+        width: auto;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        top: -90px;
+        margin-bottom: -50px;
+        #programmes-flowchart-box-3{
+            float: left;
+        }
+        #programmes-flowchart-box-4{
+            float: right;
+        }
+    }
+    
+}
 
 
 /* Footer

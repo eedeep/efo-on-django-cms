@@ -16,6 +16,10 @@ def programmes(request):
         'programmes/programmes.html',
         {
             "programmes": programmes,
+            "p_health": programmes.filter(slug='health')[0] if programmes.filter(slug='health') else None,
+            "p_education": programmes.filter(slug='education')[0] if programmes.filter(slug='education') else None,
+            "p_skillstraining": programmes.filter(slug='skills-training')[0] if programmes.filter(slug='skills-training') else None,
+            "p_livelihoods": programmes.filter(slug='livelihoods')[0] if programmes.filter(slug='livelihoods') else None
         },
         context_instance=RequestContext(request))
 
