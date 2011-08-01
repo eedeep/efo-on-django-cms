@@ -1,22 +1,20 @@
 {% load thumbnail %}
 
-<div id="{{ group_name }}">
-    <h2>
-        {{ group_name }}
-    </h2>
+<div class="group-of-people">
+    <h2 class="people-group-name">{{ group_name }}</h2>
     {% for person in people %}
-        {% with person.get_profile as profile %}
-        <h3>
-            {{ person.first_name }} {{ person.last_name }} - {{ profile.profession }}
-        </h3>
-            <p>
-                {{ profile.biography }}
-                {% thumbnail profile.avatar "100x100" crop="center" as object_image %}
-                    {% with programme as object %}
-                        {% include "base/_object_thumbnail_anchor_image.html" %}
-                    {% endwith %}
-                {% endthumbnail %}
-            </p>
-        {% endwith %}
+        <div class="people-single">
+            {% with person.get_profile as profile %}
+            <figure class="people-figure">
+            {% thumbnail profile.avatar "98x98" crop="center" as object_image %}
+                {% with programme as object %}
+                    {% include "base/_object_thumbnail_image.html" %}
+                {% endwith %}
+            {% endthumbnail %}
+            </figure>
+            <h3 class="people-title">{{ person.first_name }} {{ person.last_name }} - {{ profile.profession }}</h3>
+            <p class="people-biography">{{ profile.biography }}</p>
+            {% endwith %}
+        </div>
     {% endfor %}
 </div>
