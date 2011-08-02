@@ -649,7 +649,7 @@ section#body{
 /* Homepage feature slider 
 --------------------------*/
 
-#home-features{
+#content section#body #home-features{
     width: @layout-section-width;
     overflow: hidden;
     position: relative;
@@ -666,7 +666,7 @@ section#body{
                 .home-feature-figure-image{
                     .columns(5);
                     a img{
-                        border: 2px solid @soft-grey;
+                        border: 2px solid @red;
                     }
                 }
                 figcaption.home-feature-figcaption{
@@ -676,7 +676,7 @@ section#body{
                         line-height: 1.2em;
                         color: @off-black;
                         text-transform: uppercase;
-                        margin-bottom: @layout-gutter*2;
+                        margin-bottom: @layout-gutter;
                     }
                     span.object-excerpt{
                         display: block;

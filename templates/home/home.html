@@ -19,7 +19,7 @@
                     <div class="home-feature{% if forloop.first %} first{% else %} sibling{% endif %}" feature_number="{{ forloop.counter0 }}">
                         <figure class="home-feature-figure">
                             <figcaption class="home-feature-figcaption">
-                                    <h2>Object Title{{ feature.content_object.title }}</h2>
+                                    <h2>{{ feature.content_object.name }}</h2>
                                     <span class="object-excerpt">
                                         {{ feature.feature_summary }}
                                     </span>
