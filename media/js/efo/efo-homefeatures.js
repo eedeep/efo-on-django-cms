@@ -1,8 +1,6 @@
 $(document).ready(function() {
   
   var $ht = $('.home-features:first-child').height();
-  //$('.home-features').css({height: $ht});
-  
   
   function onBefore(currSlideElement, nextSlideElement, options, forwardFlag) {
     
@@ -20,13 +18,7 @@ $(document).ready(function() {
   };
   
   function onAfter(currSlideElement, nextSlideElement, options, forwardFlag) {
-    
     cfn = parseInt(nextSlideElement.attributes['feature_number'].value);
-    //console.log("now at image: " + cfn);
-	
-	 //var $ht = $(this).height();
-	 //$(this).parent().css({height: $ht});
-	
   };
   
   toggleCycle = function() {
@@ -46,7 +38,6 @@ $(document).ready(function() {
   };
   
   $('#home-feature-cycle-toggle').click(function(e) {
-    e.preventDefault();
     //console.log('clicked play/pause');
     toggleCycle();
   });

@@ -9,8 +9,29 @@
 {% block extra_head %}
 <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jquery/plugins/min/jquery.cycle.all.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-       $('#feature-images').cycle(); 
+jQuery(document).ready(function(){
+    jQuery('#feature-images').cycle({
+       prev: '#prev',
+       next: '#next',
+       timeout: 5000,
+       pager: '#pager',
+    }); 
+    isPlaying = true;
+    jQuery('a#pause').click(function(){
+      jQuery(this).html('&#8250;');
+      toggleCycle();
+    });
+    toggleCycle = function() {
+       if (isPlaying) {
+         $('#feature-images').cycle('pause');
+         $('a#pause').html('&#8250;');
+         isPlaying = false;
+       } else {
+         $('#feature-images').cycle('resume');
+         $('a#pause').html('||');
+         isPlaying = true;
+       }
+    }
     });
 </script>
 
@@ -18,24 +39,30 @@
 
 {% block body %}
     {% placeholder "detail_content" %}
-    <div id="feature-images" class="feature-image-container project">
-        {% for image in project.slideshow_images %}
-            <figure class="feature-image-figure">
-                <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open">
-                {% thumbnail image.image "456x316" crop="center" as object_image %}
-                    <img 
-                        alt="{{ object_image.title }}"
-                        src="{{ object_image.url }}"
-                        width="{{ object_image.width }}" 
-                        height="{{ object_image.height }}" 
-                        class="full" />
-                {% endthumbnail %}
-                </a>
-                <figcaption class="feature-image-caption">
-                    <p>{{ image.caption }}</p>
-                </figcaption>
-            </figure>
-        {% endfor %}
+    <div class="feature-image-wrapper">
+        <div id="feature-images" class="feature-image-container project">
+            {% for image in project.slideshow_images %}
+                <figure class="feature-image-figure">
+                    <a href="{{ MEDIA_URL}}{{ image.image }}" title="open image" class="open">
+                    {% thumbnail image.image "456x316" crop="center" as object_image %}
+                        <img 
+                            alt="{{ object_image.title }}"
+                            src="{{ object_image.url }}"
+                            width="{{ object_image.width }}" 
+                            height="{{ object_image.height }}" 
+                            class="full" />
+                    {% endthumbnail %}
+                    </a>
+                    <figcaption class="feature-image-caption">
+                        <p>{{ image.caption }}</p>
+                    </figcaption>
+                </figure>
+            {% endfor %}
+        </div>
+        <div class="feature-image-controls">
+            <span id="pager"></span>
+            <a id="pause">||</a>            
+        </div>        
     </div>
     <h1>{{ project.name }}</h1>
     <div id="projectFactsBox">

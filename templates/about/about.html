@@ -3,14 +3,16 @@
 {% load menu_tags %}
 
 {% block body %}
-    <div class="feature-image-container about">
-        <figure class="feature-image-figure">
-            {% placeholder "feature_image" %}
-            <figcaption class="feature-image-caption">
-                {% placeholder "feature_image_caption" %}
-            </figcaption>
-        </figure>
+    <div class="feature-image-wrapper">
+        <div class="feature-image-container about">
+            <figure class="feature-image-figure">
+                {% placeholder "feature_image" %}
+                <figcaption class="feature-image-caption">
+                    {% placeholder "feature_image_caption" %}
+                </figcaption>
+            </figure>
+        </div>
     </div>
-    <h1>{% show_breadcrumb 1 "efocms/leaf_breadcrumb.html" %}</h1>
+    <h1 class="pull">{% show_breadcrumb 1 "efocms/leaf_breadcrumb.html" %}</h1>
     {% placeholder "content" %}
 {% endblock body %}

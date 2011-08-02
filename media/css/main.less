@@ -593,7 +593,7 @@ body{
             color: @off-black;
             text-transform: uppercase;
             font-weight: bold;
-            margin: 0 0 22px;
+            margin: -7px 0 22px;
         }
         h2{
             font-size: 20px;
@@ -613,36 +613,62 @@ body{
 /* Feature Images & Slideshows
 -------------------------------*/
 
-section#body{ 
-    .feature-image-container{
+#content section#body{ 
+    .feature-image-wrapper{
         float: right;
         clear: right;
         margin: 0 0 @layout-gutter @layout-gutter;
         line-height: 0;
-        img{
-            border: 2px solid @soft-grey;
-        }
-        .feature-image-caption{
-            padding: 3px 4px 0;
-            font-size: 11px;
-            line-height: 1.2em;
-            color: lighten(@off-black, 15%);
-            p{
-                margin: 0;
+        position: relative;
+        .feature-image-container{
+            img{
+                border: 2px solid @soft-grey;
+            }
+            .feature-image-caption{
+                padding: 3px 4px 0;
+                font-size: 11px;
+                line-height: 1.2em;
+                color: lighten(@off-black, 15%);
+                min-height: 20px;
+                p{
+                    margin: 0;
+                }
             }
         }
-    }   
-        /* different sizes for different templates */
-    .feature-image-container.about{
-        max-width: 340px;
-        img{
-            max-width: 336px;
-            height: auto;                
+        .feature-image-container.about{
+            max-width: 340px;
+            img{
+                max-width: 336px;
+                height: auto;                
+            }
         }
-    }
-    .feature-image-container.programme, .feature-image-container.project{
-        width: 460px;
-    }
+        .feature-image-container.programme, .feature-image-container.project{
+            width: 460px;
+        }
+        .feature-image-controls{
+            z-index: 999;
+            position: absolute;
+            right: 5px;
+            top: 294px;
+            width: auto;
+            a{
+                display: block;
+                float: left;
+                margin: 0 3px;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                background: @red;
+                color: white;
+                font-weight: bold;
+                text-align: center;
+                &:hover, &:focus{
+                    cursor: pointer;
+                    background: @yellow;
+                }
+            }
+        }
+    }    
 }
 
 
@@ -676,7 +702,7 @@ section#body{
                         line-height: 1.2em;
                         color: @off-black;
                         text-transform: uppercase;
-                        margin-bottom: @layout-gutter;
+                        margin: -7px 0 @layout-gutter;
                     }
                     span.object-excerpt{
                         display: block;
