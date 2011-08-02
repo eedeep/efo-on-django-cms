@@ -152,7 +152,10 @@
         
             {% block footer_before %}{% endblock %}
             {% block footer_outer %}
-            <footer id="main-footer">{% block footer %}{% endblock %}</footer>
+            <footer id="main-footer">
+                {% block footer %}{% endblock %}
+                <img id="cc" src="{{ STATIC_URL }}images/commoncode.png" alt="Common Code" />
+            </footer>
             {% endblock %}
             {% block footer_after %}{% endblock %}
         
