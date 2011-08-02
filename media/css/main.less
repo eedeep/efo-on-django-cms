@@ -88,22 +88,22 @@
         .border-right(){.border();border-top:none;border-bottom:none;border-left:none;}
         
         /* rounded corners */
-        .rounded(@radius:5px){-webkit-border-radius:@radius;-moz-border-radius:@radius;-o-border-radius:@radius;-khtml-border-radius:@radius;border-radius:@radius;}
+        .rounded(@radius:5px){-webkit-border-radius:@radius;-moz-border-radius:@radius;-o-border-radius:@radius;-khtml-border-radius:@radius;border-radius:@radius;behavior: url('/site_media/static/css/PIE.htc');}
         .rounded-bottom(@left-radius:5px,@right-radius:5px){.rounded-bottom-left(@left-radius);.rounded-bottom-right(@right-radius);}
-        .rounded-bottom-left(@radius:5px){-webkit-border-bottom-left-radius:@radius;-moz-border-radius-bottomleft:@radius;border-bottom-left-radius:@radius;}
-        .rounded-bottom-right(@radius:5px){-webkit-border-bottom-right-radius:@radius;-moz-border-radius-bottomright:@radius;border-bottom-right-radius:@radius;}
-        .rounded-left(@top-left-radius:5px,@bottom-left-radius:5px){.rounded-top-left(@top-left-radius);.rounded-bottom-left(@bottom-left-radius);}
-        .rounded-right(@top-right-radius:5px,@bottom-right-radius:5px){.rounded-top-right(@top-right-radius);.rounded-bottom-right(@bottom-right-radius);}
-        .rounded-top(@left-radius:5px,@right-radius:5px){.rounded-top-left(@left-radius);.rounded-top-right(@right-radius);}
-        .rounded-top-left(@radius:5px){-webkit-border-top-left-radius:@radius;-moz-border-radius-topleft:@radius;border-top-left-radius:@radius;}
-        .rounded-top-right(@radius:5px){-webkit-border-top-right-radius:@radius;-moz-border-radius-topright:@radius;border-top-right-radius:@radius;}
+        .rounded-bottom-left(@radius:5px){-webkit-border-bottom-left-radius:@radius;-moz-border-radius-bottomleft:@radius;border-bottom-left-radius:@radius;behavior: url('/site_media/static/css/PIE.htc');}
+        .rounded-bottom-right(@radius:5px){-webkit-border-bottom-right-radius:@radius;-moz-border-radius-bottomright:@radius;border-bottom-right-radius:@radius;behavior: url('/site_media/static/css/PIE.htc');}
+        .rounded-left(@top-left-radius:5px,@bottom-left-radius:5px){.rounded-top-left(@top-left-radius);.rounded-bottom-left(@bottom-left-radius);behavior: url('/site_media/static/css/PIE.htc');}
+        .rounded-right(@top-right-radius:5px,@bottom-right-radius:5px){.rounded-top-right(@top-right-radius);.rounded-bottom-right(@bottom-right-radius);behavior: url('/site_media/static/css/PIE.htc');}
+        .rounded-top(@left-radius:5px,@right-radius:5px){.rounded-top-left(@left-radius);.rounded-top-right(@right-radius);behavior: url('/site_media/static/css/PIE.htc');}
+        .rounded-top-left(@radius:5px){-webkit-border-top-left-radius:@radius;-moz-border-radius-topleft:@radius;border-top-left-radius:@radius;behavior: url('/site_media/static/css/PIE.htc');}
+        .rounded-top-right(@radius:5px){-webkit-border-top-right-radius:@radius;-moz-border-radius-topright:@radius;border-top-right-radius:@radius;behavior: url('/site_media/static/css/PIE.htc');}
         
         /* box shadows */
-        /* TODO - this is incomplete */
         .box-shadow(@x:0,@y:0, @z:5px, @color:#AAA){
             -webkit-box-shadow: @x @y @z @color;
             -moz-box-shadow: @x @y @z @color;
             box-shadow: @x @y @z @color;
+            behavior: url('/site_media/static/css/PIE.htc');
         }
         
         /* tabs */
@@ -550,6 +550,7 @@ body{
     padding: 0 @layout-gutter;
     width: auto;
     overflow: hidden;
+    zoom: 1;
     background: #FAFAFA;
     section#body{
         padding: @layout-gutter 0 @layout-gutter;
@@ -557,6 +558,7 @@ body{
         font-size: 12px;
         color: @black;
         overflow: hidden;
+        zoom: 1;
         line-height: 1.4em;
         width: auto;
         
@@ -678,17 +680,20 @@ body{
 #content section#body #home-features{
     width: @layout-section-width;
     overflow: hidden;
+    zoom: 1;
     position: relative;
     .home-features{
         width: @layout-section-width;
         margin: 0 -10px;
         overflow: hidden;
+        zoom: 1;
         .home-feature{
             clear:both;
             figure.home-feature-figure{
                 line-height: 0;
                 width: auto;
                 overflow: hidden;
+                zoom: 1;
                 .home-feature-figure-image{
                     .columns(5);
                     a img{
@@ -758,6 +763,7 @@ body{
 .programme-list-item, .project-list-item{
     .row();
     overflow: hidden;
+    zoom: 1;
     border-bottom: 2px solid @soft-grey;
     padding: 0 0 20px;
     float: left; /* prevent 'margin fusion' */
@@ -832,6 +838,7 @@ body{
     .entry-body{
         width: auto;
         overflow: hidden;
+        zoom: 1;
         .entry-image, img{
             float: right;
             margin: 0 0 @layout-gutter @layout-gutter;
@@ -934,6 +941,7 @@ body{
     .people-single{
         clear: both;
         overflow: hidden;
+        zoom: 1;
         width: auto;
         figure.people-figure{
             float: left;
@@ -1001,24 +1009,32 @@ form{
 #content section#body #programmes-flowchart{
     .programmes-flowchart-box{
         margin: 0 auto;
-        width: 270px;
+        width: 240px;
         text-align: center;
         position: relative;
+        span.programme-number{
+            font-size: 64px;
+            line-height: 64px;
+            color: @red;
+            font-weight: bold;
+            position: absolute;
+        }
         h2{
             text-transform: uppercase;
             text-align: center;
             margin: 0;
         }
         img{
-            width: 260px;
+            width: 230px;
             height: 135px;
-            border: 3px solid @red;
-            -webkit-border-radius: 5px;
+            border: 5px solid @red;
+            .rounded(5px);
         }
         p{
             text-align: left;
-            font-size: 10px;
+            font-size: 11px;
             color: @grey;
+            padding: 0 5px;
             a{
                 font-weight: bold;
             }
@@ -1027,39 +1043,58 @@ form{
             background: url('/site_media/static/images/flowchart-down.gif') center bottom no-repeat;
             padding-bottom: 60px;
             margin-bottom: 20px;
+            span.programme-number{
+                left: -60px;
+                top: 90px;
+            }
             p{
                 position: absolute;
                 top: 25px;
-                left: 290px;
+                left: 250px;
                 width: 200px;
             }            
         }
         &#programmes-flowchart-box-2{
             z-index: 999;
+            span.programme-number{
+                left: -60px;
+                top: 70px;
+            }
         }
         &#programmes-flowchart-box-3{
             background: url('/site_media/static/images/flowchart-downleft.gif') top right no-repeat;
             padding-top: 10px;
             padding-right: 40px;
+            span.programme-number{
+                left: -50px;
+                top: 80px;
+            }
         }
         &#programmes-flowchart-box-4{
             background: url('/site_media/static/images/flowchart-downright.gif') top left no-repeat;
             padding-top: 10px;
             padding-left: 40px;
+            span.programme-number{
+                right: -50px;
+                top: 80px;
+            }
         }
     }
     .programmes-flowchart-box-bottom{
         width: auto;
         margin: 0 auto;
         overflow: hidden;
+        zoom: 1;
         position: relative;
         top: -90px;
         margin-bottom: -50px;
         #programmes-flowchart-box-3{
             float: left;
+            margin-left: 50px;
         }
         #programmes-flowchart-box-4{
             float: right;
+            margin-right: 50px;
         }
     }
     
@@ -1074,9 +1109,12 @@ form{
     }
     div#contribute-form-wrapper{
         .columns(3);
+        overflow: hidden;
+        zoom: 1;
         .paypal-donations{
             float: right;
             overflow: hidden;
+            zoom: 1;
             border: 6px solid @red;
             padding: @layout-gutter;
             .rounded(10px);

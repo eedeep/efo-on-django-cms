@@ -9,9 +9,10 @@
     <div id="programmes-flowchart">
         <div class="programmes-flowchart-box" id="programmes-flowchart-box-1">
             {% with p_skillstraining as p %}
+            <span class="programme-number">1</span>
             <h2>{{ p.name }}</h2>
             <figure>
-                {% thumbnail p.summary_image "175x95" crop="center" as object_image %}
+                {% thumbnail p.summary_image "230x135" crop="center" as object_image %}
                     {% with p as object %}
                         {% include "base/_object_thumbnail_anchor_image.html" %}
                     {% endwith %}
@@ -26,9 +27,10 @@
         </div>
         <div class="programmes-flowchart-box" id="programmes-flowchart-box-2">
             {% with p_livelihoods as p%}
+            <span class="programme-number">2</span>
             <h2>{{ p.name }}</h2>
             <figure>
-                {% thumbnail p.summary_image "175x95" crop="center" as object_image %}
+                {% thumbnail p.summary_image "230x135" crop="center" as object_image %}
                     {% with p as object %}
                         {% include "base/_object_thumbnail_anchor_image.html" %}
                     {% endwith %}
@@ -44,9 +46,10 @@
         <div class="programmes-flowchart-box-bottom">
             <div class="programmes-flowchart-box" id="programmes-flowchart-box-3">
                 {% with p_health as p %}
+                <span class="programme-number">3</span>
                 <h2>{{ p.name }}</h2>
                 <figure>
-                    {% thumbnail p.summary_image "175x95" crop="center" as object_image %}
+                    {% thumbnail p.summary_image "230x135" crop="center" as object_image %}
                         {% with p as object %}
                             {% include "base/_object_thumbnail_anchor_image.html" %}
                         {% endwith %}
@@ -62,9 +65,10 @@
             </div>
             <div class="programmes-flowchart-box" id="programmes-flowchart-box-4">
                 {% with p_education as p %}
+                <span class="programme-number">4</span>
                 <h2>{{ p.name }}</h2>
                 <figure>
-                    {% thumbnail p.summary_image "175x95" crop="center" as object_image %}
+                    {% thumbnail p.summary_image "230x135" crop="center" as object_image %}
                         {% with p as object %}
                             {% include "base/_object_thumbnail_anchor_image.html" %}
                         {% endwith %}
