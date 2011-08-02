@@ -1039,6 +1039,74 @@ form{
     
 }
 
+/* Contribute 
+---------------*/
+#content section#body{
+    .content-wrapper{
+        width: inherit;
+        margin: 0 -10px;
+    }
+    div#contribute-form-wrapper{
+        .columns(3);
+        .paypal-donations{
+            float: right;
+            overflow: hidden;
+            border: 6px solid @red;
+            padding: @layout-gutter;
+            .rounded(10px);
+            background: @yellow;
+            h4{
+                text-align: center;
+                text-transform: uppercase;
+                color: @red;
+                font-size: 24px;
+                line-height: 1.3em;
+                margin: 0 0 @layout-gutter;
+            }
+            form{
+                p{
+                    clear: both;
+                    margin: 0 0 15px;
+                }
+                label{
+                    float: left;
+                    display: block;
+                    width: 136px;
+                    color: black;
+                    text-transform: uppercase;
+                    font-size: 18px;
+                    font-weight: bold;
+                    line-height: 24px;
+                }
+                input{
+                    float: left;
+                }
+                select{
+                    width: 150px;
+                }
+                input[type=text]{
+                    width: 142px;
+                    padding: 4px;
+                }
+                input[type=submit]{
+                    float: right;
+                    width: 150px;
+                    background: @red;
+                    color: white;
+                    border: none;
+                    outline: none;
+                    text-transform: uppercase;
+                    font-size: 18px;
+                    line-height: 1.4em;
+                }
+            }
+        }
+    }
+    div#contribute-content{
+        .columns(5);
+    }
+}
+
 
 /* Footer
 ---------*/
