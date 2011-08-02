@@ -997,12 +997,6 @@ form{
     }
 }
 
-.paginator{
-    margin: @layout-gutter 0 0;
-    .index{
-        margin-right: @layout-gutter;
-    }
-}
 
 /* Programmes Flowchart 
 -----------------------*/
@@ -1197,6 +1191,38 @@ form{
         text-decoration: none;
     }
 }
+
+.paginator{
+    margin: @layout-gutter 0 0;
+    .index{
+        margin-right: @layout-gutter;
+    }
+    a, span.current, span.index{
+        display: inline-block;
+        min-width: 14px;
+        height: 20px;
+        padding: 3px 5px;
+        margin: 0 0 0 10px;
+        background: @red;
+        vertical-align: top;
+        line-height: 20px;
+        text-align: center;
+        color: white !important;
+        text-decoration: none;
+        font-weight: bold;
+        &.current{
+            background: @yellow;
+        }
+        &.disabled{
+            background: @soft-grey;
+        }
+    }   
+    a:hover, a:focus{
+        background: @yellow;
+        text-decoration: none;
+    }
+}
+
 
 /* Footer
 ---------*/
