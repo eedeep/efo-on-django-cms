@@ -14,9 +14,9 @@ jQuery(document).ready(function(){
        prev: '#prev',
        next: '#next',
        timeout: 5000,
-       pager: '#pager',
+       pager: '#pager'
     }); 
-    isPlaying = true;
+    var isPlaying = true;
     jQuery('a#pause').click(function(){
       jQuery(this).html('&#8250;');
       toggleCycle();
