@@ -1,0 +1,44 @@
+/* IE7 fixes, hip hip hooray.
+@red: #D8172C;
+@yellow: #FFB713;
+------------------------------*/
+        
+body{
+    background: white !important;
+    border: 1px solid #DDD;
+    border-top: none;
+    box-shadow: 0 0 10px #AAA !important;
+    behavior: url('/site_media/static/css/PIE.htc');
+}
+
+#content section#body #home-features .home-features .home-feature{
+    width: 960px !important;
+} 
+
+#content section#body #home-features .home-features .home-feature figure.home-feature-figure figcaption{
+    padding-bottom: 20px !important;
+}
+
+#content section#body #programmes-flowchart span.programme-number{
+    height: 64px !important;
+    display: block !important;
+}
+
+div#contribute-form-wrapper { 
+    overflow: hidden;
+    zoom: 1;
+}
+
+#content section#body .content-wrapper{
+    zoom: 1 !important;
+}
+
+#content section#body .paypal-donations{
+    background: #FFB713 !important;
+    border: 5px solid #D8172C !important;
+}
+
+#contact-us-form li, #contact-us-form label{
+    margin: 0 !important;
+    padding: 0 !important;
+}
