@@ -26,7 +26,7 @@
                                     <a href="{{ feature.content_object.get_absolute_url }}" class="object-read-more">Read more.</a>
                             </figcaption>
                             <div class="home-feature-figure-image">
-                                {% thumbnail feature.content_object.feature_image "570x308" crop="center" as object_image %}
+                                {% thumbnail feature.content_object.feature_image "576x314" crop="center" as object_image %}
                                     {% with feature.content_object as object %}
                                         {% include "base/_object_thumbnail_anchor_image.html" %}
                                     {% endwith %}

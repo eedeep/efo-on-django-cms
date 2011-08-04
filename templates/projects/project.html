@@ -15,8 +15,8 @@ jQuery(document).ready(function(){
        next: '#next',
        timeout: 5000,
        pager: '#pager'
-    }); 
-    var isPlaying = true;
+    }).cycle('pause'); 
+    var isPlaying = false;
     jQuery('a#pause').click(function(){
       jQuery(this).html('&#8250;');
       toggleCycle();
@@ -27,7 +27,7 @@ jQuery(document).ready(function(){
          $('a#pause').html('&#8250;');
          isPlaying = false;
        } else {
-         $('#feature-images').cycle('resume');
+         $('#feature-images').cycle('resume').cycle('next');
          $('a#pause').html('||');
          isPlaying = true;
        }
@@ -61,7 +61,7 @@ jQuery(document).ready(function(){
         </div>
         <div class="feature-image-controls">
             <span id="pager"></span>
-            <a id="pause">||</a>            
+            <a id="pause">&#8250;</a>            
         </div>        
     </div>
     <h1>{{ project.name }}</h1>
