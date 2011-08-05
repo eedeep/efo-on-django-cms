@@ -34,6 +34,7 @@
     </head>
     
     <body class="{% block body_class %}{% endblock %}">
+        <div id="wrapper">
             <section id="messages">
                 <ul>
                     {% for message in messages %}
@@ -150,11 +151,16 @@
             
             </div>
         
+            <div id="footer-push"></div>
+            <span style="clear:both;">&nbsp;</span>
+            
+        </div> <!-- wrapper -->
+        
             {% block footer_before %}{% endblock %}
             {% block footer_outer %}
             <footer id="main-footer">
                 {% block footer %}{% endblock %}
-                <img id="cc" src="{{ STATIC_URL }}images/commoncode.png" alt="Common Code" />
+                
             </footer>
             {% endblock %}
             {% block footer_after %}{% endblock %}
@@ -164,7 +170,5 @@
             {% endblock %}
         
         {% endif %}
-        
-        
     </body>
 </html>
