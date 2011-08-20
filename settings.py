@@ -231,6 +231,7 @@ INSTALLED_APPS = [
     "programmes",
     "efozinnia",
     "home",
+    "donors",
 ]
 
 # Database
@@ -312,6 +313,7 @@ CMS_TEMPLATES = (
         ('base/base.html', gettext('base')),
         ('site_base.html', gettext('main base')),
         ('about/about.html', gettext('about')),
+        ('donors/donors.html', gettext('donors')),
         ('programmes/programmes_container.html', gettext('programmes container')),
         ('projects/projects_container.html', gettext('projects container')),
         ('contribute/contribute.html', gettext('contribute template')),

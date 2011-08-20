@@ -1,0 +1,27 @@
+{% extends "site_base.html" %}
+{% load cms_tags %}
+{% load menu_tags %}
+{% load thumbnail %}
+
+{% block body %}
+    <h1>Donors</h1>
+    {% placeholder "donors_generic_content" %}
+    
+    <div class="group-of-people">
+        {% for donor in donors %}
+            <div class="people-single">
+                <figure class="people-figure">
+                {% thumbnail donor.feature_image "98x98" crop="center" as object_image %}
+                    {% with donor as object %}
+                        <a href="{{ object.url }}" target="_blank">
+                            {% include "base/_object_thumbnail_image.html" %}
+                        </a>
+                    {% endwith %}
+                {% endthumbnail %}
+                </figure>
+                <h3 class="people-title">{{ donor.name }}</h3>
+                <p class="people-biography">{{ donor.biography|safe }} Click <a href="{{ donor.url }}" target="_blank">here</a> to visit the {{ donor.name }} website.</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock body %}
