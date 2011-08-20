@@ -838,13 +838,17 @@ html{
         width: auto;
         overflow: hidden;
         zoom: 1;
-        .entry-image, img{
-            float: right;
-            margin: 0 0 @layout-gutter @layout-gutter;
-            border: 2px solid @soft-grey;
-            max-width: 360px;
-            height: auto;
-        }                
+	.entry-image, img{
+	    float: right;
+	    margin: 0 0 @layout-gutter @layout-gutter;
+	    border: 2px solid @soft-grey;
+	    max-width: 360px;
+	    height: auto;
+	}   
+	.entry-image img{
+	    margin: 0;
+	    border: none;
+	}
     }
     .entry-footer{
         margin-bottom: @layout-gutter;
@@ -1273,7 +1277,7 @@ footer#main-footer{
 /* Sticky footer */
 
 footer#main-footer, #footer-push{
-    height:100px;
+    height:30px;
 }
 
 html, body{
@@ -1284,5 +1288,5 @@ html, body{
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -100px;
+    margin: 0 auto -30px;
 }

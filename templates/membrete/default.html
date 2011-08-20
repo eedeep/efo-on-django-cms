@@ -6,6 +6,10 @@
     <h1>
         Contact Us
     </h1>
+    <div id="contact-us-social-media" style="display:block;float:left; clear:left; padding-top:20px;">
+        {% placeholder "social_media" %}
+        {% include "membrete/_social_media_bar.html" %}
+    </div>
     {% block contactform %}
         {% placeholder "intro" %}
         <div id="contact-us-email" style="display:block;float:left; clear:left; padding-top:20px;">
@@ -46,9 +50,5 @@
     </div>
     <div id="contact-us-visit" style="display:block;float:left; clear:left; padding-top:20px;">
         {% placeholder "visit" %}
-    </div>
-    <div id="contact-us-social-media" style="display:block;float:left; clear:left; padding-top:20px;">
-        {% placeholder "social_media" %}
-        {% include "membrete/_social_media_bar.html" %}
     </div>
 {% endblock body %}

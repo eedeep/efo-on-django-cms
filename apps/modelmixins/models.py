@@ -37,7 +37,7 @@ class SluggedModel(models.Model):
             except IntegrityError:
                 transaction.savepoint_rollback(savepoint)
                 i += 1
-                self.slug = '%s-%d' % (slug, i)
+                self.slug = '%s-%d' % (self.slug_from_field(), i)
 
 class AuditedModel(models.Model):
     created = models.DateTimeField( 

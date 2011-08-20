@@ -31,7 +31,7 @@ EFO - Blog - {% trans "Latest entries" %} {% if category %}| {% trans "Category"
 {% endif %}
 
 {% if author %}
-<h1>{% blocktrans with author.username as author %}Entries by {{ author }}{% endblocktrans %}</h1>
+<h1>Entries by {{ author.first_name }} {{ author.last_name }}</h1>
 {% endif %}
 
 <div class="blog-entry-list">

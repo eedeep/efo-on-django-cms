@@ -10,7 +10,7 @@ from popularity.signals import view
 from projects.models import Project
 
 def projects(request):
-    projects = Project.objects.all()
+    projects = Project.objects.order_by('-date_finished')
     return render_to_response(
         'projects/projects.html',
         {
@@ -33,7 +33,7 @@ def project(request, slug=None):
         context_instance=RequestContext(request))
 
 def projects_by_programme(request, programme_slug):
-    projects = Project.objects.filter(programme__slug=programme_slug)
+    projects = Project.objects.filter(programme__slug=programme_slug).order_by('-date_finished')
     return render_to_response(
         'projects/projects.html',
         {

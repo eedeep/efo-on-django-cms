@@ -198,6 +198,7 @@ INSTALLED_APPS = [
     'tagging',
     'zinnia', 
     'zinnia.plugins',
+    'django_bitly',
     'membrete',
     'contact',
     'haystack',
@@ -292,6 +293,9 @@ MAILCHIMP_LIST_ID = '1' # dummy
 
 # Zinnia blog engine
 ZINNIA_HIDE_ENTRY_MENU = False
+BITLY_LOGIN = 'eedeep'
+BITLY_API_KEY = 'R_ee48e03be1c91919ef820739fb980ed5'
+ZINNIA_URL_SHORTENER_BACKEND = 'zinnia.url_shortener.backends.bitly'
 
 # Sorl Thumbnail
 THUMBNAIL_BASEDIR = "cache"
@@ -425,6 +429,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_resize_horizontal': False,
     'theme_advanced_resizing_use_cookie': True,
     'theme_advanced_styles': '',
+    'theme_advanced_fonts': 'Arial=arial,helvetica,sans-serif;',
     
 #    // Style formats
 #    // see http://wiki.moxiecode.com/index.php/TinyMCE:Configuration/style_formats
@@ -494,6 +499,8 @@ TINYMCE_DEFAULT_CONFIG = {
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = False
 TINYMCE_FILEBROWSER = True
+
+ZINNIA_PAGINATION = 5
 
 FEATURED_COUNTRIES = (
     ('AU', (u'Australia')),

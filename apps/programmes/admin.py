@@ -38,6 +38,7 @@ class ProgrammeAdmin(AuditedModelAdmin):
         (None, {
             'fields': (
                 'name',
+                'display_order',
                 'summary',
                 'needs',
                 'objectives',

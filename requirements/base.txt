@@ -51,3 +51,4 @@ django-genericforeignkey
 membrete
 django-haystack
 whoosh
+django-bitly

@@ -15,7 +15,7 @@ class ProjectsMenu(CMSAttachMenu):
 
     def get_nodes(self, request):
         nodes = []
-        programmes = Programme.objects.all()
+        programmes = Programme.objects.order_by('display_order')
 
         i=0
         for programme in programmes:

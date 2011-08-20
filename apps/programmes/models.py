@@ -18,6 +18,10 @@ class Programme(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTracked
     """
     name = models.CharField(
         max_length=250)
+    display_order = models.PositiveIntegerField(
+        "Display Order",
+        null=False,
+        help_text="Controls the order that programmes appear in the menu.")
     summary = models.TextField(
         "Summary",
         null=False,

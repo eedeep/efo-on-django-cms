@@ -11,8 +11,8 @@
                next: '#next',
                timeout: 5000,
                pager: '#pager'
-           }).cycle('pause'); 
-           isPlaying = false;
+           }).cycle('resume'); 
+           isPlaying = true;
            jQuery('a#pause').click(function(){
               jQuery(this).html('&#8250;');
               toggleCycle();
@@ -56,7 +56,7 @@
         </div>
         <div class="feature-image-controls">
             <span id="pager"></span>
-            <a id="pause">&#8250;</a>            
+            <a id="pause">||</a>            
         </div>
     </div>
     <h1>
@@ -67,6 +67,9 @@
         Project Needs and Beneficiaries
     </h2>
     {{ programme.needs|safe }}
+    <p>
+        <a href="/projects/by-programme/{{ programme.slug }}">Click here to view EFO's past and present {{ programme.name }} projects</a>
+    </p>
     <h2>
         Objectives
     </h2>
