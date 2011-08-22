@@ -19,6 +19,14 @@ def simple_efo_redirect_target(request):
         return '/projects'
     def skills_training():
         return  '/programmes/skills-training'
+    def how_we_formed():
+        return  '/about-us/how-we-formed'
+    def our_strategy():
+        return  '/about-us/our-strategy'
+    def people():
+        return  '/about-us/people'
+    def why():
+        return  '/about-us/why-solar'
     def livelihoods():
         return  '/programmes/livelihoods'
     def education():
@@ -33,6 +41,10 @@ def simple_efo_redirect_target(request):
     mappings = {
                 'contact': contact,
                 'about': about,
+                'about/how-we-formed': how_we_formed,
+                'about/strategy': our_strategy,
+                'about/peoples': people,
+                'about/why': why,
                 'about/previous-projects': previous_projects,
                 'projects/skills-training-university-based-solar-electricity-courses': skills_training,
                 'projects/development-and-livelihoods-community-charging-stations': livelihoods,
