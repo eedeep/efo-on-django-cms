@@ -11,7 +11,9 @@ if settings.SERVE_MEDIA:
 
 urlpatterns += patterns('',
     url(r"^contact/", include('legacyredirects.urls')),
+    url(r"^contact$", include('legacyredirects.urls')),
     url(r"^about/", include('legacyredirects.urls')),
+    url(r"^about$", include('legacyredirects.urls')),
     url(r"^about/how-we-formed", include('legacyredirects.urls')),
     url(r"^about/strategy", include('legacyredirects.urls')),
     url(r"^about/peoples", include('legacyredirects.urls')),
