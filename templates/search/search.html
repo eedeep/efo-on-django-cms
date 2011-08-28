@@ -12,15 +12,25 @@
         {% if query %}
             <div id="searchResults">
                 <h1>Search</h1>
-                <h2>You searched for <em>{{ query }}</em>.</h2>
+                <h2>You did searched for <em>{{ query }}</em>.</h2>
                 <ul>
                     {% for result in page.object_list %}
                         <li{% if forloop.last %} class="last"{% endif %}>
                             <p>
-                                <a href="{{ result.object.get_absolute_url }}">{{ result.object.search_result_title }}</a>
+                                <a href="{{ result.object.get_absolute_url }}">
+                                    {% if result.object.search_result_title %}
+                                       {{ result.object.search_result_title }}
+                                    {% else %}
+                                       {{ result.object.title }}
+                                    {% endif %}
+                                </a>
                             </p>
                             <p>
-                                {{ result.object.search_result_summary|striptags|truncatewords:50 }}
+                                {% if result.object.search_result_summary %}
+                                    {{ result.object.search_result_summary|striptags|truncatewords:50 }}
+                                {% else %}
+                                    {{ result.object.content|striptags|truncatewords:50 }}
+                                {% endif %}
                             </p>
                         </li>
                     {% empty %}

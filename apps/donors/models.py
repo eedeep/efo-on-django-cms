@@ -39,11 +39,8 @@ class Donor(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedMode
     def __unicode__(self):
         return "%s" % (self.name)
         
-    @models.permalink
     def get_absolute_url(self):
-        return (str(self.content_type()) + '_view', (), {
-            'slug': self.slug,
-        })
+        return '/about-us/donors'
         
     @models.permalink  
     def get_list_url(self):
@@ -59,7 +56,7 @@ class Donor(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedMode
         return self.name
 
     def search_result_summary(self):
-        return self.spiele
+        return self.biography
         
 class DonorImage(Image):
     donor = models.ForeignKey(Donor)
