@@ -5,3 +5,4 @@ site_media
 *.pyc
 
 /local_settings.py
+whoosh/efo_index
