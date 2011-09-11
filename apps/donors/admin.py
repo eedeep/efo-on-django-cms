@@ -19,6 +19,7 @@ class DonorImageInline(ImageInline):
 class DonorAdmin(AuditedModelAdmin):
     list_display = (
         'name',
+        'display_order',
         'created_meta',
         'modified_meta',
     )
@@ -35,6 +36,7 @@ class DonorAdmin(AuditedModelAdmin):
                 'name',
                 'biography',
                 'url',
+                'display_order',
             )
         }),
     )

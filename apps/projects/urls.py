@@ -12,7 +12,7 @@ urlpatterns = patterns('',
         name="projects_by_programme_view",
     ),
     url(
-        r'^(?P<slug>.*)$',
+        r'^(?P<slug>.*)/$',
         'projects.views.project',   
         name="project_view",
     ),

@@ -12,7 +12,7 @@ from donors.models import Donor
 from popularity.signals import view
 
 def donors(request):
-    donors = Donor.objects.all()
+    donors = Donor.objects.order_by('display_order')
     return render_to_response(
         'donors/donors.html',
         {

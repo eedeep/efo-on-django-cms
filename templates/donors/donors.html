@@ -19,7 +19,7 @@
                     {% endwith %}
                 {% endthumbnail %}
                 </figure>
-                <h3 class="people-title">{{ donor.name }}</h3>
+                <h3 class="people-title" id="{{ donor.slug }}">{{ donor.name }}</h3>
                 <p class="people-biography">{{ donor.biography|safe }} Click <a href="{{ donor.url }}" target="_blank">here</a> to visit the {{ donor.name }} website.</p>
             </div>
         {% endfor %}

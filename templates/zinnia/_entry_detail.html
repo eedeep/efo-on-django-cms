@@ -51,6 +51,37 @@
 
 <div class="entry-footer">
   <p class="entry-tags span-16 last">
+    <strong>{% trans "Share" %}</strong> :
+    <span class="addthis_toolbox addthis_default_style addthis_16x16_style shareThisButtonsRegistration"
+                addthis:url="http://www.energyforopportunity.org{{ object.get_absolute_url }}"
+                addthis:title="{{ object.title }}"
+                addthis:description="{{ object_content|striptags }}">
+        <a class="addthis_button_facebook">
+            <img src="/site_media/static/images/socialicons/facebook.gif" width="16" height="16" border="0" alt="Share on Facebook" />
+        </a>
+        <a class="addthis_button_twitter">
+            <img src="/site_media/static/images/socialicons/twitter.gif" width="16" height="16" border="0" alt="Share to Twitter" />
+        </a>
+        <a class="addthis_button_linkedin">
+            <img src="/site_media/static/images/socialicons/linkedin.gif" width="16" height="16" border="0" alt="Share on LinkedIn" />
+        </a>
+        <a class="addthis_button_email">
+            <img src="/site_media/static/images/socialicons/email.gif" width="16" height="16" border="0" alt="Share via Email" />
+        </a>
+        <a class="addthis_button_compact">
+            <img src="/site_media/static/images/socialicons/addthis.gif" width="16" height="16" border="0" alt="More..." />
+        </a>
+    </span>
+    <script type="text/javascript">
+        var addthis_config = {
+          services_compact: 'print, delicious, digg, google, more',
+          url: "http://www.energyforopportunity.org{{ object.get_absolute_url }}"
+        }
+    </script>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e6c307a301239bf"></script>
+  </p>
+
+  <p class="entry-tags span-16 last">
     <strong>{% trans "Tags" %}</strong> :
     {% tags_for_object object as tag_list %}
     {% for tag in tag_list %}

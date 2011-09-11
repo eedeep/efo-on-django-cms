@@ -25,6 +25,11 @@ class Donor(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedMode
         max_length=250,
         blank=True,
         null=True)
+    display_order = models.PositiveIntegerField(
+        "Display Order",
+        default=0,
+        help_text="Controls where the donor appears on the page"
+    )
 
     def slug_from_field(self):
         return self.name
@@ -40,7 +45,7 @@ class Donor(AuditedModel, SluggedModel, ModelWithImageSet, PopularityTrackedMode
         return "%s" % (self.name)
         
     def get_absolute_url(self):
-        return '/about-us/donors'
+        return '/about-us/donors/#' + self.slug
         
     @models.permalink  
     def get_list_url(self):

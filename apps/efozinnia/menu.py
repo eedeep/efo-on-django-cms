@@ -77,6 +77,9 @@ class FlatBlogCategoryModifier(Modifier):
                             primary_category = entry_categories[0]
                             if node.title.lower() == primary_category.slug.lower():
                                 node.selected = True
+                        else:
+                            if self.is_top_level_blog_node(node):
+                                node.selected = True
                     else:
                         if 'categories' not in request.path \
                             and self.is_top_level_blog_node(node):

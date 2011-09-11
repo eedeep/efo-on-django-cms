@@ -5,7 +5,9 @@
     <div class="content-wrapper">
 
         <div id="contribute-content">
-            <h1>Contribute</h1>
+            {% block heading %}
+                <h1>Contribute</h1>
+            {% endblock heading %}
             {% placeholder "page_heading" %}
             {% placeholder "content" %}
         </div>

@@ -19,11 +19,8 @@ PINAX_THEME = "pinax-designer-theme"
 
 PASSWORD_PROTECT_SITE = False
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 # tells Pinax to serve media through the staticfiles app.
-SERVE_MEDIA = DEBUG
+SERVE_MEDIA = True
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -37,11 +34,13 @@ CONTACT_EMAIL = 'info@empty-django-cms-project.com'
 
 MANAGERS = ADMINS
 
+SERVER_EMAIL = 'noreply@energyforopportunity.org'
+DEFAULT_FROM_EMAIL = 'noreply@energyforopportunity.org'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_HOST_USER = 'efo'
+EMAIL_HOST_PASSWORD = 'efo2011go'
 EMAIL_CONFIRMATION_DAYS = 2
-EMAIL_DEBUG = DEBUG
 
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = '/welcome'
@@ -97,7 +96,7 @@ MODEL_IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images', 'models')
 # Have to set this to false for some reason otherwise *all* urls come through with
 # an appended slash for some reason, even if they do have a url match. Something
 # to do with django-cms and the way it is handling url matching/routing
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = "unzj&n1$^ox6%-xh490357i=l@wmq!lu&toe=*sj8s2qv73mhr"
@@ -287,7 +286,7 @@ FILEBROWSER_SAVE_FULL_URL = False
 FILEBROWSER_VERSIONS_BASEDIR = "cache"
 
 # Google Analytics
-# URCHIN_ID = "ua-..."
+URCHIN_ID = "UA-9735758-1"
 
 # Mailchimp
 MAILCHIMP_API_KEY = '1' # dummy
@@ -302,7 +301,7 @@ ZINNIA_URL_SHORTENER_BACKEND = 'zinnia.url_shortener.backends.bitly'
 
 # Sorl Thumbnail
 THUMBNAIL_BASEDIR = "cache"
-THUMBNAIL_DEBUG = True
+THUMBNAIL_DEBUG = False
 
 # Local Settings
 try:
@@ -319,6 +318,7 @@ CMS_TEMPLATES = (
         ('programmes/programmes_container.html', gettext('programmes container')),
         ('projects/projects_container.html', gettext('projects container')),
         ('contribute/contribute.html', gettext('contribute template')),
+        ('contribute/contribute_thankyou.html', gettext('contribute thankyou template')),
         ('contact/contact.html', gettext('contact template')),
         ('base/home.html', gettext('home')),
 )

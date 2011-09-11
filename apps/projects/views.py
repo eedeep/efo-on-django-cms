@@ -18,11 +18,8 @@ def projects(request):
         },
         context_instance=RequestContext(request))
 
-def project(request, slug=None):
-    project = get_object_or_404(
-        Project,
-        slug=slug.rstrip('/'))
-
+def project(request, slug):
+    project = Project.objects.get(slug=slug.strip('/'))
     view.send(project)
 
     return render_to_response(
@@ -33,7 +30,7 @@ def project(request, slug=None):
         context_instance=RequestContext(request))
 
 def projects_by_programme(request, programme_slug):
-    projects = Project.objects.filter(programme__slug=programme_slug).order_by('-date_finished')
+    projects = Project.objects.filter(programme__slug=programme_slug.strip('/')).order_by('-date_finished')
     return render_to_response(
         'projects/projects.html',
         {
