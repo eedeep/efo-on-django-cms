@@ -295,9 +295,10 @@ MAILCHIMP_LIST_ID = '1' # dummy
 
 # Zinnia blog engine
 ZINNIA_HIDE_ENTRY_MENU = False
-BITLY_LOGIN = 'eedeep'
-BITLY_API_KEY = 'R_ee48e03be1c91919ef820739fb980ed5'
+BITLY_LOGIN = 'energyforopportunity'
+BITLY_API_KEY = 'R_390c6b9eb457108157a00af0d80bccb6'
 ZINNIA_URL_SHORTENER_BACKEND = 'zinnia.url_shortener.backends.bitly'
+AKISMET_SECRET_API_KEY='3b92dedec5aa'
 
 # Sorl Thumbnail
 THUMBNAIL_BASEDIR = "cache"
@@ -351,6 +352,9 @@ CMS_SHOW_START_DATE = True
 CMS_MENU_TITLE_OVERWRITE = True
 CMS_UNIQUE_SLUGS = True
 CMS_CONTENT_CACHE_DURATION = 10
+
+CMS_MEDIA_PATH = 'cms/'
+CMS_MEDIA_URL = os.path.join(STATIC_URL, CMS_MEDIA_PATH)
 
 HAYSTACK_SITECONF = 'efo.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
