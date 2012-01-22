@@ -1,6 +1,10 @@
 {% extends "site_base.html" %}
 {% load cms_tags %}
 
+{% block extra_head %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/efo/efo-contribute.js"></script>
+{% endblock %}
+
 {% block body %}
     <div class="content-wrapper">
 
@@ -10,12 +14,68 @@
             {% endblock heading %}
             {% placeholder "page_heading" %}
             {% placeholder "content" %}
-        </div>
-    
-        <div id="contribute-form-wrapper">
-            <div class="paypal-donations">
+    </div>
+
+    <div id="contribute-form-wrapper">
+        <div class="paypal-donations">
+            <form>
+                <fieldset>
+                    <h4> Make Your Donation Here</h4>
+                    <p>
+                        <label class="choose-donation-type"> 
+                            <input id="us-donation-radio" type="radio" name="donation-type"> I am in the U.S.A 
+                        </label>
+                    </p>
+                    <p>
+                        <label class="choose-donation-type"> 
+                            <input id="non-us-donation-radio" type="radio" name="donation-type"> I am in a country other than the U.S.A
+                        </label>
+                    </p>
+                </fieldset>
+            </form>
+            <div id="us-donation-form">
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                    <h4>Make a one time donation</h4>
+                    <input type="hidden" name="cmd" value="_s-xclick"> 
+                    <input type="hidden" name="hosted_button_id" value="SPVTD883YC4EW"> 
+                    <input name="return" type="hidden" value="http://www.energyforopportunity.org/contribute/thank-you/" />
+                    <div class="donation-info">
+                        <p>
+                            Your donation will go into the paypal account of EFO's official partner organisation, Friends of Sierra Leone, who will then transfer the donation amount to EFO. 
+                        </p>
+                        <p>
+                            Friends of Sierra Leone is a registered charity in the U.S.A and therefore your donation can be claimed as a tax credit under US tax law.
+                        </p>
+                    </div>
+                    <p>
+                        <label for="amount">Amount</label>
+                        <input type="text" name="amount" value="">
+                    </p>
+                    <p>
+                        <label for="currency_code">Currency</label>
+                            <select id="currency_code" name="currency_code">
+                            <option value="AUD">Australian Dollars (A $)</option>
+                            <option value="CAD">Canadian Dollars (C $)</option>
+                            <option value="EUR">Euros (&#8364;)</option>
+                            <option value="GBP">Pounds Sterling (&pound;)</option>
+                            <option selected="selected" value="USD">U.S. Dollars ($)</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="item_name">Support</label>
+                        <select id="item_name" name="item_name">
+                            <option value="University Based Solar Electricity Courses">University Based Solar Electricity Courses</option>
+                            <option value="Community Solar Charging Stations">Community Solar Charging Stations</option>
+                            <option value="Power Systems for Secondary Schools">Power Systems for Secondary Schools</option>
+                            <option value="Electricity for Rural Health Clinics">Electricity for Rural Health Clinics</option>
+                            <option selected="selected" value="Support renewable energy solutions in West Africa">Where ever it helps most!</option>
+                        </select>
+                    </p>
+                    <input type="image" alt="Donate to EFO via PayPal - The safer, easier way to pay online." title="Donate to EFO via PayPal - The safer, easier way to pay online." name="submit" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" value="Donate" />
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+            </div>
+            <div id="non-us-donation-form">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <input name="cmd" type="hidden" value="_donations" />
                     <input type="hidden" name="on0" value="Donation to Energy For Opportunity">
                     <input type="hidden" name="os0" value="Official Donation Receipt For Income Tax Purposes">
@@ -28,6 +88,11 @@
                     <input name="business" type="hidden" value="GW7BW37PJY392" />
 
                     <input name="return" type="hidden" value="http://www.energyforopportunity.org/contribute/thank-you/" />
+                    <div class="donation-info">
+                        <p>
+                            Your donation will go directly into EFO's paypal account and is eligible for tax credits where applicable under Canadian tax law.
+                        </p>
+                    </div>
                     <p>
                         <label for="amount">Amount</label>
                         <input type="text" name="amount" value="">
@@ -37,8 +102,8 @@
                             <select id="currency_code" name="currency_code">
                             <option value="AUD">Australian Dollars (A $)</option>
                             <option value="CAD">Canadian Dollars (C $)</option>
-                            <option value="EUR">Euros (€)</option>
-                            <option value="GBP">Pounds Sterling (£)</option>
+                            <option value="EUR">Euros (&#8364;)</option>
+                            <option value="GBP">Pounds Sterling (&pound;)</option>
                             <option selected="selected" value="USD">U.S. Dollars ($)</option>
                         </select>
                     </p>
@@ -57,39 +122,6 @@
                     </p>
                 </form>
             </div>
-            {% comment %}
-            <div class="paypal-donations" style="display:none;">
-                <h4>Make a monthly donation:</h4>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                    <input type="hidden" name="cmd" value="_xclick-subscriptions">
-                    <input type="hidden" name="p3" value="24">
-                    <input type="hidden" name="t3" value="M">
-                    <input type="hidden" name="business" value="GW7BW37PJY392">
-                    <input name="cmd" type="hidden" value="_donations" />
-                    <input alt="Donate to EFO via PayPal - The safer, easier way to pay online." title="Donate to EFO via PayPal - The safer, easier way to pay online." name="submit" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" type="image" /> <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" alt="" width="1" height="1" />
-                    <p><span>Amount:</span></p>
-                    <input type="text" id="a3" name="a3" value="">
-                    <p><span>Preferred currency: </span></p>
-
-                    <select id="currency_code" name="currency_code">
-                        <option value="AUD">Australian Dollars (A $)</option>
-                        <option value="CAD">Canadian Dollars (C $)</option>
-                        <option value="EUR">Euros (€)</option>
-                        <option value="GBP">Pounds Sterling (£)</option>
-                        <option selected="selected" value="USD">U.S. Dollars ($)</option>
-                    </select>
-                    <p><span>Area to support:</span></p>
-                    <select id="item_name" name="item_name">
-                        <option value="University Based Solar Electricity Courses">University Based Solar Electricity Courses</option>
-                        <option value="Community Solar Charging Stations">Community Solar Charging Stations</option>
-                        <option value="Power Systems for Secondary Schools">Power Systems for Secondary Schools</option>
-                        <option value="Electricity for Rural Health Clinics">Electricity for Rural Health Clinics</option>
-                        <option selected="selected" value="Support renewable energy solutions in West Africa">Where ever it helps most!</option>
-                    </select>
-                </form>
-            </div>
-            {% endcomment %}
         </div>
-    
-    </div> 
+    </div>
 {% endblock body %}
